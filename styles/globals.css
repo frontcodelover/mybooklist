@@ -19,6 +19,14 @@ a {
   box-sizing: border-box;
 }
 
+.title a {
+  cursor: pointer;
+}
+
+.h-quarter {
+  height: 75vh;
+}
+
 /* @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
