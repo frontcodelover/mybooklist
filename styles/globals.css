@@ -27,6 +27,10 @@ a {
   height: 75vh;
 }
 
+.react-slideshow-container .default-nav:last-of-type, .react-slideshow-container .default-nav:first-of-type {
+  display: none;
+} 
+
 /* @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
