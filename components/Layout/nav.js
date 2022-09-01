@@ -17,13 +17,18 @@ export default function Nav() {
             <Link href="/">
               <div className="logo text-2xl font-semibold basis-1/4 flex cursor-pointer">
                 <span className="font-semibold">Liste </span>
-                <span className="font-bold text-blue-600">deLecture</span>
+                <span className="font-bold text-purple-500">deLecture</span>
               </div>
             </Link>
             <ul className="list-none basis-3/4 flex justify-end font-semibold">
+              <li className="px-6">
+                <Link href="/books">
+                  <a>Rechercher un livre</a>
+                </Link>
+              </li>
               {user ? (
                 <>
-                  <li className="px-6 text-lg cursor-pointer">
+                  <li className="px-6 cursor-pointer">
                     <a
                       onClick={() => {
                         logout();
@@ -33,7 +38,7 @@ export default function Nav() {
                       Se déconnecter
                     </a>
                   </li>
-                  <li className="px-6 text-lg cursor-pointer">
+                  <li className="px-6 cursor-pointer">
                     <a
                       onClick={() => {
                         router.push("/user/dashboard");
@@ -45,10 +50,10 @@ export default function Nav() {
                 </>
               ) : (
                 <>
-                  <li className="px-6 text-lg">
+                  <li className="px-6">
                     <Link href="/user/login">Se connecter</Link>
                   </li>
-                  <li className="px-6 text-lg">
+                  <li className="px-6">
                     <Link href="/user/signup">S&apos;inscrire</Link>
                   </li>
                 </>

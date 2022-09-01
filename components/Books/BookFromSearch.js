@@ -6,7 +6,7 @@ export default function BookFromSearch({ setSearchTerm, searchTerm }) {
       <from className="rounded px-3 mb-4">
         <div className="mb-4">
           <label
-            className="block text-gray-700 text-sm font-bold mb-2"
+            className="block text-gray-700 text-md font-bold mb-2"
             htmlFor="username"
           >
             Indiquer un titre, un auteur

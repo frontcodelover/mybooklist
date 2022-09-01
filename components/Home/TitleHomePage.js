@@ -19,7 +19,7 @@ export default function TitleHomePage() {
             que vous souhaitez lire.
           </h2>
           
-          <button className="mt-6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+          <button className="mt-6 bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full">
             <Link href="/user/signup">
               <a className="text-white">S'incrire gratuitement</a>
             </Link>

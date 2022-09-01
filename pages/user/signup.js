@@ -18,7 +18,7 @@ const Signup = () => {
         e.preventDefault()
         try {
             await signUp(data.email, data.password)
-            router.push('/')
+            router.push('/user/firststep')
         }
         catch (error) {
             console.log(error)

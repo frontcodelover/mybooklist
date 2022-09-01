@@ -1,11 +1,11 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import parse from 'html-react-parser';
+import parse from "html-react-parser";
 
 export default function GetSingleBook({ id }) {
-    const [bookInfos, setBookInfos] = useState({});
-    const [bookDescription, setBookDescription] = useState('');
+  const [bookInfos, setBookInfos] = useState({});
+  const [bookDescription, setBookDescription] = useState("");
 
   useEffect(() => {
     console.log(id);
@@ -14,16 +14,13 @@ export default function GetSingleBook({ id }) {
       .then((res) => {
         const getBook = res.data;
         console.log(getBook);
-          setBookInfos(getBook);
-          if (getBook.volumeInfo.description) {
-            setBookDescription(parse(getBook.volumeInfo.description));
-          }
+        setBookInfos(getBook);
+        if (getBook.volumeInfo.description) {
+          setBookDescription(parse(getBook.volumeInfo.description));
+        }
       });
-    }, [id]);
-    
-    // const desc = bookInfos.volumeInfo?.description;
-    
-    
+  }, [id]);
+
   return (
     <>
       <div>GetSingleBook</div>
@@ -33,8 +30,8 @@ export default function GetSingleBook({ id }) {
             src={bookInfos.volumeInfo?.imageLinks?.thumbnail}
             alt={bookInfos.volumeInfo?.title}
           />
-                  <h2 className="text-2xl">{bookInfos.volumeInfo?.title}</h2>
-                  <h3 className="text-xl">{bookInfos.volumeInfo?.subtitle}</h3>
+          <h2 className="text-2xl">{bookInfos.volumeInfo?.title}</h2>
+          <h3 className="text-xl">{bookInfos.volumeInfo?.subtitle}</h3>
           Auteur(s) :{" "}
           {bookInfos.volumeInfo?.authors ? (
             bookInfos.volumeInfo?.authors.map((author) => (
@@ -42,16 +39,15 @@ export default function GetSingleBook({ id }) {
             ))
           ) : (
             <p>Auteur inconnu</p>
-                  )}
-                  {bookInfos.volumeInfo?.categories ? (
-                      bookInfos.volumeInfo?.categories.map((category) => (
-                          <p key={category}>{category}</p>
-                      ))
-                  ) : (
-                        <p>Catégorie inconnue</p>
-                    )}
-                  <p>{bookDescription}</p>
-                  
+          )}
+          {bookInfos.volumeInfo?.categories ? (
+            bookInfos.volumeInfo?.categories.map((category) => (
+              <p key={category}>{category}</p>
+            ))
+          ) : (
+            <p>Catégorie inconnue</p>
+          )}
+          <p>{bookDescription}</p>
           <p>{bookInfos.volumeInfo?.pageCount} pages</p>
         </div>
       </div>
