@@ -1,76 +1,37 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import BookLayout from "../Books/BookLayout";
 
 export default function FetchBookBookmarked({ bookInfos }) {
   const [bookDetail, setBookDetail] = useState([]);
 
   useEffect(() => {
-    let allBook = [];
-
+    // let allBook = [];
+    let ignore = false;
     bookInfos.map(async (book) => {
       await axios
-        .get(`https://www.googleapis.com/books/v1/volumes/${book.bookid}`)
+        .get(`https://www.googleapis.com/books/v1/volumes/${book}`)
         .then((res) => {
-          allBook.push(res.data);
-          setBookDetail(allBook);
+          // allBook.push(res.data);
+          if (!ignore) {
+            setBookDetail((oldValues) => [...oldValues, res.data]);
+          }
         });
     });
-    fetch();
+    return () => {
+      ignore = true;
+    };
   }, [bookInfos]);
 
-  function fetch() {
-    try {
-      return (
-        <>
-          <div>FetchBookBookmarked</div>
-          <div className="grid grid-cols-1 gap-4">
-            {bookDetail.map((book) => {
-              return (
-                <div key={book.id}>
-                  <img
-                    src={book.volumeInfo.imageLinks.thumbnail}
-                    alt={book.volumeInfo.title}
-                  />
-                  <h2 className="text-2xl">{book.volumeInfo.title}</h2>
-                  <h3 className="text-xl">{book.volumeInfo.subtitle}</h3>
-                  Auteur(s) :{" "}
-                  {book.volumeInfo.authors ? (
-                    book.volumeInfo.authors.map((author) => (
-                      <p key={author}>{author}</p>
-                    ))
-                  ) : (
-                    <p>Auteur inconnu</p>
-                  )}
-                  {book.volumeInfo.categories ? (
-                    book.volumeInfo.categories.map((category) => (
-                      <p key={category}>{category}</p>
-                    ))
-                  ) : (
-                    <p>Catégorie inconnue</p>
-                  )}
-                  <p>{book.volumeInfo.pageCount} pages</p>
-                </div>
-              );
-            })}
-          </div>
-        </>
-      );
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  return fetch();
+  console.log(bookDetail);
+
+  return (
+    <>
+      {bookDetail.map((book) => (
+        <div key={book.id}>
+          <BookLayout book={book} />
+        </div>
+      ))}
+    </>
+  );
 }
-
-//      console.log(bookDetail.map((book) => book.volumeInfo.title));
-
-//     return (
-//         <>
-//             {
-
-//                     bookDetail.map((book) => book.volumeInfo.title)
-
-//             }
-//         </>
-//       );
-// }
