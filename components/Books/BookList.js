@@ -44,12 +44,14 @@ export default function BookList() {
     <>
       <h1 className="text-3xl font-semibold">Rechercher un livre</h1>
       <BookFromSearch setSearchTerm={setSearchTerm} searchTerm={searchTerm} />
-      <div className="grid gap-2 grid-cols-1 lg:grid-cols-2">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {books.map((book) => (
           <div key={book.id}>
-            <BookLayout book={book} />
-            <Bookmarks bookid={book.id} userid={user.uid} />
-          </div>
+           
+                {/* <Bookmarks bookid={book.id} userid={user.uid} /> */}
+                <BookLayout book={book} userid={user?.uid}/>
+              </div>
+
           
         ))}
       </div>

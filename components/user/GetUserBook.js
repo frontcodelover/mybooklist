@@ -18,13 +18,17 @@ export default function GetUserBook({ user }) {
       );
       const queriedCurrentUserResult = await getDocs(queriedCurrentUser);
 
-      queriedCurrentUserResult.forEach((doc) => {
-        tab.push(doc.data());
-        tab.map((bookid) => {
-          tabid.push(bookid.bookid);
-          setBookBookmarked(tabid);
-        });
-        console.log("TABID", tabid);
+      
+        queriedCurrentUserResult.forEach((doc) => {
+          tab.push(doc.data());
+          tab.map((bookid) => {
+            tabid.push(bookid.bookid);
+            setBookBookmarked(tabid);
+          })
+
+          console.log("TABID", tabid);
+
+
       });
     };
     getBooks();
@@ -33,7 +37,7 @@ export default function GetUserBook({ user }) {
   return (
     <>
       <div>
-        GetUserBook
+        <h1 className="font-semibold text-2xl py-3">Ma liste de lecture</h1>
         {bookBookmarked.map((book) => (
           <>
             {console.log(book)}

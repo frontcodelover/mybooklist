@@ -5,7 +5,7 @@ import bibliotheBoy from "../../public/bibliotheque-boy.jpg"
 
 export default function TitleHomePage() {
   return (
-    <div className="md:grid md:grid-cols-2 md:gap-5 h-quarter md:px-0 px-5 mt-20 md:mt-0">
+    <div className="md:grid md:grid-cols-2 md:gap-5 h-screen md:px-0 px-5 mt-20 md:mt-0">
       <div className="md:items-center md:justify-center md:hidden">
               <Image src={bibliotheBoy} alt="Bibliothèque de garçons" loading="lazy" className="rounded-xl" />
       </div>

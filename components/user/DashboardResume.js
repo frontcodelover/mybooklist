@@ -46,7 +46,7 @@ export default function DashboardResume() {
               <h2 className="text-xl font-semibold">Ma devise, mon proverbe préféré :</h2>
               <p>{currentUser.phrase}</p>
             </div>
-            <GetUserBook user={user.uid} />
+            <GetUserBook user={user?.uid} />
           </>
         ) : (
           <>
