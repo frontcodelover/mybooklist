@@ -8,6 +8,6 @@ export default function details() {
     const { id } = router.query;
 
   return (
-    <div><GetSingleBook id={id} /></div>
+    <div className='container max-w-screen-xl mx-auto mt-4'><GetSingleBook id={id} /></div>
   )
 }
