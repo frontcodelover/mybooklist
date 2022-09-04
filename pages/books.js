@@ -3,6 +3,6 @@ import BookList from '../components/Books/BookList'
 
 export default function books() {
   return (
-    <div><BookList /></div>
+    <div className='px-5'><BookList /></div>
   )
 }

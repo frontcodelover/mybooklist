@@ -14,6 +14,7 @@ export default function BookList() {
   console.log(user);
   const [books, setBooks] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+
   console.log(searchTerm);
 
   useEffect(() => {
@@ -40,11 +41,14 @@ export default function BookList() {
           });
   }, [searchTerm]);
 
+
+
   return (
     <>
-      <h1 className="text-3xl font-semibold">Rechercher un livre</h1>
+
+      <h1 className="text-3xl font-semibold">Catalogue</h1>
       <BookFromSearch setSearchTerm={setSearchTerm} searchTerm={searchTerm} />
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-1 lg:max-w-screen-md mx-auto w-full">
         {books.map((book) => (
           <div key={book.id}>
            

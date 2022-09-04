@@ -8,22 +8,30 @@ import { useAuth } from "../../context/AuthContext";
 export default function BookLayout({ book, userid }) {
   const { user } = useAuth();
   return (
-    <div className="w-full lg:w-full lg:flex shadow-lg my-1 p-5 h-60 max-h-60 border rounded-lg">
-      <div className="max-h-48 lg:h-auto lg:w-30 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden my-auto">
+    <div className="w-full h-60 max-h-60 flex">
+      <div className="max-h-48 lg:h-auto lg:w-30 bg-cover text-center overflow-hidden">
         {book.volumeInfo.imageLinks ? (
-          <img
+          <Link href="/books/details/[id]" as={`/books/details/${book?.id}`}>
+
+            <a>
+            <img
             src={book.volumeInfo.imageLinks.thumbnail}
             alt={book.volumeInfo.title}
-          />
+            />
+            </a>
+            </Link>
         ) : (
-          <Image src={genBook} alt={book.volumeInfo.title} />
-        )}
+          <Link href="/books/details/[id]" as={`/books/details/${book?.id}`}>
+          <a><Image src={genBook} alt={book.volumeInfo.title} /></a>
+          </Link>
+            )
+        }
       </div>
-      <div className="my-auto px-5 py-auto flex flex-col leading-normal w-full align-middle justify-center">
+      <div className="px-5 flex flex-col w-full">
         <div className="mb-4">
           <div className="text-gray-900 font-bold text-xl">
-            <Link href="/books/details/[id]" as={`/books/details/${book.id}`}>
-              {book.volumeInfo.title}
+            <Link href="/books/details/[id]" as={`/books/details/${book?.id}`}>
+              <a>{book.volumeInfo.title}</a>
             </Link>
           </div>
           {book.volumeInfo.subtitle ? (
@@ -44,11 +52,11 @@ export default function BookLayout({ book, userid }) {
               ? "Publié en : " + book.volumeInfo.publishedDate.substring(0, 4)
               : "date inconnue"}
           </p>
-          <p className="text-gray-700 text-base">
+          {/* <p className="text-gray-700 text-base">
             {book.volumeInfo.description
               ? book.volumeInfo.description.substring(0, 70) + " ..."
               : ""}
-          </p>
+          </p> */}
           {user ? (
             <p className="my-2">
               <Bookmarks bookid={book.id} userid={userid} />
