@@ -16,6 +16,7 @@ export default function BookFromSearch({ setSearchTerm, searchTerm }) {
             onChange={(e) => setSearchTerm(e.target.value)}
             value={searchTerm}
           />
+         
         </div>
       </div>
     </div>

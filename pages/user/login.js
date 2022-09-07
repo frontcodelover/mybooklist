@@ -56,7 +56,7 @@ const login = () => {
                   className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                   id="email"
                   type="email"
-                  placeholder="Username"
+                  placeholder="Email de votre compte"
                   value={data.email}
                   onChange={(e) => setData({ ...data, email: e.target.value })}
                 />

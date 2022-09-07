@@ -1,17 +1,22 @@
+/* eslint-disable react/no-unescaped-entities */
 import React from "react";
 import Link from "next/link";
 import { useAuth } from "../../context/AuthContext";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, updateDoc } from "firebase/firestore";
 import { useState } from "react";
 import { getFirestore } from "firebase/firestore";
 import Image from "next/image";
 import bookPortrait from "../../public/book-portrait.jpg";
+import { useRouter } from "next/router";
 
 export default function GetUser() {
   const { user } = useAuth();
   const db = getFirestore();
+  const router = useRouter();
 
   const [inputs, setInputs] = useState({});
+
+  console.log(user.uid);
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -34,6 +39,7 @@ export default function GetUser() {
       phrase: inputs.phrase,
       uid: user.uid,
     });
+    router.push("/user/dashboard");
   };
   console.log(inputs);
 
@@ -46,6 +52,7 @@ export default function GetUser() {
               <Image
                 src={bookPortrait}
                 className="w-full h-auto bg-gray-400 hidden lg:block lg:w-1/2 bg-cover rounded-l-lg"
+                alt="book-portrait"
               />
             </div>
             {/* <div
@@ -137,9 +144,10 @@ export default function GetUser() {
                   </label>
                   <select
                     name="genre"
-                    value={inputs.genre}
+                    value={inputs.genre || "Non binaire"}
                     onChange={handleChange}
                     className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                    required
                   >
                     <option value="Femme">une femme</option>
                     <option value="Homme">un homme</option>
@@ -161,7 +169,7 @@ export default function GetUser() {
                   <label className="block mb-2 text-sm font-bold text-gray-700 mt-2">
                     Votre devise, un proverbe ou une phrase ?
                   </label>
-                  <textarea 
+                  <textarea
                     className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                     id="phrase"
                     type="text"
@@ -181,12 +189,13 @@ export default function GetUser() {
                   </button>
                 </div>
                 <hr className="mb-6 border-t" />
-                <div class="text-center text-sm">
+                <div className="text-center text-sm">
                   Nous gardons vos données personnelles, elles ne sont pas
                   revendus ni cédées à des tiers.
                   <br />
-                  Votre pseudo, la ville, le genre littéraire, la devise
-                  et l'age sont utilisés sur votre espace public vous pourrez les modifier plus tard.
+                  Votre pseudo, la ville, le genre littéraire, la devise et
+                  l'age sont utilisés sur votre espace public vous pourrez les
+                  modifier plus tard.
                 </div>
               </form>
             </div>

@@ -97,6 +97,7 @@ export default function GetSingleBook({ id }) {
                 width={50}
                 height={50}
                 className="rounded-full"
+                alt="Marion"
               />
               <div className="p-3">
                 <span className="font-semibold"> Marion T.</span> a écrit le 4
