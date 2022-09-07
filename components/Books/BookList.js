@@ -1,22 +1,15 @@
 import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import BookFromSearch from "./BookFromSearch";
-import genBook from "../../public/livre-generique.jpg";
-import Image from "next/image";
 import BookLayout from "./BookLayout";
 import { useAuth } from "../../context/AuthContext";
-import Bookmarks from "./Bookmarks";
 
 export default function BookList() {
   const { user } = useAuth();
-  console.log(user);
   const [books, setBooks] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [inAuthor, setInAuthor] = useState("");
   const [startIndex, setStartIndex] = useState(0);
-  const [totalItems, setTotalItems] = useState(0);
 
   console.log(searchTerm);
 
@@ -24,11 +17,10 @@ export default function BookList() {
     searchTerm
       ? axios
           .get(
-            `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&maxResults=39&startIndex=${startIndex}&langRestrict=fr&printType=books`
+            `https://www.googleapis.com/books/v1/volumes?q="${searchTerm}"&maxResults=39&startIndex=${startIndex}&langRestrict=fr&printType=books`
           )
           .then((res) => {
             setBooks(res.data.items);
-            setTotalItems(res.data.totalItems);
           })
           .catch((err) => {
             console.log(err);
@@ -39,12 +31,11 @@ export default function BookList() {
           )
           .then((res) => {
             setBooks(res.data.items);
-            setTotalItems(res.data.totalItems);
           })
           .catch((err) => {
             console.log(err);
           });
-  }, [searchTerm, inAuthor, startIndex]);
+  }, [searchTerm, startIndex]);
 
   function nextIndex(e) {
     e.preventDefault();
@@ -71,13 +62,14 @@ export default function BookList() {
         Résultats de la recherche
       </h3>
         <div>
-          Nous avons trouvé <b>{totalItems} résultats</b> correspondant à la
-          recherche <b>{searchTerm}</b>
+          {searchTerm && (
+            <div className="pb-5">  Voici les résultats pour le mot-clef : <span className="font-semibold">{searchTerm}</span></div>
+          )}
         </div>
         {books?.map((book) => (
           <div key={book.id}>
             {/* <Bookmarks bookid={book.id} userid={user.uid} /> */}
-            <BookLayout book={book} userid={user?.uid} />
+            <BookLayout book={book} />
           </div>
         ))}
       </div>

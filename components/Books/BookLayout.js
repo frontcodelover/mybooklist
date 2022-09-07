@@ -5,7 +5,7 @@ import genBook from "../../public/livre-generique.jpg";
 import Bookmarks from "./Bookmarks";
 import { useAuth } from "../../context/AuthContext";
 
-export default function BookLayout({ book, userid }) {
+export default function BookLayout({ book }) {
   const { user } = useAuth();
   return (
     <div className="w-full h-60 max-h-60 flex">
@@ -44,7 +44,13 @@ export default function BookLayout({ book, userid }) {
           <p className="text-gray-700 text-base">
             Auteur(s) :{" "}
             {book.volumeInfo.authors
-              ? book.volumeInfo.authors[0]
+              ? book.volumeInfo.authors.map((author) => (
+                <Link href="/books/author/[id]" as={`/books/author/${author}`}>
+                <a><span key={author}>
+                    {author + ". "}
+                </span></a>
+                </Link>
+              ))
               : "Auteur inconnu"}
           </p>
           <p className="text-gray-700 text-base">
@@ -57,7 +63,7 @@ export default function BookLayout({ book, userid }) {
               ? book.volumeInfo.description.substring(0, 70) + " ..."
               : ""}
           </p> */}
-          {user ? (
+          {/* {user ? (
             <p className="my-2">
               <Bookmarks bookid={book.id} userid={userid} />
             </p>
@@ -67,7 +73,7 @@ export default function BookLayout({ book, userid }) {
                 <a>Connectez-vous pour ajouter ce livre à vos favoris</a>
               </Link>
             </p>
-          )}
+          )} */}
         </div>
       </div>
     </div>
