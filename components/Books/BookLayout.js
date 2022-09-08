@@ -2,60 +2,64 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import genBook from "../../public/livre-generique.jpg";
-import Bookmarks from "./Bookmarks";
-import { useAuth } from "../../context/AuthContext";
+import { getBookFromGoogleBookApi } from "../../services/mapper/mapper";
 
 export default function BookLayout({ book }) {
-  const { user } = useAuth();
+  const bookInfo = getBookFromGoogleBookApi(book);
+  const randomBook = Math.floor(Math.random() * 1000);
+
   return (
     <div className="w-full h-60 max-h-60 flex">
       <div className="max-h-48 lg:h-auto lg:w-30 bg-cover text-center overflow-hidden">
-        {book.volumeInfo.imageLinks ? (
+        {bookInfo.thumbnail ? (
           <Link href="/books/details/[id]" as={`/books/details/${book?.id}`}>
-
             <a>
-            <img
-            src={book.volumeInfo.imageLinks.thumbnail}
-            alt={book.volumeInfo.title}
-            />
+              <img src={bookInfo.thumbnail} alt={bookInfo.title} />
             </a>
-            </Link>
+          </Link>
         ) : (
           <Link href="/books/details/[id]" as={`/books/details/${book?.id}`}>
-          <a><Image src={genBook} alt={book.volumeInfo.title} /></a>
+            <a>
+              <Image src={genBook} alt={bookInfo.title} />
+            </a>
           </Link>
-            )
-        }
+        )}
       </div>
       <div className="px-5 flex flex-col w-full">
         <div className="mb-4">
           <div className="text-gray-900 font-bold text-xl">
             <Link href="/books/details/[id]" as={`/books/details/${book?.id}`}>
-              <a>{book.volumeInfo.title}</a>
+              <a>{bookInfo.title}</a>
             </Link>
           </div>
-          {book.volumeInfo.subtitle ? (
+          {bookInfo.subtitle ? (
             <h3 className="text-sm text-gray-600 font-bold mb-1">
-              {book.volumeInfo.subtitle}
+              {bookInfo.subtitle}
             </h3>
           ) : (
             ""
           )}
           <p className="text-gray-700 text-base">
             Auteur(s) :{" "}
-            {book.volumeInfo.authors
-              ? book.volumeInfo.authors.map((author) => (
-                <Link href="/books/author/[id]" as={`/books/author/${author}`}>
-                <a><span key={author}>
-                    {author + ". "}
-                </span></a>
-                </Link>
-              ))
+            {console.log(bookInfo.authors)}
+            {bookInfo.authors
+              ? bookInfo.authors.map((author) => (
+                    <Link
+                  href="/books/author/[id]"
+                  as={`/books/author/${author}`}
+                  key={bookInfo.authors + randomBook}
+                >
+                  
+                  <a>{author + ". "}</a>
+                  
+                  
+                  </Link>
+                ))
               : "Auteur inconnu"}
           </p>
           <p className="text-gray-700 text-base">
-            {book.volumeInfo.publishedDate
-              ? "Publié en : " + book.volumeInfo.publishedDate.substring(0, 4)
+            {bookInfo.publishedDate
+              ? "Publié en : " + bookInfo.publishedDate.substring(0, 4)
               : "date inconnue"}
           </p>
           {/* <p className="text-gray-700 text-base">

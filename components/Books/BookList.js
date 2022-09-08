@@ -5,13 +5,13 @@ import BookFromSearch from "./BookFromSearch";
 import BookLayout from "./BookLayout";
 import { useAuth } from "../../context/AuthContext";
 
+
 export default function BookList() {
   const { user } = useAuth();
   const [books, setBooks] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [startIndex, setStartIndex] = useState(0);
 
-  console.log(searchTerm);
 
   useEffect(() => {
     searchTerm
@@ -48,7 +48,8 @@ export default function BookList() {
     setStartIndex(startIndex - 40);
   }
 
-  console.log(books);
+
+
 
   return (
     <>
