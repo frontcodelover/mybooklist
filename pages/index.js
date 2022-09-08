@@ -3,6 +3,7 @@ import styles from "../styles/Home.module.css";
 import TitleHomePage from "../components/Home/TitleHomePage";
 import About from "../components/Home/About";
 import Teams from "../components/Home/Teams";
+import Search from "../components/Home/Search";
 
 export default function Home() {
 

@@ -5,6 +5,7 @@ import genBook from "../../public/livre-generique.jpg";
 import { getBookFromGoogleBookApi } from "../../services/mapper/mapper";
 
 export default function BookLayout({ book }) {
+  //Mapper
   const bookInfo = getBookFromGoogleBookApi(book);
   const randomBook = Math.floor(Math.random() * 1000);
 

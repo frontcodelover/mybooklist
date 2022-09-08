@@ -7,9 +7,10 @@ import Marion from "../../public/marion.jpg";
 import { AiOutlineCheck } from "react-icons/ai";
 import { BsListCheck, BsPlay } from "react-icons/bs";
 import genBook from "../../public/livre-generique.jpg";
+import { getBookFromGoogleBookApi } from "../../services/mapper/mapper";
 
 export default function GetSingleBook({ id }) {
-  const [bookInfos, setBookInfos] = useState({});
+  const [book, setBook] = useState({});
   const [bookDescription, setBookDescription] = useState("");
 
   useEffect(() => {
@@ -18,27 +19,29 @@ export default function GetSingleBook({ id }) {
       .get(`https://www.googleapis.com/books/v1/volumes/${id}`)
       .then((res) => {
         const getBook = res.data;
-        console.log(getBook);
-        setBookInfos(getBook);
+        setBook(getBook);
         if (getBook.volumeInfo.description) {
           setBookDescription(parse(getBook.volumeInfo.description));
         }
       });
   }, [id]);
 
+  // Mapper
+  const bookInfos = getBookFromGoogleBookApi(book);
+
   return (
     <>
       <div className="grid grid-cols-9">
         <div className="col-span-2">
-          {bookInfos.volumeInfo?.imageLinks ? (
+          {bookInfos?.thumbnail ? (
             <img
-              src={bookInfos.volumeInfo?.imageLinks.thumbnail}
-              alt={bookInfos.volumeInfo?.title}
+              src={bookInfos?.thumbnail}
+              alt={bookInfos?.title}
               className="mx-auto mb-5 h-48"
             />
           ) : (
               <div className="mx-auto mb-5 h-48">
-            <Image src={genBook} alt={bookInfos.volumeInfo?.title} className="h-48"/>
+            <Image src={genBook} alt={bookInfos?.title} className="h-48"/>
             </div>
           )}
 
@@ -57,24 +60,24 @@ export default function GetSingleBook({ id }) {
           <div className="flex">
             <div className="flex flex-col">
               <h1 className="text-5xl font-semibold">
-                {bookInfos.volumeInfo?.title}
+                {bookInfos?.title}
               </h1>
-              {bookInfos.volumeInfo?.subtitle && (
-                <h2 className="text-3xl">{bookInfos.volumeInfo?.subtitle}</h2>
+              {bookInfos?.subtitle && (
+                <h2 className="text-3xl">{bookInfos?.subtitle}</h2>
               )}
 
-              {bookInfos.volumeInfo?.authors ? (
-                bookInfos.volumeInfo?.authors.map((author) => (
+              {bookInfos?.authors ? (
+                bookInfos?.authors.map((author) => (
                   <p key={author}>Un livre de {author}</p>
                 ))
               ) : (
                 <p>Auteur inconnu</p>
               )}
-              <p>Edition : {bookInfos.volumeInfo?.publisher}</p>
+              <p>Edition : {bookInfos?.publisher}</p>
               <p>
                 Année de publication :
-                {bookInfos.volumeInfo?.publishedDate
-                  ? " " + bookInfos.volumeInfo?.publishedDate.substring(0, 4)
+                {bookInfos?.publishedDate
+                  ? " " + bookInfos?.publishedDate.substring(0, 4)
                   : " inconnue"}
               </p>
             </div>

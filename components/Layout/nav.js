@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { useAuth } from "../../context/AuthContext";
 import { useRouter } from "next/router";
+import Search from "../Home/Search";
 
 //* Navigation du site
 
@@ -20,6 +21,7 @@ export default function Nav() {
                 <span className="font-bold text-purple-500">deLecture</span>
               </div>
             </Link>
+            <Search />
             <ul className="list-none basis-3/4 flex justify-end font-semibold">
               <li className="px-6">
                 <Link href="/books">
