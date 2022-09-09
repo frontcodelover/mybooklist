@@ -9,7 +9,7 @@ export default function TitleHomePage() {
       <div className="md:items-center md:justify-center md:hidden">
               <Image src={bibliotheBoy} alt="Bibliothèque de garçons" loading="lazy" className="rounded-xl" />
       </div>
-      <div className="md:flex md:justify-center md:items-center text-center">
+      <div className="md:flex md:justify-center md:items-center ">
         <div className="md:grow-0">
           <h1 className="text-2xl font-bold lg:text-5xl py-4">
             Lisez plus, apprenez plus !
@@ -19,7 +19,7 @@ export default function TitleHomePage() {
             que vous souhaitez lire.
           </h2>
           
-          <button className="mt-6 bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full">
+          <button className="mt-6 bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-md">
             <Link href="/user/signup">
               <a className="text-white">S'incrire gratuitement</a>
             </Link>

@@ -7,13 +7,15 @@ import NavResponsive from "./navResponsive";
 export default function Layout({ children }) {
   return (
     <>
-      <div className="container mx-auto">
+      <div className="mx-auto">
+        <div className="max-w-screen-xl mx-auto">
+          <NavResponsive />
+        </div>
 
-      <NavResponsive />
-      <Nav />
+        {/* <Nav /> */}
 
-      <main>{children}</main>
-      {/* <Footer /> */}
+        <main>{children}</main>
+        {/* <Footer /> */}
       </div>
     </>
   );
