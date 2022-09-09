@@ -2,8 +2,8 @@ import React from 'react'
 
 export default function Search() {
   return (
-      <div className='mx-auto w-full text-center'>
-          <input type="text" placeholder="Rechercher un livre" className='border w-10/12 rounded-full py-2 px-3 mx-auto'/>
+      <div>
+          <input type="text" placeholder="Rechercher un livre" className='border rounded-full pb-1 px-3 mx-auto w-full'/>
     </div>
   )
 }
