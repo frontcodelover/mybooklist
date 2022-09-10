@@ -1,4 +1,4 @@
-import { Popover, Transition, Menu } from "@headlessui/react";
+import { Popover, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,7 +8,7 @@ import Search from "../Home/Search";
 import { useAuth } from "../../context/AuthContext";
 import { useRouter } from "next/router";
 import avatar from "../../public/avatar.png";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import React, { useEffect, useState } from "react";
 
 const navigation = [{ name: "Rechercher un livre", href: "/books" }];
 
@@ -30,7 +30,7 @@ export default function NavResponsive() {
     <Popover>
       <div className="relative pt-6">
         <nav
-          className="relative flex items-center justify-between sm:h-10"
+          className={`relative flex items-center justify-between sm:h-10 px-5`}
           aria-label="Global"
         >
           <div className="flex flex-shrink-0 flex-grow items-center lg:flex-grow-0">

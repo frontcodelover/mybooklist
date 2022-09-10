@@ -31,7 +31,7 @@ export default function GetSingleBook({ id }) {
 
   return (
     <>
-      <div className="grid grid-cols-9">
+      <div className="grid grid-cols-9 ">
         <div className="col-span-2">
           {bookInfos?.thumbnail ? (
             <img
@@ -40,8 +40,8 @@ export default function GetSingleBook({ id }) {
               className="mx-auto mb-5 h-48"
             />
           ) : (
-              <div className="mx-auto mb-5 h-48">
-            <Image src={genBook} alt={bookInfos?.title} className="h-48"/>
+              <div className="mx-auto mb-5 h-48 ">
+            <Image src={genBook} alt={bookInfos?.title} className="h-48 "/>
             </div>
           )}
 
@@ -59,7 +59,7 @@ export default function GetSingleBook({ id }) {
         <div className="col-span-7">
           <div className="flex">
             <div className="flex flex-col">
-              <h1 className="text-5xl font-semibold">
+              <h1 className="text-5xl font-semibold ">
                 {bookInfos?.title}
               </h1>
               {bookInfos?.subtitle && (

@@ -11,10 +11,10 @@ export default function TitleHomePage() {
       </div>
       <div className="md:flex md:justify-center md:items-center ">
         <div className="md:grow-0">
-          <h1 className="text-2xl font-bold lg:text-5xl py-4">
+          <h1 className="text-2xl font-bold lg:text-5xl py-4 text-main-color">
             Lisez plus, apprenez plus !
           </h1>
-          <h2 className="text-xl lg:text-3xl py-2 pr-6">
+          <h2 className="text-xl lg:text-3xl py-2 pr-6 text-main-color ">
             Constituez vous une liste à votre image en ajoutant tous les livres
             que vous souhaitez lire.
           </h2>

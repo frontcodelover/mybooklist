@@ -1,6 +1,6 @@
 import Nav from "./nav";
 import NavResponsive from "./navResponsive";
-// import Footer from "./footer";
+import Footer from "./footer";
 
 //* Layout commun à tout le site
 
@@ -15,7 +15,7 @@ export default function Layout({ children }) {
         {/* <Nav /> */}
 
         <main>{children}</main>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </>
   );
