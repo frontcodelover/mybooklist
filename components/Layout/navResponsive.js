@@ -9,6 +9,7 @@ import { useAuth } from "../../context/AuthContext";
 import { useRouter } from "next/router";
 import avatar from "../../public/avatar.png";
 import React, { useEffect, useState } from "react";
+import GetUserImage from "../User/GetUserImage";
 
 const navigation = [{ name: "Rechercher un livre", href: "/books" }];
 
@@ -71,13 +72,7 @@ export default function NavResponsive() {
               <>
                 <div className="cursor-pointer flex justify-between">
                   <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 focus:outline-none focus ">
-                    <Image
-                      src={avatar}
-                      width={40}
-                      height={40}
-                      className="rounded-full"
-                      alt="avatar"
-                    />
+                    <GetUserImage user={user.uid} size={40} />
                   </Popover.Button>
                 </div>
                 <Transition
@@ -124,7 +119,8 @@ export default function NavResponsive() {
               <>
                 <div className="cursor-pointer flex justify-between">
                   <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 focus:outline-none focus ">
-                    <Image
+                   
+                      <Image
                       src={avatar}
                       width={40}
                       height={40}

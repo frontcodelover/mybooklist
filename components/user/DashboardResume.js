@@ -4,6 +4,7 @@ import { useAuth } from "../../context/AuthContext";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import Link from "next/link";
 import GetUserBook from "./GetUserBook";
+import GetUserImage from "./GetUserImage";
 
 export default function DashboardResume() {
   const { user } = useAuth();
@@ -17,6 +18,7 @@ export default function DashboardResume() {
         usersCollection,
         where("uid", "==", user.uid)
       );
+
       const queriedCurrentUserResult = await getDocs(queriedCurrentUser);
 
       queriedCurrentUserResult.forEach((doc) => {
@@ -32,33 +34,50 @@ export default function DashboardResume() {
 
   return (
     <>
-      <div className="container mx-auto">
+      <div className="container mx-auto mt-8">
         {currentUser.pseudo ? (
           <>
-            <h1 className="text-5xl font-semibold mb-3">
-              {currentUser.pseudo}
-            </h1>
-              <p>
-                De {currentUser.ville} | {currentUser.genre} | {age} ans
-              </p>
+            <div className="flex col-span-0">
+              <div className="flex flex-col">
+                <GetUserImage user={currentUser.uid} size={98} />
+              </div>
+              <div className="flex flex-col ml-4">
+                <h1 className="text-5xl font-semibold mb-3">
+                  {currentUser.pseudo}
+                </h1>
+                <p>
+                  De {currentUser.ville} | {currentUser.genre} | {age} ans
+                </p>
+              </div>
+            </div>
             <div>
-              <p className="py-6">J'aime lire des livres qui traitent de : {currentUser.litterature}</p>
-              <h2 className="text-xl font-semibold">Ma devise, mon proverbe préféré :</h2>
+              <p className="py-6">
+                J'aime lire des livres qui traitent de :{" "}
+                {currentUser.litterature}
+              </p>
+              <h2 className="text-xl font-semibold">
+                Ma devise, mon proverbe préféré :
+              </h2>
               <p>{currentUser.phrase}</p>
             </div>
             <GetUserBook user={user?.uid} />
           </>
         ) : (
           <>
-            <h1 className="text-2xl"> Oups on dirait bien que vous avez oubliez de remplir vos informations</h1>
+            <h1 className="text-2xl">
+              {" "}
+              Oups on dirait bien que vous avez oubliez de remplir vos
+              informations
+            </h1>
             <div className="">
-                <Link href="/user/firststep">
-                  <button className="mt-6 bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full">Remplir mon profil</button>
-                </Link>
+              <Link href="/user/firststep">
+                <button className="mt-6 bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full">
+                  Remplir mon profil
+                </button>
+              </Link>
             </div>
           </>
         )}
-
       </div>
     </>
   );
