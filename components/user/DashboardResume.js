@@ -5,6 +5,7 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 import Link from "next/link";
 import GetUserBook from "./GetUserBook";
 import GetUserImage from "./GetUserImage";
+import DashboardBanner from "./DashboardBanner";
 
 export default function DashboardResume() {
   const { user } = useAuth();
@@ -33,24 +34,27 @@ export default function DashboardResume() {
   const age = today.getFullYear() - birthDate.getFullYear();
 
   return (
-    <>
-      <div className="container mx-auto mt-8 lg:max-w-screen-md w-full p-4">
+    <div className="relative">
+      <div className="container mx-auto mt-8 lg:max-w-screen-xl w-screen">
         {currentUser.pseudo ? (
           <>
-            <div className="flex col-span-0">
-              <div className="flex flex-col">
-                <GetUserImage user={currentUser.uid} size={98} />
+            <div className="shadow rounded-xl">
+
+            <div className="flex col-span-0 left-1/5 relative">
+            <DashboardBanner />
+              <div className="flex flex-col p-3 bg-white shadow-md rounded-full absolute bottom-0 -mb-16 mx-2">
+                <GetUserImage user={currentUser.uid} size={120} />
               </div>
-              <div className="flex flex-col ml-4">
-                <h1 className="text-5xl font-semibold mb-3">
+            </div>
+            <div className="p-5">
+              <div className="flex flex-col mt-10">
+                <h1 className="text-5xl font-bold mb-3 text-main-color">
                   {currentUser.pseudo}
                 </h1>
                 <p>
                   De {currentUser.ville} | {currentUser.genre} | {age} ans
                 </p>
               </div>
-            </div>
-            <div>
               <p className="py-6">
                 J'aime lire des livres qui traitent de :{" "}
                 {currentUser.litterature}
@@ -60,7 +64,10 @@ export default function DashboardResume() {
               </h2>
               <p>{currentUser.phrase}</p>
             </div>
+            </div>
+            <div className="p-5">
             <GetUserBook user={user?.uid} />
+            </div>
           </>
         ) : (
           <>
@@ -79,6 +86,6 @@ export default function DashboardResume() {
           </>
         )}
       </div>
-    </>
+    </div>
   );
 }
