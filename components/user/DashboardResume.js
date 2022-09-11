@@ -34,7 +34,7 @@ export default function DashboardResume() {
 
   return (
     <>
-      <div className="container mx-auto mt-8">
+      <div className="container mx-auto mt-8 lg:max-w-screen-md w-full p-4">
         {currentUser.pseudo ? (
           <>
             <div className="flex col-span-0">

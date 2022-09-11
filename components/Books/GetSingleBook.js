@@ -8,6 +8,8 @@ import { AiOutlineCheck } from "react-icons/ai";
 import { BsListCheck, BsPlay } from "react-icons/bs";
 import genBook from "../../public/livre-generique.jpg";
 import { getBookFromGoogleBookApi } from "../../services/mapper/mapper";
+import GetBooksRelatedByAuthors from "./GetBooksRelatedByAuthors";
+import GetBooksByMainCategory from "./GetBooksByMainCategory";
 
 export default function GetSingleBook({ id }) {
   const [book, setBook] = useState({});
@@ -40,8 +42,8 @@ export default function GetSingleBook({ id }) {
               className="mx-auto mb-5 h-48"
             />
           ) : (
-              <div className="mx-auto mb-5 h-48 ">
-            <Image src={genBook} alt={bookInfos?.title} className="h-48 "/>
+            <div className="mx-auto mb-5 h-48 ">
+              <Image src={genBook} alt={bookInfos?.title} className="h-48 " />
             </div>
           )}
 
@@ -59,16 +61,15 @@ export default function GetSingleBook({ id }) {
         <div className="col-span-7">
           <div className="flex">
             <div className="flex flex-col">
-              <h1 className="text-5xl font-semibold ">
-                {bookInfos?.title}
-              </h1>
+              <h1 className="text-5xl font-semibold ">{bookInfos?.title}</h1>
               {bookInfos?.subtitle && (
                 <h2 className="text-3xl">{bookInfos?.subtitle}</h2>
               )}
-
               {bookInfos?.authors ? (
                 bookInfos?.authors.map((author) => (
-                  <p key={author}>Un livre de {author}</p>
+                  <>
+                    <p key={author}>Un livre de {author}</p>
+                  </>
                 ))
               ) : (
                 <p>Auteur inconnu</p>
@@ -90,7 +91,28 @@ export default function GetSingleBook({ id }) {
               <p>{bookDescription}</p>
             </div>
           )}
+          <div>
+            {bookInfos?.categories ? (
+
+                  <GetBooksByMainCategory category={bookInfos.categories[0]} />
+             
+            ) : (
+              <p>Aucune suggestion de lecture</p>
+            )}
+            
+          </div>
           <div className="mt-4">
+            {bookInfos?.authors ? (
+              bookInfos?.authors?.map((author) => (
+                <>
+                  <GetBooksRelatedByAuthors author={author} />
+                </>
+              ))
+            ) : (
+              <p>Auteur inconnu</p>
+            )}
+            <div className="mt-4">
+
             <h3 className="text-3xl font-semibold mb-3 border-b pb-2 border-gray-500">
               Les dernières critiques
             </h3>
@@ -101,7 +123,7 @@ export default function GetSingleBook({ id }) {
                 height={50}
                 className="rounded-full"
                 alt="Marion"
-              />
+                />
               <div className="p-3">
                 <span className="font-semibold"> Marion T.</span> a écrit le 4
                 septembre 2022
@@ -129,6 +151,7 @@ export default function GetSingleBook({ id }) {
             </p>
           </div>
         </div>
+                </div>
       </div>
     </>
   );
