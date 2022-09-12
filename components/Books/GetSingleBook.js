@@ -10,10 +10,15 @@ import genBook from "../../public/livre-generique.jpg";
 import { getBookFromGoogleBookApi } from "../../services/mapper/mapper";
 import GetBooksRelatedByAuthors from "./GetBooksRelatedByAuthors";
 import GetBooksByMainCategory from "./GetBooksByMainCategory";
+import Bookmarks from "./Bookmarks";
+import { useAuth } from "../../context/AuthContext";
+import AlreadyRead from "./AlreadyRead";
+import ReadingBook from "./ReadingBook";
 
 export default function GetSingleBook({ id }) {
   const [book, setBook] = useState({});
   const [bookDescription, setBookDescription] = useState("");
+  const {user} = useAuth();
 
   useEffect(() => {
     console.log(id);
@@ -33,35 +38,36 @@ export default function GetSingleBook({ id }) {
 
   return (
     <>
-      <div className="grid grid-cols-9 ">
+      <div className="grid grid-cols-9 my-9">
         <div className="col-span-2">
           {bookInfos?.thumbnail ? (
             <img
               src={bookInfos?.thumbnail}
               alt={bookInfos?.title}
-              className="mx-auto mb-5 h-48"
+              className="p-4 mb-5 w-52 border rounded-sm"
             />
           ) : (
             <div className="mx-auto mb-5 h-48 ">
               <Image src={genBook} alt={bookInfos?.title} className="h-48 " />
             </div>
           )}
-
           <p className="flex hover:bg-gray-100 p-2 w-fit rounded-xl">
-            <BsListCheck className="mt-1 mr-1" /> Ajouter dans ma liste de
-            lecture
+          <Bookmarks bookid={id} userid={user.uid} />
+            {/* <BsListCheck className="mt-1 mr-1" /> Ajouter dans ma liste de
+            lecture */}
           </p>
           <p className="flex hover:bg-gray-100 p-2 w-fit rounded-xl">
-            <AiOutlineCheck className="mt-1 mr-1" /> J'ai déjà lu ce livre
+            <AlreadyRead bookid={id} userid={user.uid} />
           </p>
           <p className="flex hover:bg-gray-100 p-2 w-fit rounded-xl">
-            <BsPlay className="mt-1 mr-1" /> Je suis entrain de le lire
+            <ReadingBook bookid={id} userid={user.uid} />
+            {/* <BsPlay className="mt-1 mr-1" /> Je suis entrain de le lire */}
           </p>
         </div>
         <div className="col-span-7">
           <div className="flex">
-            <div className="flex flex-col">
-              <h1 className="text-5xl font-semibold ">{bookInfos?.title}</h1>
+            <div className="flex flex-col rounded-sm w-full">
+              <h1 className="text-5xl font-semibold mb-3">{bookInfos?.title}</h1>
               {bookInfos?.subtitle && (
                 <h2 className="text-3xl">{bookInfos?.subtitle}</h2>
               )}
@@ -84,7 +90,7 @@ export default function GetSingleBook({ id }) {
             </div>
           </div>
           {bookDescription && (
-            <div className="mt-4">
+            <div className="my-9">
               <h3 className="text-3xl font-semibold mb-3 border-b pb-2 border-gray-500">
                 Description
               </h3>
@@ -101,7 +107,7 @@ export default function GetSingleBook({ id }) {
             )}
             
           </div>
-          <div className="mt-4">
+          <div className="my-9">
             {bookInfos?.authors ? (
               bookInfos?.authors?.map((author) => (
                 <>

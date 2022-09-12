@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import React, { useEffect, useState } from "react";
 import {
   doc,
@@ -8,13 +7,12 @@ import {
   getDoc,
 } from "firebase/firestore";
 import { getFirestore } from "firebase/firestore";
-import { BsFillBookmarkPlusFill, BsFillBookmarkDashFill } from "react-icons/bs";
+import { AiOutlineCheck } from "react-icons/ai";
 import Link from "next/link";
 
-
-export default function Bookmarks({ bookid, userid }) {
+export default function AlreadyRead({ bookid, userid }) {
   const db = getFirestore();
-  const [isBookmarked, setIsBookmarked] = useState(false);
+  const [isReaded, setIsReaded] = useState(false);
   const [currentUser, setCurrentUser] = useState(false);
 
   useEffect(() => {
@@ -27,7 +25,7 @@ export default function Bookmarks({ bookid, userid }) {
         if (userData?.bookid?.includes(bookid)) {
           userData.bookid.forEach((id) => {
             if (id === bookid) {
-              setIsBookmarked(true);
+              setIsReaded(true);
             }
           });
         }
@@ -40,40 +38,40 @@ export default function Bookmarks({ bookid, userid }) {
     e.preventDefault();
     const userDoc = doc(db, "users", userid);
     await updateDoc(userDoc, {
-      bookid: arrayUnion(bookid),
+      readed: arrayUnion(bookid),
     });
-    setIsBookmarked(true);
+    setIsReaded(true);
   };
 
   const handleUnbookmark = async (e) => {
     e.preventDefault();
     const userDoc = doc(db, "users", userid);
     await updateDoc(userDoc, {
-      bookid: arrayRemove(bookid),
+      readed: arrayRemove(bookid),
     });
-    setIsBookmarked(false);
+    setIsReaded(false);
   };
 
   return (
-    <>
+    <div>
       {currentUser ? (
         <button
-          onClick={isBookmarked ? handleUnbookmark : handleBookmark}
+          onClick={isReaded ? handleUnbookmark : handleBookmark}
           className="text-base"
         >
-          {isBookmarked ? (
+          {isReaded ? (
             <p className="text-sm font-semibold text-green-500 flex">
               <div className="mt-1 pr-1">
-                <BsFillBookmarkDashFill />
+                <AiOutlineCheck />
               </div>{" "}
-              Déjà dans ma liste de lecture
+              Déjà lu
             </p>
           ) : (
-            <p className="text-sm font-semibold  text-main-color flex">
+            <p className="text-sm font-semibold text-main-color flex">
               <div className="mt-1 pr-1">
-                <BsFillBookmarkPlusFill />
+                <AiOutlineCheck />
               </div>{" "}
-              Ajouter à ma liste de lecture
+              Lu ?
             </p>
           )}
         </button>
@@ -85,6 +83,6 @@ export default function Bookmarks({ bookid, userid }) {
           </a>
         </Link>
       )}
-    </>
+    </div>
   );
 }

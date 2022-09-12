@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import React, { useEffect, useState } from "react";
 import {
   doc,
@@ -8,13 +7,12 @@ import {
   getDoc,
 } from "firebase/firestore";
 import { getFirestore } from "firebase/firestore";
-import { BsFillBookmarkPlusFill, BsFillBookmarkDashFill } from "react-icons/bs";
+import { BsPlay } from "react-icons/bs";
 import Link from "next/link";
 
-
-export default function Bookmarks({ bookid, userid }) {
+export default function ReadingBook({ bookid, userid }) {
   const db = getFirestore();
-  const [isBookmarked, setIsBookmarked] = useState(false);
+  const [isReading, setIsReading] = useState(false);
   const [currentUser, setCurrentUser] = useState(false);
 
   useEffect(() => {
@@ -26,8 +24,8 @@ export default function Bookmarks({ bookid, userid }) {
         const userData = user.data();
         if (userData?.bookid?.includes(bookid)) {
           userData.bookid.forEach((id) => {
-            if (id === bookid) {
-              setIsBookmarked(true);
+            if (id == bookid) {
+              setIsReading(true);
             }
           });
         }
@@ -40,40 +38,40 @@ export default function Bookmarks({ bookid, userid }) {
     e.preventDefault();
     const userDoc = doc(db, "users", userid);
     await updateDoc(userDoc, {
-      bookid: arrayUnion(bookid),
+      reading: arrayUnion(bookid),
     });
-    setIsBookmarked(true);
+
+    setIsReading(true);
   };
 
   const handleUnbookmark = async (e) => {
     e.preventDefault();
     const userDoc = doc(db, "users", userid);
     await updateDoc(userDoc, {
-      bookid: arrayRemove(bookid),
+      reading: arrayRemove(bookid),
     });
-    setIsBookmarked(false);
+    setIsReading(false);
   };
-
   return (
-    <>
+    <div>
       {currentUser ? (
         <button
-          onClick={isBookmarked ? handleUnbookmark : handleBookmark}
+          onClick={isReading ? handleUnbookmark : handleBookmark}
           className="text-base"
         >
-          {isBookmarked ? (
+          {isReading ? (
             <p className="text-sm font-semibold text-green-500 flex">
               <div className="mt-1 pr-1">
-                <BsFillBookmarkDashFill />
+                <BsPlay />
               </div>{" "}
-              Déjà dans ma liste de lecture
+              Je suis entrain de le lire
             </p>
           ) : (
-            <p className="text-sm font-semibold  text-main-color flex">
+            <p className="text-sm font-semibold text-main-color flex">
               <div className="mt-1 pr-1">
-                <BsFillBookmarkPlusFill />
+                <BsPlay />
               </div>{" "}
-              Ajouter à ma liste de lecture
+              Je suis entrain de le lire ?
             </p>
           )}
         </button>
@@ -85,6 +83,6 @@ export default function Bookmarks({ bookid, userid }) {
           </a>
         </Link>
       )}
-    </>
+    </div>
   );
 }

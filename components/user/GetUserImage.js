@@ -8,9 +8,6 @@ import Image from "next/image";
 export default function GetUserImage({ user, size }) {
   const [imageUrls, setImageUrls] = useState("");
 
-  const newSize = 16;
-  console.log("USER", user);
-
   useEffect(() => {
     const storageRef = ref(storage, user + ".jpg");
     getDownloadURL(storageRef)
@@ -25,12 +22,13 @@ export default function GetUserImage({ user, size }) {
   return (
     <>
       {imageUrls ? (
-        <img
+        <Image
           src={imageUrls}
+          alt="user"
+          className="rounded-full"
+          objectFit="cover"
           width={size}
           height={size}
-          className="rounded-full"
-          alt="avatar"
         />
       ) : (
         <div className="w-16">
