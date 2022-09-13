@@ -6,6 +6,7 @@ import Link from "next/link";
 import GetUserBook from "./GetUserBook";
 import GetUserImage from "./GetUserImage";
 import DashboardBanner from "./DashboardBanner";
+import GetSubCollection from "./TestSub";
 
 export default function DashboardResume() {
   const { user } = useAuth();
@@ -35,6 +36,7 @@ export default function DashboardResume() {
 
   return (
     <div className="relative">
+      <GetSubCollection />
       <div className="container mx-auto mt-8 lg:max-w-screen-xl w-screen">
         {currentUser.pseudo ? (
           <>
