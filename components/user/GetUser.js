@@ -52,11 +52,6 @@ export default function GetUser() {
                 alt="book-portrait"
               />
             </div>
-            {/* <div
-              className="w-full h-auto bg-gray-400 hidden lg:block lg:w-1/2 bg-cover rounded-l-lg"
-              style="background-image: url('https://source.unsplash.com/oWTW-jNGl9I/600x800')"
-            ></div> */}
-
             <div className="w-full lg:w-1/2 bg-white p-5 rounded-lg lg:rounded-l-none">
               <div className="px-8 mb-4 text-center">
                 <h3 className="pt-4 mb-2 text-2xl font-semibold">

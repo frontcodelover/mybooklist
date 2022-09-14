@@ -1,13 +1,10 @@
+/* eslint-disable react/no-unescaped-entities */
 import React, { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { useRouter } from "next/router";
-import { setDoc, updateDoc, arrayUnion, doc } from "firebase/firestore";
-import { getFirestore } from "firebase/firestore";
 import Link from "next/link";
 import Image from "next/image";
 import womanread from "../../public/woman-read.jpg";
-
-const db = getFirestore();
 
 const Signup = () => {
   const router = useRouter();
@@ -31,11 +28,10 @@ const Signup = () => {
 
   return (
     <>
-
       <div className="container mx-auto h-screen my-auto flex justify-center align-middle">
-      <div className="flex justify-center px-6 my-auto ">
-        <div className="w-full xl:w-3/4 lg:w-11/12 flex">
-          <div className="w-full h-auto hidden lg:block lg:w-1/2 bg-cover rounded-l-lg">
+        <div className="flex justify-center px-6 my-auto ">
+          <div className="w-full xl:w-3/4 lg:w-11/12 flex">
+            <div className="w-full h-auto hidden lg:block lg:w-1/2 bg-cover rounded-l-lg">
               <Image
                 src={womanread}
                 alt="Bibliothèque"

@@ -11,7 +11,6 @@ import { getFirestore } from "firebase/firestore";
 import { BsFillBookmarkPlusFill, BsFillBookmarkDashFill } from "react-icons/bs";
 import Link from "next/link";
 
-
 export default function Bookmarks({ bookid, userid }) {
   const db = getFirestore();
   const [isBookmarked, setIsBookmarked] = useState(false);

@@ -5,7 +5,7 @@ import "react-slideshow-image/dist/styles.css";
 import Image from "next/image";
 import isabelle from "../../public/isabelle.jpg";
 import marion from "../../public/marion.jpg";
-import remy from "../../public/remy.jpg";  
+import remy from "../../public/remy.jpg";
 
 const Slideshow = () => {
   //Array of Images
@@ -19,17 +19,17 @@ const Slideshow = () => {
     },
     {
       image: isabelle,
-      avis : `"Avant d'utiliser ce site je lisais à peine un livre par an...
+      avis: `"Avant d'utiliser ce site je lisais à peine un livre par an...
       Depuis j'ai retrouvé la motivation et je dévore désormais 1
       livre chaque mois !"`,
-      name : "Isabelle B.",
+      name: "Isabelle B.",
     },
     {
       image: remy,
       avis: `"J'aime beaucoup le fait de pouvoir partager ma liste de lecture
       avec mes amies et mes collègues, d'ailleurs elles sont devenues
       accro !"`,
-      name : "Rémy G.",
+      name: "Rémy G.",
     },
   ];
 
@@ -43,24 +43,22 @@ const Slideshow = () => {
   return (
     <div className="mx-auto">
       <div className="w-5/6 mx-auto">
-      <Zoom {...zoomInProperties}>
-        {images.map((each, index) => (
-          <div key={index} className="md:flex justify-center w-full h-full">
-            <div className="mx-auto w-48 md:py-20 lg:py-0">
-            <Image
-              className="object-cover rounded-full"
-              src={each.image}
-              />
+        <Zoom {...zoomInProperties}>
+          {images.map((each, index) => (
+            <div key={index} className="md:flex justify-center w-full h-full">
+              <div className="mx-auto w-48 md:py-20 lg:py-0">
+                <Image className="object-cover rounded-full" src={each.image} />
               </div>
-            <div className="flex flex-col items-center">
-              <p className="text-center text-xl py-5 lg:w-9/12 w-10/12">{each.avis}</p>
-              <p className="text-center text-xl font-bold">{each.name}</p>
+              <div className="flex flex-col items-center">
+                <p className="text-center text-xl py-5 lg:w-9/12 w-10/12">
+                  {each.avis}
+                </p>
+                <p className="text-center text-xl font-bold">{each.name}</p>
+              </div>
             </div>
-
-          </div>
-        ))}
+          ))}
         </Zoom>
-        </div>
+      </div>
     </div>
   );
 };

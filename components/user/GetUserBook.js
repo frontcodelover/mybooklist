@@ -18,17 +18,14 @@ export default function GetUserBook({ user }) {
       );
       const queriedCurrentUserResult = await getDocs(queriedCurrentUser);
 
-      
-        queriedCurrentUserResult.forEach((doc) => {
-          tab.push(doc.data());
-          tab.map((bookid) => {
-            tabid.push(bookid.bookid);
-            setBookBookmarked(tabid);
-          })
+      queriedCurrentUserResult.forEach((doc) => {
+        tab.push(doc.data());
+        tab.map((bookid) => {
+          tabid.push(bookid.bookid);
+          setBookBookmarked(tabid);
+        });
 
-          console.log("TABID", tabid);
-
-
+        console.log("TABID", tabid);
       });
     };
     getBooks();

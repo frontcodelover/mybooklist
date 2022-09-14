@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React, { useState, useEffect } from "react";
 import { getFirestore } from "firebase/firestore";
 import { useAuth } from "../../context/AuthContext";
@@ -41,34 +42,33 @@ export default function DashboardResume() {
         {currentUser.pseudo ? (
           <>
             <div className="shadow rounded-xl">
-
-            <div className="flex col-span-0 left-1/5 relative">
-            <DashboardBanner />
-              <div className="flex flex-col p-3 bg-white shadow-md rounded-full absolute bottom-0 -mb-16 mx-2">
-                <GetUserImage user={currentUser.uid} size={120} />
+              <div className="flex col-span-0 left-1/5 relative">
+                <DashboardBanner />
+                <div className="flex flex-col p-3 bg-white shadow-md rounded-full absolute bottom-0 -mb-16 mx-2">
+                  <GetUserImage user={currentUser.uid} size={120} />
+                </div>
               </div>
-            </div>
-            <div className="p-5">
-              <div className="flex flex-col mt-10">
-                <h1 className="text-5xl font-bold mb-3 text-main-color">
-                  {currentUser.pseudo}
-                </h1>
-                <p>
-                  De {currentUser.ville} | {currentUser.genre} | {age} ans
+              <div className="p-5">
+                <div className="flex flex-col mt-10">
+                  <h1 className="text-5xl font-bold mb-3 text-main-color">
+                    {currentUser.pseudo}
+                  </h1>
+                  <p>
+                    De {currentUser.ville} | {currentUser.genre} | {age} ans
+                  </p>
+                </div>
+                <p className="py-6">
+                  J'aime lire des livres qui traitent de :{" "}
+                  {currentUser.litterature}
                 </p>
+                <h2 className="text-xl font-semibold">
+                  Ma devise, mon proverbe préféré :
+                </h2>
+                <p>{currentUser.phrase}</p>
               </div>
-              <p className="py-6">
-                J'aime lire des livres qui traitent de :{" "}
-                {currentUser.litterature}
-              </p>
-              <h2 className="text-xl font-semibold">
-                Ma devise, mon proverbe préféré :
-              </h2>
-              <p>{currentUser.phrase}</p>
-            </div>
             </div>
             <div className="p-5">
-            <GetUserBook user={user?.uid} />
+              <GetUserBook user={user?.uid} />
             </div>
           </>
         ) : (

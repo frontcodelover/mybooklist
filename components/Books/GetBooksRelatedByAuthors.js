@@ -5,6 +5,7 @@ import { hydrateBooks } from "../../services/mapper/mapper";
 import genBook from "../../public/livre-generique.jpg";
 import Image from "next/image";
 import Link from "next/link";
+import { BOOKS_SEARCH } from "../../services/api/googleBooks";
 
 export default function GetBooksRelatedByAuthors({ author }) {
   const [books, setBooks] = useState([]);
@@ -13,7 +14,7 @@ export default function GetBooksRelatedByAuthors({ author }) {
   useEffect(() => {
     axios
       .get(
-        `https://www.googleapis.com/books/v1/volumes?q=inauthor:"${author}"&maxResults=14&langRestrict=fr&printType=books`
+        `${BOOKS_SEARCH}inauthor:"${author}"&maxResults=14&langRestrict=fr&printType=books`
       )
       .then((res) => {
         console.log(res.data);
@@ -35,7 +36,7 @@ export default function GetBooksRelatedByAuthors({ author }) {
           </h3>
           <div className="grid grid-cols-7 gap-5">
             {booksInfos.map((book) => (
-              <div className="flex-cols w-36">
+              <div className="flex-cols w-36" key={booksInfos.id}>
                 {book.thumbnail ? (
                   <Link href={`/books/details/${book.id}`}>
                     <a>

@@ -4,6 +4,7 @@ import { hydrateBooks } from "../../services/mapper/mapper";
 import genBook from "../../public/livre-generique.jpg";
 import Image from "next/image";
 import Link from "next/link";
+import { BOOKS_SEARCH } from "../../services/api/googleBooks";
 
 export default function BooksCaroussel() {
   const [books, setBooks] = useState([]);
@@ -11,7 +12,7 @@ export default function BooksCaroussel() {
   useEffect(() => {
     axios
       .get(
-        "https://www.googleapis.com/books/v1/volumes/?q=2021&langRestrict=fr&printType=books&maxResults=18&startIndex=0"
+        `${BOOKS_SEARCH}2021&langRestrict=fr&printType=books&maxResults=18&startIndex=0`
       )
       .then((res) => {
         setBooks(res.data.items);

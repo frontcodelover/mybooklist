@@ -119,8 +119,7 @@ export default function NavResponsive() {
               <>
                 <div className="cursor-pointer flex justify-between">
                   <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 focus:outline-none focus ">
-                   
-                      <Image
+                    <Image
                       src={avatar}
                       width={40}
                       height={40}

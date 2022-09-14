@@ -63,22 +63,6 @@ export default function BookLayout({ book }) {
               ? "Publié en : " + bookInfo.publishedDate.substring(0, 4)
               : "date inconnue"}
           </p>
-          {/* <p className="text-gray-700 text-base">
-            {book.volumeInfo.description
-              ? book.volumeInfo.description.substring(0, 70) + " ..."
-              : ""}
-          </p> */}
-          {/* {user ? (
-            <p className="my-2">
-              <Bookmarks bookid={book.id} userid={userid} />
-            </p>
-          ) : (
-            <p className="my-2 text-sm text-red-500 font-semibold">
-              <Link href="user/signup">
-                <a>Connectez-vous pour ajouter ce livre à vos favoris</a>
-              </Link>
-            </p>
-          )} */}
         </div>
       </div>
     </div>

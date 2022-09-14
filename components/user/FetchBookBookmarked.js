@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import BookLayout from "../Books/BookLayout";
 import { useAuth } from "../../context/AuthContext";
+import { BOOKS_BY_ID } from "../../services/api/googleBooks";
 
 export default function FetchBookBookmarked({ bookInfos }) {
   const [bookDetail, setBookDetail] = useState([]);
@@ -11,14 +12,12 @@ export default function FetchBookBookmarked({ bookInfos }) {
     // let allBook = [];
     let ignore = false;
     bookInfos?.map(async (book) => {
-      await axios
-        .get(`https://www.googleapis.com/books/v1/volumes/${book}`)
-        .then((res) => {
-          // allBook.push(res.data);
-          if (!ignore) {
-            setBookDetail((oldValues) => [...oldValues, res.data]);
-          }
-        });
+      await axios.get(`${BOOKS_BY_ID}${book}`).then((res) => {
+        // allBook.push(res.data);
+        if (!ignore) {
+          setBookDetail((oldValues) => [...oldValues, res.data]);
+        }
+      });
     });
     return () => {
       ignore = true;
@@ -31,7 +30,7 @@ export default function FetchBookBookmarked({ bookInfos }) {
     <>
       {bookDetail.map((book) => (
         <div key={book.id}>
-          <BookLayout book={book} userid={user?.uid}/>
+          <BookLayout book={book} userid={user?.uid} />
         </div>
       ))}
     </>

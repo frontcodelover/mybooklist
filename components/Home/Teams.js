@@ -7,7 +7,7 @@ export default function Teams() {
       <div className="py-10 text-main-color ">
         <div className="container mx-auto xl:px-32">
           <div className="mb-16 text-center">
-                        <Slideshow />
+            <Slideshow />
           </div>
         </div>
       </div>
