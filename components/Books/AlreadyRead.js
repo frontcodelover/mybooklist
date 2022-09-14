@@ -18,12 +18,12 @@ export default function AlreadyRead({ bookid, userid }) {
 
   useEffect(() => {
     const getUser = async () => {
-      const userDoc = await doc(db, "users", userid);
+      const userDoc = doc(db, "users", userid);
       const user = await getDoc(userDoc);
       if (user.exists()) {
         setCurrentUser(user.data());
         const userData = user.data();
-        if (userData?.bookid?.includes(bookid)) {
+        if (userData?.readed?.includes(bookid)) {
           userData.bookid.forEach((id) => {
             if (id === bookid) {
               setIsReaded(true);

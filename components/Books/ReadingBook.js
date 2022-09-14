@@ -23,7 +23,7 @@ export default function ReadingBook({ bookid, userid }) {
       if (user.exists()) {
         setCurrentUser(user.data());
         const userData = user.data();
-        if (userData?.bookid?.includes(bookid)) {
+        if (userData?.reading?.includes(bookid)) {
           userData.bookid.forEach((id) => {
             if (id == bookid) {
               setIsReading(true);
