@@ -15,6 +15,12 @@ export function getBookFromGoogleBookApi(theGoogleBook) {
     previewLink: theGoogleBook.volumeInfo?.previewLink,
     industryIdentifiers: theGoogleBook.volumeInfo?.industryIdentifiers,
     googleId: theGoogleBook.id,
+    isbn13: theGoogleBook.volumeInfo?.industryIdentifiers?.find(
+      (identifier) => identifier.type === "ISBN_13"
+    )?.identifier,
+    isbn10: theGoogleBook.volumeInfo?.industryIdentifiers?.find(
+      (identifier) => identifier.type === "ISBN_10"
+    )?.identifier,
   };
 }
 

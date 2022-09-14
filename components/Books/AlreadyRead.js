@@ -24,7 +24,7 @@ export default function AlreadyRead({ bookid, userid }) {
         setCurrentUser(user.data());
         const userData = user.data();
         if (userData?.readed?.includes(bookid)) {
-          userData.bookid.forEach((id) => {
+          userData.readed.forEach((id) => {
             if (id === bookid) {
               setIsReaded(true);
             }

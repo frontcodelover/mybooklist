@@ -1,11 +1,11 @@
 import React from "react";
-import banGen from "../../public/banGen.jpg";
+import library from "../../public/library.jpg";
 import Image from "next/image";
 
 export default function DashboardBanner() {
   return (
     <div className="w-screen max-h-screen object-cover">
-      <Image src={banGen} alt="banniere-profil" objectFit="cover" height="400" />
+      <Image src={library} alt="banniere-profil" objectFit="cover" height="400" />
     </div>
   );
 }

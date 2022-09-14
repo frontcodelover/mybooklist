@@ -13,6 +13,8 @@ import { useAuth } from "../../context/AuthContext";
 import AlreadyRead from "./AlreadyRead";
 import ReadingBook from "./ReadingBook";
 import { BOOKS_BY_ID } from "../../services/api/googleBooks";
+import Link from "next/link";
+import {AiOutlineShoppingCart} from "react-icons/ai";
 
 export default function GetSingleBook({ id }) {
   const [book, setBook] = useState({});
@@ -60,6 +62,15 @@ export default function GetSingleBook({ id }) {
             <ReadingBook bookid={id} userid={user.uid} />
             {/* <BsPlay className="mt-1 mr-1" /> Je suis entrain de le lire */}
           </p>
+          {bookInfos?.isbn13 ? (
+            <p className="flex hover:bg-gray-100 p-2 w-fit rounded-xl">
+              <Link href={`https://www.amazon.fr/s?k=${bookInfos?.isbn13}&tag=avantjetaisriche-21`} target="_blank" rel="noreferrer">
+                <a target="_blank" className="text-sm font-semibold text-red-500 flex"><div className="mt-1 pr-1"><AiOutlineShoppingCart /></div>Acheter ce livre sur Amazon</a>
+              </Link>
+            </p>
+          ) : (
+            <></>
+          )}
         </div>
         <div className="col-span-7">
           <div className="flex">
