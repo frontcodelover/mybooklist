@@ -26,7 +26,7 @@ Ce projet a pour objectif de permettre la création de listes de lecture et de p
 - React Icons
 
 ## Me contacter
-[Linkedin](www.linkedin.com/in/nicolas-de-raemy-957b62231 "Linkedin")
+[Linkedin](https://www.linkedin.com/in/nicolas-de-raemy-957b62231 "Linkedin")
 [Twitter](https://twitter.com/frontcodelover "Twitter")
 
 ### Dernières modifications
