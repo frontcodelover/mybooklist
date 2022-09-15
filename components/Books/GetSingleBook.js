@@ -15,6 +15,7 @@ import ReadingBook from "./ReadingBook";
 import { BOOKS_BY_ID } from "../../services/api/googleBooks";
 import Link from "next/link";
 import {AiOutlineShoppingCart} from "react-icons/ai";
+import Head from "next/head";
 
 export default function GetSingleBook({ id }) {
   const [book, setBook] = useState({});
@@ -37,6 +38,14 @@ export default function GetSingleBook({ id }) {
 
   return (
     <>
+    <Head>
+        <title>{bookInfos?.title} Livre de {bookInfos?.authors} - ListeDeLecture</title>
+        <meta
+          name="description"
+          content="Mybooklist vous permet de garder une trace de vos lectures"
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <div className="grid grid-cols-9 my-9">
         <div className="col-span-2">
           {bookInfos?.thumbnail ? (

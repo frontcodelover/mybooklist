@@ -40,11 +40,10 @@ export default function GetUserBook({ user }) {
           bookBookmarked?.map(
             (book) => (
               console.log(book),
-              book.length > 0 ? (
+              book?.length > 0 ? (
                 <>
-                  
-                    <StatsBookmarks bookNumber={book.length} />
-                 
+                  <StatsBookmarks bookNumber={book?.length} />
+
                   <h2 className="font-semibold text-2xl py-3">
                     Ma liste de lecture
                   </h2>
@@ -55,7 +54,7 @@ export default function GetUserBook({ user }) {
                   <h2 className="font-semibold text-2xl py-3">
                     Ma liste de lecture
                   </h2>
-                  <StatsBookmarks bookNumber={book.length} />
+                  <StatsBookmarks bookNumber="0" />
                   <Link href="/books">
                     <button className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded my-5">
                       Ajouter des livres

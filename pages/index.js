@@ -1,17 +1,16 @@
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
 import TitleHomePage from "../components/Home/TitleHomePage";
 import About from "../components/Home/About";
 import Teams from "../components/Home/Teams";
-import Search from "../components/Home/Search";
 import SectionCta from "../components/Home/SectionCta";
-import BooksCaroussel from "../components/Home/BooksCaroussel";
+import { BOOKS_SEARCH } from "../services/api/googleBooks";
+import BooksCarousselStatic from "../components/Home/StaticTest";
 
-export default function Home() {
+export default function Home({booksStatic}) {
   return (
     <div>
       <Head>
-        <title>Create Next App</title>
+        <title>ListeDeLecture</title>
         <meta
           name="description"
           content="Mybooklist vous permet de garder une trace de vos lectures"
@@ -27,10 +26,22 @@ export default function Home() {
           <SectionCta />
         </div>
         <div className="p-5 container mx-auto">
-          <BooksCaroussel />
+          <BooksCarousselStatic booksStatic={booksStatic}/>
         </div>
         <Teams />
       </main>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const res = await fetch(
+    `${BOOKS_SEARCH}2021&langRestrict=fr&printType=books&maxResults=18&startIndex=0`
+  );
+  const booksStatic = await res.json();
+  return {
+    props: {
+      booksStatic,
+    },
+  };
 }

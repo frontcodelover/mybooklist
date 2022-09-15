@@ -2,6 +2,7 @@ import React from "react";
 import lectureFemme from "../../public/lecture-femme.jpg";
 import Image from "next/image";
 
+
 export default function About() {
   return (
     <div className="pb-8">
