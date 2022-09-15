@@ -4,7 +4,7 @@ import About from "../components/Home/About";
 import Teams from "../components/Home/Teams";
 import SectionCta from "../components/Home/SectionCta";
 import { BOOKS_SEARCH } from "../services/api/googleBooks";
-import BooksCarousselStatic from "../components/Home/StaticTest";
+import BooksCarousselStatic from "../components/Home/BooksCarousselStatic";
 
 export default function Home({booksStatic}) {
   return (
