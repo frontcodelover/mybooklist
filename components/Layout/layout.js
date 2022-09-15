@@ -14,7 +14,7 @@ export default function Layout({ children }) {
 
         {/* <Nav /> */}
 
-        <main>{children}</main>
+        <main className="grow">{children}</main>
         <Footer />
       </div>
     </>
