@@ -1,7 +1,5 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import axios from "axios";
-import parse from "html-react-parser";
 import Image from "next/image";
 import Marion from "../../public/marion.jpg";
 import genBook from "../../public/livre-generique.jpg";
@@ -19,7 +17,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 
 
-export default function GetSingleBook({ props, id, coucou }) {
+export default function GetSingleBook({ data, id, coucou }) {
   const [book, setBook] = useState({});
   const [bookDescription, setBookDescription] = useState("");
   const { user } = useAuth();
@@ -37,11 +35,11 @@ export default function GetSingleBook({ props, id, coucou }) {
   
   // Mapper
   
-  console.log({props});
+  console.log({data});
   console.log({id});
   console.log({coucou});
 
-  const bookInfos = getBookFromGoogleBookApi(props);
+  const bookInfos = getBookFromGoogleBookApi(data);
   
   return (
     <>
@@ -115,12 +113,12 @@ export default function GetSingleBook({ props, id, coucou }) {
               </p>
             </div>
           </div>
-          {bookDescription && (
+          {bookInfos.description && (
             <div className="my-9">
               <h3 className="text-3xl font-semibold mb-3 border-b pb-2 border-gray-500">
                 Description
               </h3>
-              <p>{bookDescription}</p>
+              <p>{bookInfos.description}</p>
             </div>
           )}
           <div>
