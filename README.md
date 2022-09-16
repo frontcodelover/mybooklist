@@ -5,15 +5,15 @@ Ce projet a pour objectif de permettre la création de listes de lecture et de p
 *Statut actuel du projet : en développement*
 
 ### Fonctionnalités développées
-- Création de comptes
-- Recherche de livres parmis le catalogue
+- Création de compte et authentification
+- Recherche de livres parmi le catalogue
 - Ajout dans une liste de lecture
-- Connaitre le nombre de livre lus / ajoutés
+- Connaitre le nombre de livres lus / ajoutés
 
 ### En développement
 - Suivis des statistiques de lecture par mois et années (nombre de pages et livres lus)
 - Dashboard amélioré
-- Création de plusieurs listes accessibles sans se connecter
+- Création de plusieurs listes consultables publiquement
 
 ## Stack utilisée
 - Next.JS
@@ -30,4 +30,5 @@ Ce projet a pour objectif de permettre la création de listes de lecture et de p
 [Twitter](https://twitter.com/frontcodelover "Twitter")
 
 ### Dernières modifications
+16 / 09 / 2022 : corrections
 15 / 09 / 2022 : édition du readme
