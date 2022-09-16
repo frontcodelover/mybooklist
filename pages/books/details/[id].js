@@ -7,7 +7,7 @@ import { BOOKS_BY_ID } from "../../../services/api/googleBooks";
 export default function details({ data }) {
   const router = useRouter();
   const { id } = router.query;
-  
+
   return (
     <div className="container max-w-screen-xl mx-auto mt-4">
       {/* <GetSingleBook id='11' /> */}
@@ -33,9 +33,9 @@ export async function getStaticProps({ params }) {
   }
   const response = await fetch(`${BOOKS_BY_ID}${params.id}`);
   const data = await new Promise((resolve) =>
-  setTimeout(() => {
-    resolve(response.json());
-  }, 1000)
+    setTimeout(() => {
+      resolve(response.json());
+    }, 300)
   );
   if (!data) {
     return {
