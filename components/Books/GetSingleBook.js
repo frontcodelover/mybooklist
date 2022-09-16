@@ -16,26 +16,33 @@ import { BOOKS_BY_ID } from "../../services/api/googleBooks";
 import Link from "next/link";
 import {AiOutlineShoppingCart} from "react-icons/ai";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
-export default function GetSingleBook({ id }) {
+
+export default function GetSingleBook({ props, id, coucou }) {
   const [book, setBook] = useState({});
   const [bookDescription, setBookDescription] = useState("");
   const { user } = useAuth();
-
-  useEffect(() => {
-    console.log(id);
-    axios.get(`${BOOKS_BY_ID}${id}`).then((res) => {
-      const getBook = res.data;
-      setBook(getBook);
-      if (getBook.volumeInfo.description) {
-        setBookDescription(parse(getBook.volumeInfo.description));
-      }
-    });
-  }, [id]);
-
+  
+  // useEffect(() => {
+  //   console.log(id);
+  //   axios.get(`${BOOKS_BY_ID}${id}`).then((res) => {
+  //     const getBook = res.data;
+  //     setBook(getBook);
+  //     if (getBook.volumeInfo.description) {
+  //       setBookDescription(parse(getBook.volumeInfo.description));
+  //     }
+  //   });
+  // }, [id]);
+  
   // Mapper
-  const bookInfos = getBookFromGoogleBookApi(book);
+  
+  console.log({props});
+  console.log({id});
+  console.log({coucou});
 
+  const bookInfos = getBookFromGoogleBookApi(props);
+  
   return (
     <>
     <Head>
@@ -43,7 +50,7 @@ export default function GetSingleBook({ id }) {
         <meta
           name="description"
           content="Mybooklist vous permet de garder une trace de vos lectures"
-        />
+          />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="grid grid-cols-9 my-9">
@@ -53,9 +60,9 @@ export default function GetSingleBook({ id }) {
               src={bookInfos?.thumbnail}
               alt={bookInfos?.title}
               className="p-4 mb-5 w-52 border rounded-sm"
-            />
-          ) : (
-            <div className="mx-auto mb-5 h-48 ">
+              />
+              ) : (
+                <div className="mx-auto mb-5 h-48 ">
               <Image src={genBook} alt={bookInfos?.title} className="h-48 " />
             </div>
           )}
@@ -79,7 +86,7 @@ export default function GetSingleBook({ id }) {
             </p>
           ) : (
             <></>
-          )}
+            )}
         </div>
         <div className="col-span-7">
           <div className="flex">
@@ -89,16 +96,16 @@ export default function GetSingleBook({ id }) {
               </h1>
               {bookInfos?.subtitle && (
                 <h2 className="text-3xl">{bookInfos?.subtitle}</h2>
-              )}
+                )}
               {bookInfos?.authors ? (
                 bookInfos?.authors.map((author) => (
                   <>
                     <p key={author}>Un livre de {author}</p>
                   </>
                 ))
-              ) : (
-                <p>Auteur inconnu</p>
-              )}
+                ) : (
+                  <p>Auteur inconnu</p>
+                  )}
               <p>Edition : {bookInfos?.publisher}</p>
               <p>
                 Année de publication :
@@ -119,9 +126,9 @@ export default function GetSingleBook({ id }) {
           <div>
             {bookInfos?.categories ? (
               <GetBooksByMainCategory category={bookInfos.categories[0]} />
-            ) : (
-              <p>Aucune suggestion de lecture</p>
-            )}
+              ) : (
+                <p>Aucune suggestion de lecture</p>
+                )}
           </div>
           <div className="my-9">
             {bookInfos?.authors ? (
@@ -130,9 +137,9 @@ export default function GetSingleBook({ id }) {
                   <GetBooksRelatedByAuthors author={author} />
                 </>
               ))
-            ) : (
-              <p>Auteur inconnu</p>
-            )}
+              ) : (
+                <p>Auteur inconnu</p>
+                )}
             <div className="mt-4">
               <h3 className="text-3xl font-semibold mb-3 border-b pb-2 border-gray-500">
                 Les dernières critiques
@@ -144,7 +151,7 @@ export default function GetSingleBook({ id }) {
                   height={50}
                   className="rounded-full"
                   alt="Marion"
-                />
+                  />
                 <div className="p-3">
                   <span className="font-semibold"> Marion T.</span> a écrit le 4
                   septembre 2022
