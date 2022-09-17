@@ -14,6 +14,8 @@ export default function DashboardResume() {
   const db = getFirestore();
   const [currentUser, setUser] = useState({});
 
+  console.log("user", user.uid);
+
   useEffect(() => {
     const getUser = async () => {
       const usersCollection = collection(db, "users");

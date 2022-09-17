@@ -24,7 +24,7 @@ const bookSlice = createSlice({
         },
         [getBook.fulfilled]: (state, action) => {
             state.status = "success";
-            state.list = action.payload;
+            state.list.push(action.payload)
         },
         [getBook.rejected]: (state, action) => {
             state.status = "failed";
