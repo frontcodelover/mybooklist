@@ -10,35 +10,25 @@ import Bookmarks from "./Bookmarks";
 import { useAuth } from "../../context/AuthContext";
 import AlreadyRead from "./AlreadyRead";
 import ReadingBook from "./ReadingBook";
-import { BOOKS_BY_ID } from "../../services/api/googleBooks";
 import Link from "next/link";
 import {AiOutlineShoppingCart} from "react-icons/ai";
 import Head from "next/head";
-import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { getBook } from "../../feature/book/bookSlice";
 
 
 export default function GetSingleBook({ data, id, coucou }) {
-  const [book, setBook] = useState({});
-  const [bookDescription, setBookDescription] = useState("");
   const { user } = useAuth();
   
-  // useEffect(() => {
-  //   console.log(id);
-  //   axios.get(`${BOOKS_BY_ID}${id}`).then((res) => {
-  //     const getBook = res.data;
-  //     setBook(getBook);
-  //     if (getBook.volumeInfo.description) {
-  //       setBookDescription(parse(getBook.volumeInfo.description));
-  //     }
-  //   });
-  // }, [id]);
+  const dispatch = useDispatch();
+  const { book: bookState } = useSelector((state) => state);
+  const { list: bookList, status: bookStatus } = bookState;
+  
+  useEffect(() => {
+      dispatch(getBook({ bookid : id }));
+  }, [dispatch, id]);
   
   // Mapper
-  
-  console.log({data});
-  console.log({id});
-  console.log({coucou});
-
   const bookInfos = getBookFromGoogleBookApi(data);
   
   return (
