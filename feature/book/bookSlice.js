@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, createApi, fetchBaseQuery  } from "@reduxjs/toolkit";
 import { BOOKS_BY_ID } from "../../services/api/googleBooks";
 
 export const getBook = createAsyncThunk(
@@ -9,6 +9,7 @@ export const getBook = createAsyncThunk(
         return data;
     }
 );
+  
 
 
 const bookSlice = createSlice({

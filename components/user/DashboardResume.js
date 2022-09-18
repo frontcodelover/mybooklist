@@ -8,6 +8,7 @@ import GetUserBook from "./GetUserBook";
 import GetUserImage from "./GetUserImage";
 import DashboardBanner from "./DashboardBanner";
 import GetSubCollection from "./TestSub";
+import CreateListOfBooks from "./CreateListOfBooks";
 
 export default function DashboardResume() {
   const { user } = useAuth();
@@ -66,6 +67,7 @@ export default function DashboardResume() {
                 <h2 className="text-xl font-semibold">
                   Ma devise, mon proverbe préféré :
                 </h2>
+              <CreateListOfBooks userid={user?.uid}/>
                 <p>{currentUser.phrase}</p>
               </div>
             </div>

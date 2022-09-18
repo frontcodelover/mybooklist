@@ -15,6 +15,8 @@ import {AiOutlineShoppingCart} from "react-icons/ai";
 import Head from "next/head";
 import { useDispatch, useSelector } from "react-redux";
 import { getBook } from "../../feature/book/bookSlice";
+import parse from 'html-react-parser';
+import GetAllBookListsForUser from "./GetAllBookListsForUser";
 
 
 export default function GetSingleBook({ data, id, coucou }) {
@@ -66,6 +68,9 @@ export default function GetSingleBook({ data, id, coucou }) {
             <ReadingBook bookid={id} userid={user.uid} />
             {/* <BsPlay className="mt-1 mr-1" /> Je suis entrain de le lire */}
           </p>
+          <p>
+            <GetAllBookListsForUser bookid={id} userid={user.uid} />
+          </p>
           {bookInfos?.isbn13 ? (
             <p className="flex hover:bg-gray-100 p-2 w-fit rounded-xl">
               <Link href={`https://www.amazon.fr/s?k=${bookInfos?.isbn13}&tag=avantjetaisriche-21`} target="_blank" rel="noreferrer">
@@ -79,11 +84,11 @@ export default function GetSingleBook({ data, id, coucou }) {
         <div className="col-span-7">
           <div className="flex">
             <div className="flex flex-col rounded-sm w-full">
-              <h1 className="text-5xl font-semibold mb-3">
+              <h1 className="text-4xl font-semibold mb-2">
                 {bookInfos?.title}
               </h1>
               {bookInfos?.subtitle && (
-                <h2 className="text-3xl">{bookInfos?.subtitle}</h2>
+                <h2 className="text-2xl mb-3">{bookInfos?.subtitle}</h2>
                 )}
               {bookInfos?.authors ? (
                 bookInfos?.authors.map((author) => (
@@ -108,7 +113,7 @@ export default function GetSingleBook({ data, id, coucou }) {
               <h3 className="text-3xl font-semibold mb-3 border-b pb-2 border-gray-500">
                 Description
               </h3>
-              <p>{bookInfos.description}</p>
+              <p>{parse(bookInfos.description)}</p>
             </div>
           )}
           <div>

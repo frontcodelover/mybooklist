@@ -6,15 +6,19 @@ import {
   arrayUnion,
   arrayRemove,
   getDoc,
+  setDoc
 } from "firebase/firestore";
 import { getFirestore } from "firebase/firestore";
 import { BsFillBookmarkPlusFill, BsFillBookmarkDashFill } from "react-icons/bs";
 import Link from "next/link";
+import { nanoid } from 'nanoid'
 
 export default function Bookmarks({ bookid, userid }) {
   const db = getFirestore();
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [currentUser, setCurrentUser] = useState(false);
+
+  const uuid = nanoid()
 
   useEffect(() => {
     const getUser = async () => {
@@ -42,6 +46,10 @@ export default function Bookmarks({ bookid, userid }) {
       bookid: arrayUnion(bookid),
     });
     setIsBookmarked(true);
+    const list = doc(db, "publiclist", uuid);
+    await setDoc(list, {
+      bookid: arrayUnion(bookid),
+    });
   };
 
   const handleUnbookmark = async (e) => {
