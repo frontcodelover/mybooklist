@@ -9,6 +9,7 @@ export default function details({ data }) {
   const { id } = router.query;
 
   return (
+    
     <div className="container max-w-screen-xl mx-auto mt-4">
       {/* <GetSingleBook id='11' /> */}
       <GetSingleBook data={data} id={id} />

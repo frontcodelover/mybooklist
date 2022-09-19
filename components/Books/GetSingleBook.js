@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getBook } from "../../feature/book/bookSlice";
 import parse from 'html-react-parser';
 import GetAllBookListsForUser from "./GetAllBookListsForUser";
+import BookmarkBooksList from "./BookmarkBooksList";
 
 
 export default function GetSingleBook({ data, id, coucou }) {
@@ -61,6 +62,11 @@ export default function GetSingleBook({ data, id, coucou }) {
             {/* <BsListCheck className="mt-1 mr-1" /> Ajouter dans ma liste de
             lecture */}
           </p>
+          <div className="flex hover:bg-gray-100 p-2 w-fit rounded-xl">
+            <BookmarkBooksList bookid={id} userid={user.uid} />
+            {/* <BsListCheck className="mt-1 mr-1" /> Ajouter dans ma liste de
+            lecture */}
+          </div>
           <p className="flex hover:bg-gray-100 p-2 w-fit rounded-xl">
             <AlreadyRead bookid={id} userid={user.uid} />
           </p>
@@ -68,9 +74,9 @@ export default function GetSingleBook({ data, id, coucou }) {
             <ReadingBook bookid={id} userid={user.uid} />
             {/* <BsPlay className="mt-1 mr-1" /> Je suis entrain de le lire */}
           </p>
-          <p>
+          
             <GetAllBookListsForUser bookid={id} userid={user.uid} />
-          </p>
+         
           {bookInfos?.isbn13 ? (
             <p className="flex hover:bg-gray-100 p-2 w-fit rounded-xl">
               <Link href={`https://www.amazon.fr/s?k=${bookInfos?.isbn13}&tag=avantjetaisriche-21`} target="_blank" rel="noreferrer">

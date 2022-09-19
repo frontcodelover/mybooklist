@@ -7,7 +7,7 @@ import genBook from "../../public/livre-generique.jpg";
 import { BOOKS_SEARCH } from "../../services/api/googleBooks";
 
 export default function GetBooksByMainCategory({ category }) {
-  console.log(category);
+
 
   const [books, setBooks] = useState([]);
 
@@ -17,7 +17,6 @@ export default function GetBooksByMainCategory({ category }) {
         `${BOOKS_SEARCH}subject:${category}&maxResults=14&langRestrict=fr&printType=books`
       )
       .then((res) => {
-        console.log(res.data);
         setBooks(res.data.items);
       });
   }, [category]);

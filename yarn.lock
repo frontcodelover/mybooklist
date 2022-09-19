@@ -1248,6 +1248,19 @@
   dependencies:
     "tslib" "^2.4.0"
 
+"@tanstack/query-core@4.3.8":
+  "integrity" "sha512-AEUWtCNBIImFZ9tMt/P8V86kIhMHpfoJqAI1auGOLR8Wzeq7Ymiue789PJG0rKYcyViUicBZeHjggMqyEQVMfQ=="
+  "resolved" "https://registry.npmjs.org/@tanstack/query-core/-/query-core-4.3.8.tgz"
+  "version" "4.3.8"
+
+"@tanstack/react-query@^4.3.9":
+  "integrity" "sha512-odfDW6WiSntCsCh+HFeJtUys3UnVOjfJMhykAtGtYvcklMyyDmCv9BVBt5KlSpbk/qW3kURPFCDapO+BFUlCwg=="
+  "resolved" "https://registry.npmjs.org/@tanstack/react-query/-/react-query-4.3.9.tgz"
+  "version" "4.3.9"
+  dependencies:
+    "@tanstack/query-core" "4.3.8"
+    "use-sync-external-store" "^1.2.0"
+
 "@testing-library/dom@^8.5.0":
   "integrity" "sha512-KnH2MnJUzmFNPW6RIKfd+zf2Wue8mEKX0M3cpX6aKl5ZXrJM1/c/Pc8c2xDNYQCnJO48Sm5ITbMXgqTr3h4jxQ=="
   "resolved" "https://registry.npmjs.org/@testing-library/dom/-/dom-8.17.1.tgz"
@@ -4864,7 +4877,7 @@
   "resolved" "https://registry.npmjs.org/quick-lru/-/quick-lru-5.1.1.tgz"
   "version" "5.1.1"
 
-"react-dom@^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0", "react-dom@^16 || ^17 || ^18", "react-dom@^16.8 || ^17.0 || ^18.0", "react-dom@^17 || ^18", "react-dom@^17.0.2 || ^18.0.0-0", "react-dom@^18.0.0", "react-dom@>=16.8.0", "react-dom@18.2.0":
+"react-dom@^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0", "react-dom@^16 || ^17 || ^18", "react-dom@^16.8 || ^17.0 || ^18.0", "react-dom@^16.8.0 || ^17.0.0 || ^18.0.0", "react-dom@^17 || ^18", "react-dom@^17.0.2 || ^18.0.0-0", "react-dom@^18.0.0", "react-dom@>=16.8.0", "react-dom@18.2.0":
   "integrity" "sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g=="
   "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-18.2.0.tgz"
   "version" "18.2.0"
@@ -5647,7 +5660,7 @@
     "querystringify" "^2.1.1"
     "requires-port" "^1.0.0"
 
-"use-sync-external-store@^1.0.0", "use-sync-external-store@1.2.0":
+"use-sync-external-store@^1.0.0", "use-sync-external-store@^1.2.0", "use-sync-external-store@1.2.0":
   "integrity" "sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA=="
   "resolved" "https://registry.npmjs.org/use-sync-external-store/-/use-sync-external-store-1.2.0.tgz"
   "version" "1.2.0"

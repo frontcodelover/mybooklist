@@ -12,8 +12,9 @@ import { getFirestore } from "firebase/firestore";
 import { BsFillBookmarkPlusFill, BsFillBookmarkDashFill } from "react-icons/bs";
 import Link from "next/link";
 import { nanoid } from "nanoid";
+import GetAllBookListsForUser from "./GetAllBookListsForUser";
 
-export default function Bookmarks({ bookid, userid }) {
+export default function BookmarkBooksList({ bookid, userid }) {
   const db = getFirestore();
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [currentUser, setCurrentUser] = useState(false);
@@ -60,39 +61,25 @@ export default function Bookmarks({ bookid, userid }) {
     });
     setIsBookmarked(false);
   };
-
   return (
     <>
-      {currentUser ? (
-        <button
-          onClick={isBookmarked ? handleUnbookmark : handleBookmark}
-          className="text-base"
-        >
-          {isBookmarked ? (
-            <p className="text-sm font-semibold text-green-500 flex">
-              <div className="mt-1 pr-1">
-                <BsFillBookmarkDashFill />
-              </div>{" "}
-              Déjà dans ma liste de lecture
-            </p>
-          ) : (
-            <p className="text-sm font-semibold  text-main-color flex">
-              <div className="mt-1 pr-1">
-                <BsFillBookmarkPlusFill />
-              </div>{" "}
-              Ajouter à ma liste de lecture
-            </p>
-          )}
-        </button>
-      ) : (
-        <Link href="/user/firststep">
-          <a className="text-sm font-semibold text-red-500">
-            Remplissez votre profil afin d'ajouter des livres dans votre
-            bibliothèque.
-          </a>
-        </Link>
-      )}
-      
+    <details
+        open
+        className="group mx-auto overflow-hidden max-h-[56px] open:!max-h-[400px] transition-[max-height] duration-500"
+      >
+        <summary className="outline-none cursor-pointer font-semibold marker:text-transparent text-sm">
+          <div className="flex">
+            <div className="mt-1 pr-1">
+              <BsFillBookmarkPlusFill />
+            </div>{" "}
+            Ajouter à ma liste de lecture
+          </div>
+        </summary>
+
+        <div className="text-sm -m-4 -mt-2 p-4">
+          <GetAllBookListsForUser userid={userid} bookid={bookid} />
+        </div>
+      </details>
     </>
-  );
+  )
 }

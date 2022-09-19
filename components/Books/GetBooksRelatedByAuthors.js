@@ -9,7 +9,6 @@ import { BOOKS_SEARCH } from "../../services/api/googleBooks";
 
 export default function GetBooksRelatedByAuthors({ author }) {
   const [books, setBooks] = useState([]);
-  console.log(author);
 
   useEffect(() => {
     axios
@@ -17,7 +16,6 @@ export default function GetBooksRelatedByAuthors({ author }) {
         `${BOOKS_SEARCH}inauthor:"${author}"&maxResults=14&langRestrict=fr&printType=books`
       )
       .then((res) => {
-        console.log(res.data);
         setBooks(res.data.items);
       });
   }, [author]);
