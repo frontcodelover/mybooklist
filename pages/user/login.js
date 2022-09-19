@@ -6,7 +6,7 @@ import bibliothequeBoy from "../../public/bibliotheque-boy.jpg";
 import Image from "next/image";
 import Link from "next/link";
 
-const login = () => {
+const Login = () => {
   const router = useRouter();
   const { user, login } = useAuth();
   const [data, setData] = useState({
@@ -109,4 +109,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default Login;

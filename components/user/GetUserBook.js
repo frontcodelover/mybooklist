@@ -68,6 +68,7 @@ export default function GetUserBook({ user }) {
             )
           )
         ) : (
+          // eslint-disable-next-line react/no-unescaped-entities
           <p>Vous n'avez pas encore de livre dans votre liste de lecture</p>
         )}
       </div>
