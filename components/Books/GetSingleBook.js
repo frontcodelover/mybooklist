@@ -62,7 +62,7 @@ export default function GetSingleBook({ data, id, coucou }) {
             {/* <BsListCheck className="mt-1 mr-1" /> Ajouter dans ma liste de
             lecture */}
           </p>
-          <div className="flex hover:bg-gray-100 p-2 w-fit rounded-xl">
+          <div className="flex p-2 w-fit rounded-xl">
             <BookmarkBooksList bookid={id} userid={user.uid} />
             {/* <BsListCheck className="mt-1 mr-1" /> Ajouter dans ma liste de
             lecture */}
@@ -75,7 +75,6 @@ export default function GetSingleBook({ data, id, coucou }) {
             {/* <BsPlay className="mt-1 mr-1" /> Je suis entrain de le lire */}
           </p>
           
-            <GetAllBookListsForUser bookid={id} userid={user.uid} />
          
           {bookInfos?.isbn13 ? (
             <p className="flex hover:bg-gray-100 p-2 w-fit rounded-xl">
