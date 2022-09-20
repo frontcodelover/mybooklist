@@ -14,7 +14,7 @@ import { useQuery } from "@tanstack/react-query";
 
 export default function GetAllBookListsForUser({ userid, bookid }) {
   const [isChecked, setIsChecked] = useState(false);
-  const [checkedLists, setCheckedLists] = useState([])
+  const [checkedLists, setCheckedLists] = useState([]);
   const db = getFirestore();
 
   const bookListQuery = useQuery(["bookList", userid], () => {
@@ -25,6 +25,7 @@ export default function GetAllBookListsForUser({ userid, bookid }) {
     return getDocs(q);
   });
   const bookLists = bookListQuery.data?.docs.map((doc) => doc.data());
+  console.log("BOOKLIST1", bookLists);
   const isLoading = bookListQuery.isLoading;
 
   const bookAddedQuery = useQuery(["bookList", userid, bookid], () => {
@@ -37,34 +38,86 @@ export default function GetAllBookListsForUser({ userid, bookid }) {
   });
 
   useEffect(() => {
-    if (bookAddedQuery.data?.docs.length > 0 && bookAddedQuery.data != undefined) {
-
+    if (
+      bookAddedQuery.data?.docs.length > 0 &&
+      bookAddedQuery.data != undefined
+    ) {
       setIsChecked(true);
     } else {
       setIsChecked(false);
     }
-    console.log("bookAddedQuery.data?.docs.length", bookAddedQuery.data?.docs.length);
+    console.log(
+      "bookAddedQuery.data?.docs.length",
+      bookAddedQuery.data?.docs.length
+    );
   }, [bookAddedQuery.data, bookAddedQuery.data?.docs.length]);
 
   const handleBookmark = async (e) => {
+
     e.preventDefault();
+    const listid = e.target.value;
+    console.log("listid", listid);
+    const bookListRef = doc(db, "publiclist", listid);
     if (isChecked) {
-      const userDoc = doc(db, "publiclist", e.target.value);
-      await updateDoc(userDoc, {
+      await updateDoc(bookListRef, {
         bookid: arrayRemove(bookid),
       });
+      setCheckedLists(checkedLists.filter((item) => item !== listid));
       setIsChecked(false);
     } else {
-      const userDoc = doc(db, "publiclist", e.target.value);
-      await updateDoc(userDoc, {
+      await updateDoc(bookListRef, {
         bookid: arrayUnion(bookid),
       });
-
+      setCheckedLists(checkedLists.concat(listid));
       setIsChecked(true);
     }
+
+    console.log("checkedLists", checkedLists);
+
+    // const isChecked = listid.includes(bookid);
+    // const listRef = doc(db, "publiclist", listid);
+    // if (isChecked) {
+    //   await updateDoc(listRef, {
+    //     bookid: arrayUnion(bookid),
+    //   });
+    //   setCheckedLists(checkedLists.filter((item) => item !== listid.id));
+    //   console.log("checkedLists", checkedLists);
+    // } else {
+    //   await updateDoc(listRef, {
+    //     bookid: arrayRemove(bookid),
+    //   });
+    //   setCheckedLists(checkedLists.concat(listid.id));
+    //   console.log("checkedLists", checkedLists);
+    // }
   };
 
-  console.log("bookLists", checkedLists);
+
+  // const handleBookmark = async (e, bookList) => {
+  //   const isChecked = bookList.includes(bookid);
+  //   console.log("BOOKID", bookid);
+  //   console.log("isChecked", isChecked);
+  //   e.preventDefault();
+  //   if (isChecked) {
+  //     const userDoc = doc(db, "publiclist", e.target.value);
+  //     console.log("userDoc", userDoc);
+  //     await updateDoc(userDoc, {
+  //       bookid: arrayRemove(bookid),
+  //     });
+  //     setCheckedLists(checkedLists.filter((item) => item !== bookList.id));
+  //     console.log("checkedLists", checkedLists);
+  //     // setIsChecked(false);
+  //   } else {
+  //     const userDoc = doc(db, "publiclist", e.target.value);
+  //     await updateDoc(userDoc, {
+  //       bookid: arrayUnion(bookid),
+  //     });
+  //     setCheckedLists(checkedLists.concat(bookList.id));
+  //     console.log("checkedLists", checkedLists);
+  //     // setIsChecked(true);
+  //   }
+  // };
+
+    
 
   return (
     <>
@@ -75,12 +128,17 @@ export default function GetAllBookListsForUser({ userid, bookid }) {
               id="purple-checkbox"
               type="checkbox"
               value={bookList.id}
-              onClick={(e) => handleBookmark(e, "value")}
+              onChange={(e) => handleBookmark(e, bookList.id)}
               checked={checkedLists.includes(bookList.id)}
-              onChange={(e) => setCheckedLists((current) => current.includes(bookList.id) ? current.filter((item) => item !== bookList.id) : current.concat(bookList.id))}
+              // onChange={(e) => setCheckedLists((current) => current.includes(bookList.id) ? current.filter((item) => item !== bookList.id) : current.concat(bookList.id))}
               className="w-4 h-4 -mt-1 text-purple-600 bg-gray-100 rounded border-gray-300 focus:ring-purple-500 dark:focus:ring-purple-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
             />
-            <label htmlFor="purple-checkbox" className="ml-2 text-sm text-gray-900 dark:text-gray-300">{bookList.name}</label>
+            <label
+              htmlFor="purple-checkbox"
+              className="ml-2 text-sm text-gray-900 dark:text-gray-300"
+            >
+              {bookList.name}
+            </label>
           </div>
         ))
       ) : (
