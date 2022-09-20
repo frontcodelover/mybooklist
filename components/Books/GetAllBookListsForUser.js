@@ -26,19 +26,23 @@ export default function GetAllBookListsForUser({ userid, bookid }) {
   const bookLists = bookListQuery.data?.docs.map((doc) => doc.data());
   const isLoading = bookListQuery.isLoading;
 
-  const bookAddedQuery = useQuery(["bookList", userid], () => {
+  const bookAddedQuery = useQuery(["bookList", userid, bookid], () => {
     const q = query(
       collection(db, "publiclist"),
-      where("bookid", "array-contains", bookid)
+      where("bookid", "array-contains", bookid),
+      where("userid", "==", userid)
     );
     return getDocs(q);
   });
 
   useEffect(() => {
-    if (bookAddedQuery.data?.docs.length > 0) {
+    if (bookAddedQuery.data?.docs.length > 0 && bookAddedQuery.data != undefined) {
       setIsChecked(true);
+    } else {
+      setIsChecked(false);
     }
-  }, [bookAddedQuery.data?.docs.length]);
+    console.log("bookAddedQuery.data?.docs.length", bookAddedQuery.data?.docs.length);
+  }, [bookAddedQuery.data, bookAddedQuery.data?.docs.length]);
 
   const handleBookmark = async (e) => {
     e.preventDefault();
@@ -67,7 +71,7 @@ export default function GetAllBookListsForUser({ userid, bookid }) {
               id="purple-checkbox"
               type="checkbox"
               value={bookList.id}
-              onClick={(e) => handleBookmark(e, "value")}
+              onChange={(e) => handleBookmark(e, "value")}
               checked={isChecked}
               className="w-4 h-4 -mt-1 text-purple-600 bg-gray-100 rounded border-gray-300 focus:ring-purple-500 dark:focus:ring-purple-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
             />
