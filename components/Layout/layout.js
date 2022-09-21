@@ -2,7 +2,7 @@ import Nav from "./nav";
 import NavResponsive from "./navResponsive";
 import Footer from "./footer";
 
-//* Layout commun à tout le site
+//*! Nee to fix footer display
 
 export default function Layout({ children }) {
   return (

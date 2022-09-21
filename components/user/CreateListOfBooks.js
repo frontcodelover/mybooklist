@@ -28,7 +28,7 @@ export default function CreateListOfBooks({ userid, pseudo }) {
       pseudo: pseudo,
       id: uuid,
     });
-    // router.push("/user/dashboard"); A envoyer ensuite vers la liste créée
+    router.push(`/list/${inputs.name.toLowerCase().replace(/[^a-z0-9]+/g, '-') + "-" + uuid}`);
   };
 
   return (
