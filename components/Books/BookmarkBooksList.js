@@ -1,12 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { useEffect, useState } from "react";
 import {
-  doc,
-  updateDoc,
-  arrayUnion,
-  arrayRemove,
-  getDoc,
-  setDoc,
+  getDocs,  
+  where,
+  collection,
+  query,
 } from "firebase/firestore";
 import { getFirestore } from "firebase/firestore";
 import { BsFillBookmarkPlusFill, BsFillBookmarkDashFill } from "react-icons/bs";
@@ -14,56 +12,29 @@ import Link from "next/link";
 import { nanoid } from "nanoid";
 import GetAllBookListsForUser from "./GetAllBookListsForUser";
 
+
 export default function BookmarkBooksList({ bookid, userid }) {
   const db = getFirestore();
-  const [isBookmarked, setIsBookmarked] = useState(false);
-  const [currentUser, setCurrentUser] = useState(false);
-
-  const uuid = nanoid();
+  const [userHasDocs, setUserHasDocs] = useState(false);
 
   useEffect(() => {
-    const getUser = async () => {
-      const userDoc = await doc(db, "users", userid);
-      const user = await getDoc(userDoc);
-      if (user.exists()) {
-        setCurrentUser(user.data());
-        const userData = user.data();
-        if (userData?.bookid?.includes(bookid)) {
-          userData.bookid.forEach((id) => {
-            if (id === bookid) {
-              setIsBookmarked(true);
-            }
-          });
-        }
+    const getBookList = async () => {
+      const bookListRef = collection(db, "publiclist");
+      const q = query(bookListRef, where("userid", "==", userid));
+
+      const querySnapshot = await getDocs(q);
+      if (querySnapshot.docs.length > 0) {
+        setUserHasDocs(true);
+      } else {
+        setUserHasDocs(false);
       }
     };
-    getUser();
-  }, [bookid, db, userid]);
+    getBookList();
+  }, [db, userid]);
 
-  const handleBookmark = async (e) => {
-    e.preventDefault();
-    const userDoc = doc(db, "users", userid);
-    await updateDoc(userDoc, {
-      bookid: arrayUnion(bookid),
-    });
-    setIsBookmarked(true);
-    const list = doc(db, "publiclist", uuid);
-    await setDoc(list, {
-      bookid: arrayUnion(bookid),
-    });
-  };
-
-  const handleUnbookmark = async (e) => {
-    e.preventDefault();
-    const userDoc = doc(db, "users", userid);
-    await updateDoc(userDoc, {
-      bookid: arrayRemove(bookid),
-    });
-    setIsBookmarked(false);
-  };
   return (
     <>
-    <details
+      <details
         open
         className="group mx-auto overflow-hidden max-h-[56px] open:!max-h-[400px] transition-[max-height] duration-500"
       >
@@ -72,14 +43,26 @@ export default function BookmarkBooksList({ bookid, userid }) {
             <div className="mt-1 pr-1">
               <BsFillBookmarkPlusFill />
             </div>{" "}
-            Ajouter à ma liste de lecture
+            Ajouter à mes listes de lecture
           </div>
         </summary>
-
-        <div className="text-sm -m-4 -mt-2 p-4">
-          <GetAllBookListsForUser userid={userid} bookid={bookid} />
-        </div>
+        {userHasDocs ? (
+          <div className="text-sm -m-4 -mt-2 p-4">
+            <GetAllBookListsForUser userid={userid} bookid={bookid} />
+          </div>
+        ) : (
+          <div className="text-sm -m-4 -mt-2 p-4">
+            <p className="text-sm">
+              Vous n'avez aucune liste.{" "}
+              <Link href="/user/dashboard">
+                <a className="text-blue-500">
+                  <button className="my-2 bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-md">Créer une liste</button>
+                </a>
+              </Link>
+            </p>
+          </div>
+        )}
       </details>
     </>
-  )
+  );
 }

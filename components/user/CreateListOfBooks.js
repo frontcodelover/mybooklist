@@ -4,7 +4,7 @@ import { doc, setDoc } from "firebase/firestore";
 import { getFirestore } from "firebase/firestore";
 import { useRouter } from "next/router";
 
-export default function CreateListOfBooks({ userid }) {
+export default function CreateListOfBooks({ userid, pseudo }) {
   const [inputs, setInputs] = useState({});
   const db = getFirestore();
   const uuid = nanoid();
@@ -25,6 +25,7 @@ export default function CreateListOfBooks({ userid }) {
       private: inputs.private === "true" ? true : false,
       userid: userid,
       slug : inputs.name.toLowerCase().replace(/[^a-z0-9]+/g, '-') + "-" + uuid,
+      pseudo: pseudo,
       id: uuid,
     });
     // router.push("/user/dashboard"); A envoyer ensuite vers la liste créée

@@ -52,7 +52,7 @@ export default function BookLayout({ book }) {
                   key={bookInfo.authors + randomBook}
                 >
                   
-                  <a>{author + ". "}</a>
+                  <a className="underline text-purple-500 hover:text-purple-700">{author + ". "}</a>
                   
                   
                   </Link>

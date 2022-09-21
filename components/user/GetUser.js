@@ -32,13 +32,15 @@ export default function GetUser() {
       prenom: inputs.prenom,
       age: inputs.age,
       ville: inputs.ville,
-      genre: inputs.genre,
+      genre: inputs.genre || "Non binaire",
       litterature: inputs.litterature,
       phrase: inputs.phrase,
       uid: user.uid,
     });
     router.push("/user/dashboard");
   };
+
+  console.log(inputs);
 
   return (
     <>
@@ -127,7 +129,7 @@ export default function GetUser() {
                   </label>
                   <select
                     name="genre"
-                    value={inputs.genre || "Non binaire"}
+                    value={inputs.genre || ""}
                     onChange={handleChange}
                     className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                     required

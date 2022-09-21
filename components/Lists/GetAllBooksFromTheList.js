@@ -1,23 +1,27 @@
-import React from 'react'
-import { useQuery } from '@tanstack/react-query';
-import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore';
-import BookLayout from '../Books/BookLayout';
-import axios from 'axios'
-import { BOOKS_BY_ID } from '../../services/api/googleBooks'
-import { useEffect } from 'react';
+import React from "react";
+import { useQuery } from "@tanstack/react-query";
+import {
+  collection,
+  getDocs,
+  getFirestore,
+  query,
+  where,
+} from "firebase/firestore";
+import BookLayout from "../Books/BookLayout";
+import axios from "axios";
+import { BOOKS_BY_ID } from "../../services/api/googleBooks";
+import { useEffect } from "react";
+import GetDetailsOfBookFromList from "./GetDetailsOfBookFromList";
 
-export default function GetAllBooksFromTheList({slug}) {
+export default function GetAllBooksFromTheList({ slug }) {
   const [bookId, setBookId] = React.useState([]);
-  
+
   const db = getFirestore();
 
   //! NEED TO ADD GOOGLE API
 
   const bookListQuery = useQuery(["publiclist"], () => {
-    const q = query(
-      collection(db, "publiclist"),
-      where("slug", "==", slug)
-    );
+    const q = query(collection(db, "publiclist"), where("slug", "==", slug));
     return getDocs(q);
   });
   const bookFromList =
@@ -26,34 +30,35 @@ export default function GetAllBooksFromTheList({slug}) {
 
 
 
-  console.log(bookFromList)
-
 
   return (
     <>
-    <div>GetAllBooksFromTheList</div>
-      <h1>{slug}</h1>
-      {isLoading ? (
-        <div>Loading...</div>
-      ) : (
-        <div className="p-5">
-          {bookFromList?.map((docData) => {
-            return (
-              <div key={docData.id} className="pl-2 py-2">
-                {docData.name}
-                {docData.bookid.map ((book) => {
-                  return (
-                    <div key={book} className="pl-2 py-2">
-                     <BookLayout book={book} />
+          <div className="grid grid-cols-1 gap-1 lg:max-w-screen-md mx-auto w-full">
+            <h3 className="text-3xl font-semibold mb-3 border-b pb-2 border-gray-500">
+              Liste de lecture : {bookFromList[0]?.name} par {bookFromList[0]?.pseudo}
+            </h3>
+
+            <div>
+              {bookFromList.map((book) => {
+
+                return (
+                  <div key={book}>
+                  {book.bookid.map((id) => {
+                      // eslint-disable-next-line react/jsx-key
+                      return <GetDetailsOfBookFromList book={id} />;
+                    })}
                     </div>
-                  )
-                }
-                )}
-              </div>
-            );
-          })}
-        </div>
-      )}
+                );
+              }
+              )}
+            </div>
+          </div>
     </>
-  )
+  );
 }
+
+// {bookFromList?.map((docData) => (
+//   <div key={docData.id} className="pl-2 py-2">
+//     {docData.bookid.map((book) => (
+//       <GetDetailsOfBookFromList book={book} />
+//     ))}
