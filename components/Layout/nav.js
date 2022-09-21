@@ -16,10 +16,12 @@ export default function Nav() {
         <div className="lg:container mx-auto">
           <nav className="w-full flex py-6">
             <Link href="/">
-              <div className="logo text-2xl font-semibold basis-1/4 flex cursor-pointer">
-                <span className="font-semibold">Liste </span>
-                <span className="font-bold text-purple-500">deLecture</span>
-              </div>
+              <a>
+                <div className="logo text-2xl font-semibold basis-1/4 flex cursor-pointer">
+                  <span className="font-semibold">Liste </span>
+                  <span className="font-bold text-purple-500">deLecture</span>
+                </div>
+              </a>
             </Link>
             <Search />
             <ul className="list-none basis-3/4 flex justify-end font-semibold">
@@ -53,10 +55,14 @@ export default function Nav() {
               ) : (
                 <>
                   <li className="px-6">
-                    <Link href="/user/login">Se connecter</Link>
+                    <Link href="/user/login">
+                      <a>Se connecter</a>
+                    </Link>
                   </li>
                   <li className="px-6">
-                    <Link href="/user/signup">S&apos;inscrire</Link>
+                    <Link href="/user/signup">
+                      <a>S&apos;inscrire</a>
+                    </Link>
                   </li>
                 </>
               )}

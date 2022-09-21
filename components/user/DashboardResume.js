@@ -16,8 +16,6 @@ export default function DashboardResume() {
   const db = getFirestore();
   const [currentUser, setUser] = useState({});
 
-  console.log("user", user.uid);
-
   useEffect(() => {
     const getUser = async () => {
       const usersCollection = collection(db, "users");
@@ -73,7 +71,10 @@ export default function DashboardResume() {
             </div>
             <div className="flex mt-10">
               <div className="w-1/2">
-                <CreateListOfBooks userid={user?.uid} pseudo={currentUser.pseudo}/>
+                <CreateListOfBooks
+                  userid={user?.uid}
+                  pseudo={currentUser.pseudo}
+                />
               </div>
               <div className="w-1/2 pl-2">
                 <DisplayLists userid={user?.uid} />

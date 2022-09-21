@@ -17,7 +17,6 @@ import { useAuth } from "../../context/AuthContext";
 export default function GetSubCollection() {
   const { user } = useAuth();
   const db = getFirestore();
-  const [currentUser, setUser] = useState([]);
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -27,8 +26,6 @@ export default function GetSubCollection() {
       const querySnapshot = await getDocs(q);
 
       const coucou = querySnapshot.docs.map((doc) => doc.data());
-
-      console.log("COUOCU", coucou);
 
       setData(coucou);
     };
@@ -58,9 +55,6 @@ export default function GetSubCollection() {
       age: 55,
     });
   };
-
-  console.log("SETDATA", data);
-  // console.log(data);
 
   return (
     <div>

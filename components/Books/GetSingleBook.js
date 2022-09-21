@@ -58,20 +58,20 @@ export default function GetSingleBook({ data, id, coucou }) {
             </div>
           )}
           <p className="flex hover:bg-gray-100 p-2 w-fit rounded-xl">
-            <Bookmarks bookid={id} userid={user.uid} />
+            <Bookmarks bookid={id} userid={user?.uid} />
             {/* <BsListCheck className="mt-1 mr-1" /> Ajouter dans ma liste de
             lecture */}
           </p>
           <div className="flex p-2 w-fit rounded-xl">
-            <BookmarkBooksList bookid={id} userid={user.uid} />
+            <BookmarkBooksList bookid={id} userid={user?.uid} />
             {/* <BsListCheck className="mt-1 mr-1" /> Ajouter dans ma liste de
             lecture */}
           </div>
           <p className="flex hover:bg-gray-100 p-2 w-fit rounded-xl">
-            <AlreadyRead bookid={id} userid={user.uid} />
+            <AlreadyRead bookid={id} userid={user?.uid} />
           </p>
           <p className="flex hover:bg-gray-100 p-2 w-fit rounded-xl">
-            <ReadingBook bookid={id} userid={user.uid} />
+            <ReadingBook bookid={id} userid={user?.uid} />
             {/* <BsPlay className="mt-1 mr-1" /> Je suis entrain de le lire */}
           </p>
           

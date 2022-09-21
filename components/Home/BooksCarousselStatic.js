@@ -2,15 +2,11 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import genBook from "../../public/livre-generique.jpg";
-import {hydrateBooks} from "../../services/mapper/mapper";
+import { hydrateBooks } from "../../services/mapper/mapper";
 
 function BooksCarousselStatic({ booksStatic }) {
-  
   const books = booksStatic.items;
-  console.log(books);
   const bookInfos = hydrateBooks(books);
-
-  console.log(bookInfos)
 
   return (
     <div>
@@ -25,28 +21,40 @@ function BooksCarousselStatic({ booksStatic }) {
                 key={book.id}
                 className="hover:scale-105 transform transition duration-300 "
               >
-                <Link href={`/books/details/${book.id}`}>
-                  {book.thumbnail ? (
-                    <a>
-                      <img
-                        src={book.thumbnail}
-                        alt={book.title}
-                        className="h-48 w-30"
-                      />
+                {book.thumbnail ? (
+                  <>
+                    <Link href={`/books/details/${book.id}`}>
+                      <a>
+                        <img
+                          src={book.thumbnail}
+                          alt={book.title}
+                          className="h-48 w-30"
+                        />
+                      </a>
+                    </Link>
+                    <Link href={`/books/details/${book.id}`}>
+                      <a>
+                        <p className="text-xs font-bold">{book.title}</p>
+                      </a>
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <Link href={`/books/details/${book.id}`}>
+                      <a className="hover:scale-125">
+                        <Image
+                          src={genBook}
+                          alt={book.title}
+                          height={200}
+                          width={150}
+                        />
+                      </a>
+                    </Link>
+                    <Link href={`/books/details/${book.id}`}>
                       <p className="text-xs font-bold">{book.title}</p>
-                    </a>
-                  ) : (
-                    <a className="hover:scale-125">
-                      <Image
-                        src={genBook}
-                        alt={book.title}
-                        height={200}
-                        width={150}
-                      />
-                      <p className="text-xs font-bold">{book.title}</p>
-                    </a>
-                  )}
-                </Link>
+                    </Link>
+                  </>
+                )}
               </div>
             );
           })}

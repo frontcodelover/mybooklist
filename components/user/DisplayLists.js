@@ -7,10 +7,11 @@ import {
   where,
 } from "firebase/firestore";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function DisplayLists({ userid }) {
   const db = getFirestore();
-
+  const [allLists, setAllLists] = useState(null);
   const bookListQuery = useQuery(["bookList", userid], () => {
     const q = query(
       collection(db, "publiclist"),
@@ -35,7 +36,7 @@ export default function DisplayLists({ userid }) {
             return (
               <div key={docData.id} className="pl-2 py-2">
                 <Link href={`/list/${docData?.slug}`}>
-                {docData.name}
+                  <a>{docData.name}</a>
                 </Link>
               </div>
             );

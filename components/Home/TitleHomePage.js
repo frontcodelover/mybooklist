@@ -3,8 +3,11 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import bibliotheBoy from "../../public/bibliotheque-boy.jpg";
+import { useAuth } from "../../context/AuthContext";
 
 export default function TitleHomePage() {
+  const { user } = useAuth();
+
   return (
     <div className="md:grid md:grid-cols-2 md:gap-5 h-screen md:px-0 px-5 mt-20 md:mt-0">
       <div className="md:items-center md:justify-center md:hidden">
@@ -26,9 +29,15 @@ export default function TitleHomePage() {
           </h2>
 
           <button className="mt-6 bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-md">
-            <Link href="/user/signup">
-              <a className="text-white">S'incrire gratuitement</a>
-            </Link>
+            {!user ? (
+              <Link href="/user/signup">
+                <a className="text-white">S'incrire gratuitement</a>
+              </Link>
+            ) : (
+              <Link href="/user/dashboard">
+                <a className="text-white">Mon profil</a>
+              </Link>
+            )}
           </button>
         </div>
       </div>

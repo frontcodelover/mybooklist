@@ -28,7 +28,8 @@ export default function CreateListOfBooks({ userid, pseudo }) {
       pseudo: pseudo,
       id: uuid,
     });
-    router.push(`/list/${inputs.name.toLowerCase().replace(/[^a-z0-9]+/g, '-') + "-" + uuid}`);
+    window.location.reload(false);
+    // router.push(`/list/${inputs.name.toLowerCase().replace(/[^a-z0-9]+/g, '-') + "-" + uuid}`);
   };
 
   return (

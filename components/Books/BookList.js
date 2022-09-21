@@ -3,12 +3,10 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import BookFromSearch from "./BookFromSearch";
 import BookLayout from "./BookLayout";
-import { useAuth } from "../../context/AuthContext";
 import { BOOKS_SEARCH } from "../../services/api/googleBooks";
 import { BOOKS_GENERIQUE } from "../../services/api/googleBooks";
 
 export default function BookList() {
-  const { user } = useAuth();
   const [books, setBooks] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [startIndex, setStartIndex] = useState(0);

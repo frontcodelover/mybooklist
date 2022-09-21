@@ -5,10 +5,9 @@ import genBook from "../../public/livre-generique.jpg";
 import { getBookFromGoogleBookApi } from "../../services/mapper/mapper";
 
 export default function BookLayout({ book }) {
-  console.log("BOOKTLAYOUT", book);
   //Mapper
   const bookInfo = getBookFromGoogleBookApi(book);
-  const randomBook = Math.floor(Math.random() * 1000);
+  const randomBook = Math.floor(Math.random() * 20020);
 
   return (
     <div className="w-full h-60 max-h-60 flex">
@@ -42,19 +41,17 @@ export default function BookLayout({ book }) {
             ""
           )}
           <p className="text-gray-700 text-base">
-            Auteur(s) :{" "}
-            {console.log(bookInfo.authors)}
+            Auteur(s) : {" "}
             {bookInfo.authors
               ? bookInfo.authors.map((author) => (
-                    <Link
-                  href="/books/author/[id]"
-                  as={`/books/author/${author}`}
-                  key={bookInfo.authors + randomBook}
-                >
-                  
-                  <a className="underline text-purple-500 hover:text-purple-700">{author + ". "}</a>
-                  
-                  
+                  <Link
+                    href="/books/author/[id]"
+                    as={`/books/author/${author}`}
+                    key={author}
+                  >
+                    <a className="underline text-purple-500 hover:text-purple-700" key={bookInfo.authors + randomBook}>
+                      {author + ". "}
+                    </a>
                   </Link>
                 ))
               : "Auteur inconnu"}
