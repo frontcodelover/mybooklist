@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { nanoid } from "nanoid";
 import { doc, setDoc } from "firebase/firestore";
 import { getFirestore } from "firebase/firestore";
+import { useRouter } from "next/router";
 
 export default function CreateListOfBooks({ userid }) {
   const [inputs, setInputs] = useState({});
   const db = getFirestore();
   const uuid = nanoid();
+  const router = useRouter();
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -22,22 +24,24 @@ export default function CreateListOfBooks({ userid }) {
       date: new Date(),
       private: inputs.private === "true" ? true : false,
       userid: userid,
+      slug : inputs.name.toLowerCase().replace(/[^a-z0-9]+/g, '-') + "-" + uuid,
       id: uuid,
     });
+    // router.push("/user/dashboard"); A envoyer ensuite vers la liste créée
   };
 
   return (
     <>
-      <div className="flex flex-col">
-        <h1 className="text-3xl font-bold mb-3 text-main-color">
+      <div className="flex flex-col bg-gray-100 p-5 rounded-xl shadow">
+        <h2 className="text-3xl font-bold mb-3 text-main-color">
           Créer une liste
-        </h1>
+        </h2>
         <form onSubmit={handleCreateList}>
           <input
             type="text"
             name="name"
             placeholder="Nom de la liste de lecture"
-            className="w-full p-2 border border-gray-300 rounded-md"
+            className="w-full p-2 mb-4 border border-gray-300 rounded-md"
             onChange={handleChange}
           />
 
@@ -47,13 +51,14 @@ export default function CreateListOfBooks({ userid }) {
             onChange={handleChange}
             value="true"
             id="private"
+            className="mr-2 my-4"
           />
-          <label htmlFor="private"> Je souhaite rendre ma liste privée</label>
+          <label htmlFor="private" className="py-2"> Je souhaite rendre ma liste privée</label>
           <button
             type="submit"
-            className="w-full p-2 mt-2 bg-main-color text-white rounded-md"
+            className="w-full p-2 my-5 bg-purple-500 text-white rounded-md shadow font-semibold"
           >
-            Créer
+            Créer une nouvelle liste
           </button>
         </form>
       </div>

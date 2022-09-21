@@ -38,6 +38,8 @@ export default function TitleHomePage() {
           alt="Bibliothèque de garçons"
           loading="lazy"
           className="rounded-xl"
+          height={700}
+          width={700}
         />
       </div>
     </div>

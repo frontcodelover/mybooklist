@@ -9,6 +9,7 @@ import GetUserImage from "./GetUserImage";
 import DashboardBanner from "./DashboardBanner";
 import GetSubCollection from "./TestSub";
 import CreateListOfBooks from "./CreateListOfBooks";
+import DisplayLists from "./DisplayLists";
 
 export default function DashboardResume() {
   const { user } = useAuth();
@@ -67,8 +68,15 @@ export default function DashboardResume() {
                 <h2 className="text-xl font-semibold">
                   Ma devise, mon proverbe préféré :
                 </h2>
-              <CreateListOfBooks userid={user?.uid}/>
                 <p>{currentUser.phrase}</p>
+              </div>
+            </div>
+            <div className="flex mt-10">
+              <div className="w-1/2">
+                <CreateListOfBooks userid={user?.uid} />
+              </div>
+              <div className="w-1/2 pl-2">
+                <DisplayLists userid={user?.uid} />
               </div>
             </div>
             <div className="p-5">
