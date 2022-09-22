@@ -15,7 +15,9 @@ function MyApp({ Component, pageProps }) {
     <Provider store={store}>
       <AuthContexProvider>
         <Layout>
+       
           <Component {...pageProps} />
+ 
         </Layout>
       </AuthContexProvider>
     </Provider>
