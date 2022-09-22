@@ -61,19 +61,19 @@ export default function AlreadyRead({ bookid, userid }) {
           className="text-base"
         >
           {isReaded ? (
-            <p className="text-sm font-semibold text-green-500 flex">
+            <div className="text-sm font-semibold text-green-500 flex">
               <div className="mt-1 pr-1">
                 <AiOutlineCheck />
               </div>{" "}
               Déjà lu
-            </p>
+            </div>
           ) : (
-            <p className="text-sm font-semibold text-main-color flex">
+            <div className="text-sm font-semibold text-main-color flex">
               <div className="mt-1 pr-1">
                 <AiOutlineCheck />
               </div>{" "}
               Lu ?
-            </p>
+            </div>
           )}
         </button>
       ) : (

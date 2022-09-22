@@ -52,14 +52,14 @@ export default function BookmarkBooksList({ bookid, userid }) {
           </div>
         ) : (
           <div className="text-sm -m-4 -mt-2 p-4">
-            <p className="text-sm">
+            <div className="text-sm">
               Vous n'avez aucune liste.{" "}
               <Link href="/user/dashboard">
                 <a className="text-blue-500">
                   <button className="my-2 bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-md">Créer une liste</button>
                 </a>
               </Link>
-            </p>
+            </div>
           </div>
         )}
       </details>

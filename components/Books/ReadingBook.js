@@ -61,19 +61,19 @@ export default function ReadingBook({ bookid, userid }) {
           className="text-base"
         >
           {isReading ? (
-            <p className="text-sm font-semibold text-green-500 flex">
+            <div className="text-sm font-semibold text-green-500 flex">
               <div className="mt-1 pr-1">
                 <BsPlay />
               </div>{" "}
               Je suis entrain de le lire
-            </p>
+            </div>
           ) : (
-            <p className="text-sm font-semibold text-main-color flex">
+            <div className="text-sm font-semibold text-main-color flex">
               <div className="mt-1 pr-1">
                 <BsPlay />
               </div>{" "}
               Je suis entrain de le lire ?
-            </p>
+            </div>
           )}
         </button>
       ) : (

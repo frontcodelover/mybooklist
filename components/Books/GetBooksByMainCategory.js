@@ -35,7 +35,7 @@ export default function GetBooksByMainCategory({ category }) {
           </h3>
           <div className="grid grid-cols-7 gap-5">
             {booksInfos.map((book) => (
-              <div className="flex-cols w-36" key={booksInfos.id}>
+              <div className="flex-cols w-36" key={book.id + "_3"}>
                 {book.thumbnail ? (
                   <Link href={`/books/details/${book.id}`}>
                     <a>
@@ -47,7 +47,7 @@ export default function GetBooksByMainCategory({ category }) {
                     </a>
                   </Link>
                 ) : (
-                  <div className="mx-auto mb-5 h-48 ">
+                  <div className="mx-auto mb-5 h-48 " key={book.id + "_33"}>
                     <Link href={`/books/details/${book.id}`}>
                       <a>
                         <Image

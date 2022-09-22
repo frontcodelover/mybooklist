@@ -10,9 +10,12 @@ import {
   updateDoc,
   where,
 } from "firebase/firestore";
+import { useRouter } from "next/router";
+import { Tooltip } from "flowbite-react";
 
 export default function GetAllBookListsForUser({ userid, bookid }) {
   const db = getFirestore();
+  const router = useRouter();
 
   const bookListQuery = useQuery(["bookList", userid], () => {
     const q = query(
@@ -47,7 +50,7 @@ export default function GetAllBookListsForUser({ userid, bookid }) {
       .map((bookDoc) => bookDoc.id)
       .includes(docData.id);
     return (
-      <div key={docData.id} className="pl-2 py-2">
+      <div key={docData.id} className="pl-2 py-2 flex">
         <input
           id="purple-checkbox"
           type="checkbox"
@@ -57,18 +60,31 @@ export default function GetAllBookListsForUser({ userid, bookid }) {
             await updateDoc(bookListRef, {
               bookid: isChecked ? arrayRemove(bookid) : arrayUnion(bookid),
             });
-
+            router.reload(window.location.pathname);
             queryClient.invalidateQueries(["bookList", userid, bookid]);
           }}
           checked={isChecked}
-          className="w-4 h-4 -mt-1 text-purple-600 bg-gray-100 rounded border-gray-300 focus:ring-purple-500 dark:focus:ring-purple-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+          className="w-4 h-4  text-purple-600 bg-gray-100 rounded border-gray-300 focus:ring-purple-500 dark:focus:ring-purple-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
         />
-        <label
-          htmlFor="purple-checkbox"
-          className="ml-2 text-sm text-gray-900 dark:text-gray-300"
-        >
-          {docData.name}
-        </label>
+        {isChecked ? (
+          <Tooltip content="Retirer de la liste" style="light">
+            <label
+              htmlFor="purple-checkbox"
+              className="ml-2 text-sm text-gray-900 dark:text-gray-300"
+            >
+              {docData.name}
+            </label>
+          </Tooltip>
+        ) : (
+          <Tooltip content="Ajouter à la liste" style="light">
+            <label
+              htmlFor="purple-checkbox"
+              className="ml-2 text-sm text-gray-900 dark:text-gray-300"
+            >
+              {docData.name}
+            </label>
+          </Tooltip>
+        )}
       </div>
     );
   });

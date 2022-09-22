@@ -36,7 +36,7 @@ export async function getStaticProps({ params }) {
   const data = await new Promise((resolve) =>
     setTimeout(() => {
       resolve(response.json());
-    }, 300)
+    }, 0)
   );
   if (!data) {
     return {

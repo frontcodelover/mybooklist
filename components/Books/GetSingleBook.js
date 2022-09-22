@@ -57,31 +57,31 @@ export default function GetSingleBook({ data, id, coucou }) {
               <Image src={genBook} alt={bookInfos?.title} className="h-48 " />
             </div>
           )}
-          <p className="flex hover:bg-gray-100 p-2 w-fit rounded-xl">
+          {/* <div className="flex hover:bg-gray-100 p-2 w-fit rounded-xl">
             <Bookmarks bookid={id} userid={user?.uid} />
-            {/* <BsListCheck className="mt-1 mr-1" /> Ajouter dans ma liste de
-            lecture */}
-          </p>
+            <BsListCheck className="mt-1 mr-1" /> Ajouter dans ma liste de
+            lecture
+          </div> */}
           <div className="flex p-2 w-fit rounded-xl">
             <BookmarkBooksList bookid={id} userid={user?.uid} />
             {/* <BsListCheck className="mt-1 mr-1" /> Ajouter dans ma liste de
             lecture */}
           </div>
-          <p className="flex hover:bg-gray-100 p-2 w-fit rounded-xl">
+          <div className="flex hover:bg-gray-100 p-2 w-fit rounded-xl">
             <AlreadyRead bookid={id} userid={user?.uid} />
-          </p>
-          <p className="flex hover:bg-gray-100 p-2 w-fit rounded-xl">
+          </div>
+          <div className="flex hover:bg-gray-100 p-2 w-fit rounded-xl">
             <ReadingBook bookid={id} userid={user?.uid} />
             {/* <BsPlay className="mt-1 mr-1" /> Je suis entrain de le lire */}
-          </p>
+          </div>
           
          
           {bookInfos?.isbn13 ? (
-            <p className="flex hover:bg-gray-100 p-2 w-fit rounded-xl">
+            <div className="flex hover:bg-gray-100 p-2 w-fit rounded-xl">
               <Link href={`https://www.amazon.fr/s?k=${bookInfos?.isbn13}&tag=avantjetaisriche-21`} target="_blank" rel="noreferrer">
                 <a target="_blank" className="text-sm font-semibold text-red-500 flex"><div className="mt-1 pr-1"><AiOutlineShoppingCart /></div>Acheter ce livre sur Amazon</a>
               </Link>
-            </p>
+            </div>
           ) : (
             <></>
             )}
@@ -98,7 +98,7 @@ export default function GetSingleBook({ data, id, coucou }) {
               {bookInfos?.authors ? (
                 bookInfos?.authors.map((author) => (
                   <>
-                    <p key={author}>Un livre de {author}</p>
+                    <div key={author}>Un livre de {author}</div>
                   </>
                 ))
                 ) : (
@@ -118,11 +118,12 @@ export default function GetSingleBook({ data, id, coucou }) {
               <h3 className="text-3xl font-semibold mb-3 border-b pb-2 border-gray-500">
                 Description
               </h3>
-              <p>{parse(bookInfos.description)}</p>
+              {parse(bookInfos.description)}
             </div>
           )}
           <div>
             {bookInfos?.categories ? (
+            
               <GetBooksByMainCategory category={bookInfos.categories[0]} />
               ) : (
                 <p>Aucune suggestion de lecture</p>

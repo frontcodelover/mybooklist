@@ -34,19 +34,21 @@ export default function GetBooksRelatedByAuthors({ author }) {
           </h3>
           <div className="grid grid-cols-7 gap-5">
             {booksInfos.map((book) => (
-              <div className="flex-cols w-36" key={booksInfos.id}>
+              <div className="flex-cols w-36" key={book.id + "_33"}>
                 {book.thumbnail ? (
+                    <>
                   <Link href={`/books/details/${book.id}`}>
                     <a>
                       <img
                         src={book.thumbnail}
                         alt={book.title}
                         className="mx-auto mb-5 h-48"
-                      />
+                        />
                     </a>
                   </Link>
+                        </>
                 ) : (
-                  <div className="mx-auto mb-5 h-48 ">
+                  <div className="mx-auto mb-5 h-48 " key={book.id + "3"}>
                     <Link href={`/books/details/${book.id}`}>
                       <a>
                         <Image
