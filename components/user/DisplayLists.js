@@ -23,6 +23,12 @@ export default function DisplayLists({ userid }) {
     (bookListQuery.data?.docs || []).map((doc) => doc.data()) || [];
   const isLoadingQuery = bookListQuery.isLoading;
 
+  console.log("resultbookListQuery", resultbookListQuery);
+
+  resultbookListQuery.map((list) => {
+    console.log("list", list?.bookid?.length);
+  });
+
   return (
     <>
       {isLoadingQuery ? (
@@ -36,8 +42,10 @@ export default function DisplayLists({ userid }) {
             return (
               <div key={docData.id} className="pl-2 py-2">
                 <Link href={`/list/${docData?.slug}`}>
-                  <a>{docData.name}</a>
+                  <a>{docData.name}
+                  </a>
                 </Link>
+                - {docData?.bookid?.length != undefined ? docData?.bookid?.length + " livres ajoutés" : "0 livre ajouté"}
               </div>
             );
           })}
