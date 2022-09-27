@@ -10,9 +10,11 @@ export default function details({ data }) {
 
   return (
     
-    <div className="container max-w-screen-xl mx-auto mt-4">
+    <div className="mt-4">
       {/* <GetSingleBook id='11' /> */}
+      <div className="mx-auto">
       <GetSingleBook data={data} id={id} />
+      </div>
     </div>
   );
 }

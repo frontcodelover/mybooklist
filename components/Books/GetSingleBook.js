@@ -11,57 +11,92 @@ import { useAuth } from "../../context/AuthContext";
 import AlreadyRead from "./AlreadyRead";
 import ReadingBook from "./ReadingBook";
 import Link from "next/link";
-import {AiOutlineShoppingCart} from "react-icons/ai";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 import Head from "next/head";
 import { useDispatch, useSelector } from "react-redux";
 import { getBook } from "../../feature/book/bookSlice";
-import parse from 'html-react-parser';
+import parse from "html-react-parser";
 import GetAllBookListsForUser from "./GetAllBookListsForUser";
 import BookmarkBooksList from "./BookmarkBooksList";
-
+import SingleBooksModel from "./SingleBooksModel";
 
 export default function GetSingleBook({ data, id, coucou }) {
   const { user } = useAuth();
-  
+
   const dispatch = useDispatch();
   const { book: bookState } = useSelector((state) => state);
   const { list: bookList, status: bookStatus } = bookState;
-  
+
   useEffect(() => {
-      dispatch(getBook({ bookid : id }));
+    dispatch(getBook({ bookid: id }));
   }, [dispatch, id]);
-  
+
   // Mapper
   const bookInfos = getBookFromGoogleBookApi(data);
-  
+
   return (
     <>
-    <Head>
-        <title>{bookInfos?.title} Livre de {bookInfos?.authors} - ListeDeLecture</title>
+      <Head>
+        <title>
+          {bookInfos?.title} Livre de {bookInfos?.authors} - ListeDeLecture
+        </title>
         <meta
           name="description"
           content="Mybooklist vous permet de garder une trace de vos lectures"
           />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="grid grid-cols-9 my-9">
-        <div className="col-span-2">
-          {bookInfos?.thumbnail ? (
+
+<div className="mx-auto bg-[#2b3055] flex py-20 my-5">
+  <div className="container lg:max-w-screen-xl mx-auto flex">
+
+
+{bookInfos?.thumbnail ? (
             <img
-              src={bookInfos?.thumbnail}
-              alt={bookInfos?.title}
-              className="p-4 mb-5 w-52 border rounded-sm"
-              />
-              ) : (
-                <div className="mx-auto mb-5 h-48 ">
-              <Image src={genBook} alt={bookInfos?.title} className="h-48 " />
+            src={bookInfos?.thumbnail}
+            alt={bookInfos?.title}
+            className="h-48 w-auto sm:h-64 sm:w-48 object-cover shadow-lg"
+            />
+            ) : (
+              <div className="">
+              <Image src={genBook} alt={bookInfos?.title}
+              className="h-auto" />
             </div>
           )}
-          {/* <div className="flex hover:bg-gray-100 p-2 w-fit rounded-xl">
-            <Bookmarks bookid={id} userid={user?.uid} />
-            <BsListCheck className="mt-1 mr-1" /> Ajouter dans ma liste de
-            lecture
-          </div> */}
+
+
+<div className="mx-16">
+              <h1 className="text-5xl font-bold mb-2 text-white">
+                {bookInfos?.title}
+              </h1>
+              {bookInfos?.subtitle && (
+                <h2 className="text-2xl text-white/90 mb-3">{bookInfos?.subtitle}</h2>
+              )}
+              <div className="text-xl text-white/80">
+              {bookInfos?.authors ? (
+                bookInfos?.authors.map((author) => (
+                  <>
+                    <div key={author}>Un livre de {author}</div>
+                  </>
+                ))
+                ) : (
+                  <p className="text-white/50">Auteur inconnu</p>
+                  )}
+                  </div>
+              <p className="text-white/50">Edition : {bookInfos?.publisher}</p>
+              <p className="text-white/50">
+                Année de publication :
+                {bookInfos?.publishedDate
+                  ? " " + bookInfos?.publishedDate.substring(0, 4)
+                  : " inconnue"}
+              </p>
+            </div>
+</div>
+            </div>
+
+
+      <div className="my-9 flex flex-col sm:flex-row lg:max-w-screen-xl mx-auto">
+        <div className="sm:flex-none sm:w-56">
+          
           <div className="flex p-2 w-fit rounded-xl">
             <BookmarkBooksList bookid={id} userid={user?.uid} />
             {/* <BsListCheck className="mt-1 mr-1" /> Ajouter dans ma liste de
@@ -74,47 +109,33 @@ export default function GetSingleBook({ data, id, coucou }) {
             <ReadingBook bookid={id} userid={user?.uid} />
             {/* <BsPlay className="mt-1 mr-1" /> Je suis entrain de le lire */}
           </div>
-          
-         
+
           {bookInfos?.isbn13 ? (
             <div className="flex hover:bg-gray-100 p-2 w-fit rounded-xl">
-              <Link href={`https://www.amazon.fr/s?k=${bookInfos?.isbn13}&tag=avantjetaisriche-21`} target="_blank" rel="noreferrer">
-                <a target="_blank" className="text-sm font-semibold text-red-500 flex"><div className="mt-1 pr-1"><AiOutlineShoppingCart /></div>Acheter ce livre sur Amazon</a>
+              <Link
+                href={`https://www.amazon.fr/s?k=${bookInfos?.isbn13}&tag=avantjetaisriche-21`}
+                target="_blank"
+                rel="noreferrer"
+                >
+                <a
+                  target="_blank"
+                  className="text-sm font-semibold text-red-500 flex"
+                  >
+                  <div className="mt-1 pr-1">
+                    <AiOutlineShoppingCart />
+                  </div>
+                  Acheter ce livre sur Amazon
+                </a>
               </Link>
             </div>
           ) : (
             <></>
             )}
-        </div>
-        <div className="col-span-7">
-          <div className="flex">
-            <div className="flex flex-col rounded-sm w-full">
-              <h1 className="text-4xl font-semibold mb-2">
-                {bookInfos?.title}
-              </h1>
-              {bookInfos?.subtitle && (
-                <h2 className="text-2xl mb-3">{bookInfos?.subtitle}</h2>
-                )}
-              {bookInfos?.authors ? (
-                bookInfos?.authors.map((author) => (
-                  <>
-                    <div key={author}>Un livre de {author}</div>
-                  </>
-                ))
-                ) : (
-                  <p>Auteur inconnu</p>
-                  )}
-              <p>Edition : {bookInfos?.publisher}</p>
-              <p>
-                Année de publication :
-                {bookInfos?.publishedDate
-                  ? " " + bookInfos?.publishedDate.substring(0, 4)
-                  : " inconnue"}
-              </p>
             </div>
-          </div>
+
+        <div className="sm:grow h-auto">
           {bookInfos.description && (
-            <div className="my-9">
+            <div className="mb-9">
               <h3 className="text-3xl font-semibold mb-3 border-b pb-2 border-gray-500">
                 Description
               </h3>
@@ -123,7 +144,6 @@ export default function GetSingleBook({ data, id, coucou }) {
           )}
           <div>
             {bookInfos?.categories ? (
-            
               <GetBooksByMainCategory category={bookInfos.categories[0]} />
               ) : (
                 <p>Aucune suggestion de lecture</p>

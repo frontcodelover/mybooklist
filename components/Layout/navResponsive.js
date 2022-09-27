@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";
 import logoLecture from "../../public/logoLecture.png";
+import logoLectureNewBrand from "../../public/logoLectureNew.png";
 import logoLectureNew from "../../public/logo-listedelecture.png";
 import Search from "../Home/Search";
 import { useAuth } from "../../context/AuthContext";
