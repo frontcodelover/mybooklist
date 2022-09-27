@@ -18,7 +18,6 @@ import { getBook } from "../../feature/book/bookSlice";
 import parse from "html-react-parser";
 import GetAllBookListsForUser from "./GetAllBookListsForUser";
 import BookmarkBooksList from "./BookmarkBooksList";
-import SingleBooksModel from "./SingleBooksModel";
 
 export default function GetSingleBook({ data, id, coucou }) {
   const { user } = useAuth();
