@@ -8,6 +8,7 @@ import { getFirestore } from "firebase/firestore";
 import Image from "next/image";
 import bookPortrait from "../../public/book-portrait.jpg";
 import { useRouter } from "next/router";
+import { nanoid } from "nanoid";
 
 import ImageStorage from "./ImageStorage";
 
@@ -15,6 +16,7 @@ export default function GetUser() {
   const { user } = useAuth();
   const db = getFirestore();
   const router = useRouter();
+  const uuid = nanoid();
 
   const [inputs, setInputs] = useState({});
 
@@ -27,18 +29,42 @@ export default function GetUser() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    await setDoc(doc(db, "publiclist", uuid), {
+      name: "ma liste de lecture",
+      description: "ma liste de lecture",
+      userid : user.uid,
+      pseudo : inputs.pseudo,
+      private : false,
+      slug : `ma-liste-de-lecture-${user.uid}`,
+      date : new Date(),
+      id: uuid,
+    });
+
+    await setDoc(doc(db, "booksreaded", uuid), {
+      name: "mes livres lus",
+      description: "mes livres lus",
+      userid : user.uid,
+      pseudo : inputs.pseudo,
+      private : false,
+      slug : `mes-livres-lus-${user.uid}`,
+      date : new Date(),
+      id: uuid,
+    });
+
     await setDoc(doc(db, "users", user.uid), {
       pseudo: inputs.pseudo,
       prenom: inputs.prenom,
       age: inputs.age,
       ville: inputs.ville,
-      genre: inputs.genre || "Non binaire",
+      genre: inputs.genre || "Non renseigné",
       litterature: inputs.litterature,
       phrase: inputs.phrase,
       uid: user.uid,
     });
     router.push("/user/dashboard");
   };
+
+  var today = new Date();
 
   console.log(inputs);
 
@@ -105,12 +131,22 @@ export default function GetUser() {
                     className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                     id="age"
                     type="date"
+                    max={
+                      new Date(
+                        today.getFullYear(),
+                        today.getMonth(),
+                        today.getDate()
+                      )
+                        .toISOString()
+                        .split("T")[0]
+                    }
                     name="age"
+                    onKeyDown={(evt) => evt.preventDefault()}
                     onChange={handleChange}
                     value={inputs.age || ""}
                     required
                   />
-              
+
                   <label className="block mb-2 text-sm font-bold text-gray-700 mt-2">
                     Votre ville
                   </label>

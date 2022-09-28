@@ -38,7 +38,7 @@ export default function BookmarkBooksList({ bookid, userid }) {
         open
         className="group mx-auto overflow-hidden max-h-[56px] open:!max-h-[400px] transition-[max-height] duration-500"
       >
-        <summary className="outline-none cursor-pointer font-semibold marker:text-transparent text-sm">
+        <summary className="outline-none cursor-pointer font-semibold marker:text-transparent text-sm leading-5">
           <div className="flex">
             <div className="mt-1 pr-1">
               <BsFillBookmarkPlusFill />

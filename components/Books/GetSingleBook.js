@@ -42,111 +42,104 @@ export default function GetSingleBook({ data, id, coucou }) {
         <meta
           name="description"
           content="Mybooklist vous permet de garder une trace de vos lectures"
-          />
+        />
       </Head>
 
-<div className="mx-auto bg-[#2b3055] flex py-20 my-5">
-  <div className="container lg:max-w-screen-xl mx-auto flex">
-
-
-{bookInfos?.thumbnail ? (
+      <div className="mx-auto bg-[#2b3055] flex py-20 my-5">
+        <div className="container lg:max-w-screen-xl mx-auto flex">
+          {bookInfos?.thumbnail ? (
             <img
-            src={bookInfos?.thumbnail}
-            alt={bookInfos?.title}
-            className="h-48 w-auto sm:h-64 sm:w-48 object-cover shadow-lg"
+              src={bookInfos?.thumbnail}
+              alt={bookInfos?.title}
+              className="h-48 w-auto sm:h-64 sm:w-48 object-cover shadow-lg"
             />
-            ) : (
-              <div className="">
-              <Image src={genBook} alt={bookInfos?.title}
-              className="h-auto" />
+          ) : (
+            <div className="">
+              <Image src={genBook} alt={bookInfos?.title} className="h-auto" />
             </div>
           )}
 
-
-<div className="mx-16">
-              <h1 className="text-5xl font-bold mb-2 text-white">
-                {bookInfos?.title}
-              </h1>
-              {bookInfos?.subtitle && (
-                <h2 className="text-2xl text-white/90 mb-3">{bookInfos?.subtitle}</h2>
-              )}
-              <div className="text-xl text-white/80">
+          <div className="mx-16">
+            <h1 className="text-5xl font-bold mb-2 text-white">
+              {bookInfos?.title}
+            </h1>
+            {bookInfos?.subtitle && (
+              <h2 className="text-2xl text-white/90 mb-3">
+                {bookInfos?.subtitle}
+              </h2>
+            )}
+            <div className="text-xl text-white/80">
               {bookInfos?.authors ? (
                 bookInfos?.authors.map((author) => (
                   <>
                     <div key={author}>Un livre de {author}</div>
                   </>
                 ))
-                ) : (
-                  <p className="text-white/50">Auteur inconnu</p>
-                  )}
-                  </div>
-              <p className="text-white/50">Edition : {bookInfos?.publisher}</p>
-              <p className="text-white/50">
-                Année de publication :
-                {bookInfos?.publishedDate
-                  ? " " + bookInfos?.publishedDate.substring(0, 4)
-                  : " inconnue"}
-              </p>
+              ) : (
+                <p className="text-white/50">Auteur inconnu</p>
+              )}
             </div>
-</div>
-            </div>
-
+            <p className="text-white/50">Edition : {bookInfos?.publisher}</p>
+            <p className="text-white/50">
+              Année de publication :
+              {bookInfos?.publishedDate
+                ? " " + bookInfos?.publishedDate.substring(0, 4)
+                : " inconnue"}
+            </p>
+          </div>
+        </div>
+      </div>
 
       <div className="my-9 flex flex-col sm:flex-row lg:max-w-screen-xl mx-auto">
         <div className="sm:flex-none sm:w-56">
-          
-          <div className="flex p-2 w-fit rounded-xl">
-            <BookmarkBooksList bookid={id} userid={user?.uid} />
-            {/* <BsListCheck className="mt-1 mr-1" /> Ajouter dans ma liste de
+          <div className="border-r">
+            <div className="flex w-fit p-2">
+              <BookmarkBooksList bookid={id} userid={user?.uid} />
+              {/* <BsListCheck className="mt-1 mr-1" /> Ajouter dans ma liste de
             lecture */}
-          </div>
-          <div className="flex hover:bg-gray-100 p-2 w-fit rounded-xl">
-            <AlreadyRead bookid={id} userid={user?.uid} />
-          </div>
-          <div className="flex hover:bg-gray-100 p-2 w-fit rounded-xl">
-            <ReadingBook bookid={id} userid={user?.uid} />
-            {/* <BsPlay className="mt-1 mr-1" /> Je suis entrain de le lire */}
-          </div>
+            </div>
+            
+            
 
-          {bookInfos?.isbn13 ? (
-            <div className="flex hover:bg-gray-100 p-2 w-fit rounded-xl">
-              <Link
-                href={`https://www.amazon.fr/s?k=${bookInfos?.isbn13}&tag=avantjetaisriche-21`}
-                target="_blank"
-                rel="noreferrer"
-                >
-                <a
+            {bookInfos?.isbn13 ? (
+              <div className="flex hover:bg-gray-100 p-2 w-fit rounded-xl">
+                <Link
+                  href={`https://www.amazon.fr/s?k=${bookInfos?.isbn13}&tag=avantjetaisriche-21`}
                   target="_blank"
-                  className="text-sm font-semibold text-red-500 flex"
+                  rel="noreferrer"
+                >
+                  <a
+                    target="_blank"
+                    className="text-sm font-semibold text-red-500 flex"
                   >
-                  <div className="mt-1 pr-1">
-                    <AiOutlineShoppingCart />
-                  </div>
-                  Acheter ce livre sur Amazon
-                </a>
-              </Link>
-            </div>
-          ) : (
-            <></>
+                    <div className="mt-1 pr-1">
+                      <AiOutlineShoppingCart />
+                    </div>
+                    Acheter ce livre sur Amazon
+                  </a>
+                </Link>
+              </div>
+            ) : (
+              <></>
             )}
-            </div>
+          </div>
+        </div>
 
-        <div className="sm:grow h-auto">
+        <div className="sm:grow h-auto  p-5">
           {bookInfos.description && (
             <div className="mb-9">
               <h3 className="text-3xl font-semibold mb-3 border-b pb-2 border-gray-500">
-                Description
+                Résumer
               </h3>
-              {parse(bookInfos.description)}
+              <div className=" lettrine">{parse(bookInfos.description)}</div>
             </div>
           )}
           <div>
             {bookInfos?.categories ? (
               <GetBooksByMainCategory category={bookInfos.categories[0]} />
-              ) : (
-                <p>Aucune suggestion de lecture</p>
-                )}
+            ) : (
+              <p>Aucune suggestion de lecture</p>
+            )}
           </div>
           <div className="my-9">
             {bookInfos?.authors ? (
@@ -155,9 +148,9 @@ export default function GetSingleBook({ data, id, coucou }) {
                   <GetBooksRelatedByAuthors author={author} />
                 </>
               ))
-              ) : (
-                <p>Auteur inconnu</p>
-                )}
+            ) : (
+              <p>Auteur inconnu</p>
+            )}
             <div className="mt-4">
               <h3 className="text-3xl font-semibold mb-3 border-b pb-2 border-gray-500">
                 Les dernières critiques
@@ -169,7 +162,7 @@ export default function GetSingleBook({ data, id, coucou }) {
                   height={50}
                   className="rounded-full"
                   alt="Marion"
-                  />
+                />
                 <div className="p-3">
                   <span className="font-semibold"> Marion T.</span> a écrit le 4
                   septembre 2022

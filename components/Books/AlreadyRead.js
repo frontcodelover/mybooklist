@@ -11,7 +11,7 @@ import { getFirestore } from "firebase/firestore";
 import { AiOutlineCheck } from "react-icons/ai";
 import Link from "next/link";
 
-export default function AlreadyRead({ bookid, userid }) {
+export default function AlreadyRead({ bookid, userid  }) {
   const db = getFirestore();
   const [isReaded, setIsReaded] = useState(false);
   const [currentUser, setCurrentUser] = useState(false);
