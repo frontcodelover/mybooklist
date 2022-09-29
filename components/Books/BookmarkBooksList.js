@@ -9,7 +9,6 @@ import {
 import { getFirestore } from "firebase/firestore";
 import { BsFillBookmarkPlusFill, BsFillBookmarkDashFill } from "react-icons/bs";
 import Link from "next/link";
-import { nanoid } from "nanoid";
 import GetAllBookListsForUser from "./GetAllBookListsForUser";
 
 

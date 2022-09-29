@@ -6,7 +6,6 @@ import genBook from "../../public/livre-generique.jpg";
 import { getBookFromGoogleBookApi } from "../../services/mapper/mapper";
 import GetBooksRelatedByAuthors from "./GetBooksRelatedByAuthors";
 import GetBooksByMainCategory from "./GetBooksByMainCategory";
-import Bookmarks from "./Bookmarks";
 import { useAuth } from "../../context/AuthContext";
 import AlreadyRead from "./AlreadyRead";
 import ReadingBook from "./ReadingBook";
@@ -16,7 +15,6 @@ import Head from "next/head";
 import { useDispatch, useSelector } from "react-redux";
 import { getBook } from "../../feature/book/bookSlice";
 import parse from "html-react-parser";
-import GetAllBookListsForUser from "./GetAllBookListsForUser";
 import BookmarkBooksList from "./BookmarkBooksList";
 import Modal from "../Layout/modal";
 
@@ -46,7 +44,7 @@ export default function GetSingleBook({ data, id, coucou }) {
         />
       </Head>
 
-      <div className="mx-auto bg-[#2b3055] flex py-20 my-5">
+      <div className="mx-auto bg-[#2b3055] flex py-20 my-5 border-b-4 border-[#7c61a3]/50">
         <div className="container lg:max-w-screen-xl mx-auto flex">
           {bookInfos?.thumbnail ? (
             <img
@@ -93,46 +91,55 @@ export default function GetSingleBook({ data, id, coucou }) {
 
       <div className="my-9 flex flex-col sm:flex-row lg:max-w-screen-xl mx-auto">
         <div className="sm:flex-none sm:w-56">
-          <div className="border-r">
-            <div className="flex w-fit p-2">
+          <div className="border-r border-main-color/20">
+            <div className="flex flex-col w-fit p-2">
               {user ? (
-                <BookmarkBooksList bookid={id} userid={user?.uid} />
+                <>
+                  <div className="pb-5">
+                  <BookmarkBooksList bookid={id} userid={user?.uid} />
+                  </div>
+                  <div>
+                    <AlreadyRead bookid={id} userid={user?.uid} />
+                  </div>
+                </>
               ) : (
-               <Modal />
+                <Modal />
               )}
             </div>
 
-          {bookInfos?.isbn13 ? (
-            <div className="flex hover:bg-gray-100 p-2 w-fit rounded-xl">
-              <Link
-                href={`https://www.amazon.fr/s?k=${bookInfos?.isbn13}&tag=avantjetaisriche-21`}
-                target="_blank"
-                rel="noreferrer"
-                >
-                <a
+            {bookInfos?.isbn13 ? (
+              <div className="flex hover:bg-gray-100 p-2 w-fit rounded-xl">
+                <Link
+                  href={`https://www.amazon.fr/s?k=${bookInfos?.isbn13}&tag=avantjetaisriche-21`}
                   target="_blank"
-                  className="text-sm font-semibold text-red-500 flex"
+                  rel="noreferrer"
+                >
+                  <a
+                    target="_blank"
+                    className="text-sm font-semibold text-red-500 flex"
                   >
-                  <div className="mt-1 pr-1">
-                    <AiOutlineShoppingCart />
-                  </div>
-                  Acheter ce livre sur Amazon
-                </a>
-              </Link>
-            </div>
-          ) : (
-            <></>
+                    <div className="mt-1 pr-1">
+                      <AiOutlineShoppingCart />
+                    </div>
+                    Acheter ce livre sur Amazon
+                  </a>
+                </Link>
+              </div>
+            ) : (
+              <></>
             )}
+          </div>
         </div>
-            </div>
 
         <div className="sm:grow h-auto  p-5">
           {bookInfos.description && (
             <div className="mb-9">
-              <h3 className="text-3xl font-semibold mb-3 border-b pb-2 border-gray-500">
+              <h3 className="text-3xl font-bold mb-10 border-b pb-2 border-main-color/20 text-main-color">
                 Résumer
               </h3>
-              <div className=" lettrine">{parse(bookInfos.description)}</div>
+              <div className="lettrine text-justify text-lg">
+                {parse(bookInfos.description)}
+              </div>
             </div>
           )}
           <div>
@@ -153,43 +160,48 @@ export default function GetSingleBook({ data, id, coucou }) {
               <p>Auteur inconnu</p>
             )}
             <div className="mt-4">
-              <h3 className="text-3xl font-semibold mb-3 border-b pb-2 border-gray-500">
+              <h3 className="text-3xl font-bold mb-10 border-b pb-2 border-main-color/20 text-main-color">
                 Les dernières critiques
               </h3>
-              <div className="flex mb-3">
-                <Image
-                  src={Marion}
-                  width={50}
-                  height={50}
-                  className="rounded-full"
-                  alt="Marion"
-                />
-                <div className="p-3">
-                  <span className="font-semibold"> Marion T.</span> a écrit le 4
-                  septembre 2022
+              <div className="p-6 bg-gray-200/50 border-t-4 border-main-color">
+                <div className="flex mb-3">
+                  <Image
+                    src={Marion}
+                    width={50}
+                    height={50}
+                    className="rounded-full"
+                    alt="Marion"
+                  />
+                  <div className="p-3">
+                    <span className="font-semibold"> Marion T.</span> a écrit le
+                    4 septembre 2022
+                  </div>
                 </div>
+                <p className="font-semibold text-lg mb-3">
+                  Titre de la critique
+                </p>
+                <p className="text-justify">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Quisque rutrum ipsum nec dolor aliquet semper. Vestibulum
+                  facilisis mi eu urna malesuada, eget sollicitudin nunc
+                  consequat. Orci varius natoque penatibus et magnis dis
+                  parturient montes, nascetur ridiculus mus. Nulla condimentum
+                  lorem vel neque accumsan dictum. Duis a neque elementum,
+                  feugiat justo vitae, volutpat est. Class aptent taciti
+                  sociosqu ad litora torquent per conubia nostra, per inceptos
+                  himenaeos. Nunc a leo nec lacus dapibus ultricies eget in
+                  ipsum. Etiam ac euismod nisi, a aliquam justo. Quisque vitae
+                  leo sed sapien gravida rutrum a sed massa. Etiam libero magna,
+                  viverra a porta a, volutpat vel odio. Mauris condimentum
+                  consectetur turpis, eget accumsan elit elementum at. Aliquam
+                  erat volutpat. Sed varius odio ac ligula ullamcorper consequat
+                  ac at elit. Fusce fringilla lectus vel turpis consequat
+                  posuere. Mauris et nunc et sem scelerisque consectetur id ac
+                  erat. Mauris at consectetur ex. Sed porta dapibus libero, in
+                  fringilla ex blandit in. Praesent ultricies euismod neque, sed
+                  malesuada sem dignissim quis.
+                </p>
               </div>
-              <p className="font-semibold text-lg mb-3">Titre de la critique</p>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-                rutrum ipsum nec dolor aliquet semper. Vestibulum facilisis mi
-                eu urna malesuada, eget sollicitudin nunc consequat. Orci varius
-                natoque penatibus et magnis dis parturient montes, nascetur
-                ridiculus mus. Nulla condimentum lorem vel neque accumsan
-                dictum. Duis a neque elementum, feugiat justo vitae, volutpat
-                est. Class aptent taciti sociosqu ad litora torquent per conubia
-                nostra, per inceptos himenaeos. Nunc a leo nec lacus dapibus
-                ultricies eget in ipsum. Etiam ac euismod nisi, a aliquam justo.
-                Quisque vitae leo sed sapien gravida rutrum a sed massa. Etiam
-                libero magna, viverra a porta a, volutpat vel odio. Mauris
-                condimentum consectetur turpis, eget accumsan elit elementum at.
-                Aliquam erat volutpat. Sed varius odio ac ligula ullamcorper
-                consequat ac at elit. Fusce fringilla lectus vel turpis
-                consequat posuere. Mauris et nunc et sem scelerisque consectetur
-                id ac erat. Mauris at consectetur ex. Sed porta dapibus libero,
-                in fringilla ex blandit in. Praesent ultricies euismod neque,
-                sed malesuada sem dignissim quis.
-              </p>
             </div>
           </div>
         </div>

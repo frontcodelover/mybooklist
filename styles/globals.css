@@ -12,16 +12,10 @@ body {
     flex-direction: column;
 }
 
-.lettrine {
-  font-size: 1.3em;
-  text-align: justify;
-  padding: 0.5em;
-}
-
 .lettrine::first-letter {
   font-size: 4em;
   float: left;
-  margin-right: 0.2em;
+  margin-right: 0.3em;
   margin-top: 0;
   margin-bottom: 0;
   line-height: 0.9;

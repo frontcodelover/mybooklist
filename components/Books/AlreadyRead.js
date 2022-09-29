@@ -5,84 +5,93 @@ import {
   updateDoc,
   arrayUnion,
   arrayRemove,
-  getDoc,
+  getDocs,
+  collection,
+  query,
+  where,
 } from "firebase/firestore";
 import { getFirestore } from "firebase/firestore";
 import { AiOutlineCheck } from "react-icons/ai";
 import Link from "next/link";
 
-export default function AlreadyRead({ bookid, userid  }) {
+export default function AlreadyRead({ bookid, userid }) {
   const db = getFirestore();
-  const [isReaded, setIsReaded] = useState(false);
-  const [currentUser, setCurrentUser] = useState(false);
+  const [userBooksReaded, setUserBooksReaded] = useState([]);
+  const [docId, setDocId] = useState("");
+  const [alreadyRead, setAlreadyRead] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    const getUser = async () => {
-      const userDoc = doc(db, "users", userid);
-      const user = await getDoc(userDoc);
-      if (user.exists()) {
-        setCurrentUser(user.data());
-        const userData = user.data();
-        if (userData?.readed?.includes(bookid)) {
-          userData.readed.forEach((id) => {
-            if (id === bookid) {
-              setIsReaded(true);
-            }
-          });
-        }
-      }
-    };
-    getUser();
-  }, [bookid, db, userid]);
+    const getListOfBooksReadead = async () => {
+      const bookListRef = collection(db, "booksreaded");
+      const q = query(bookListRef, where("userid", "==", userid));
 
-  const handleBookmark = async (e) => {
+      const querySnapshot = await getDocs(q);
+
+      querySnapshot.forEach((doc) => {
+        setUserBooksReaded(doc.data());
+        setDocId(doc.id);
+        setIsLoaded(true);
+      });
+    };
+    function fetchBookReaded() {
+        userBooksReaded?.books?.map((book) => {
+          if (book.bookid == bookid) {
+            setAlreadyRead(true);
+          }
+        });
+  
+  }
+    isLoaded ? fetchBookReaded() : null;
+    getListOfBooksReadead();
+  }, [db, userid, bookid, userBooksReaded, isLoaded]);
+  
+
+  const date = new Date();
+
+  const handleAddBookToAlreadyRead = async (e) => {
     e.preventDefault();
-    const userDoc = doc(db, "users", userid);
-    await updateDoc(userDoc, {
-      readed: arrayUnion(bookid),
+    const docRef = doc(db, "booksreaded", docId);
+    updateDoc(docRef, {
+      books: arrayUnion({
+        bookid: bookid,
+        date: date,
+      }),
     });
-    setIsReaded(true);
+    setAlreadyRead(true);
   };
 
-  const handleUnbookmark = async (e) => {
+  const handleRemoveBookToAlreadyRead = async (e) => {
     e.preventDefault();
-    const userDoc = doc(db, "users", userid);
-    await updateDoc(userDoc, {
-      readed: arrayRemove(bookid),
+    const docRef = doc(db, "booksreaded", docId);
+    console.log(docRef);
+    updateDoc(docRef, {
+      books: arrayRemove({
+        bookid: bookid,
+      }),
     });
-    setIsReaded(false);
+    setAlreadyRead(false);
   };
 
   return (
     <div>
-      {currentUser ? (
-        <button
-          onClick={isReaded ? handleUnbookmark : handleBookmark}
-          className="text-base"
+      {alreadyRead ? (
+        <div className="flex items-center">
+          <AiOutlineCheck className="text-green-500" />
+          <button
+          onClick={handleRemoveBookToAlreadyRead}
+          
         >
-          {isReaded ? (
-            <div className="text-sm font-semibold text-green-500 flex">
-              <div className="mt-1 pr-1">
-                <AiOutlineCheck />
-              </div>{" "}
-              Déjà lu
-            </div>
-          ) : (
-            <div className="text-sm font-semibold text-main-color flex">
-              <div className="mt-1 pr-1">
-                <AiOutlineCheck />
-              </div>{" "}
-              Lu ?
-            </div>
-          )}
+          déjà lu
         </button>
+        </div>
       ) : (
-        <Link href="/user/firststep">
-          <a className="text-sm font-semibold text-red-500">
-            Remplissez votre profil afin d'ajouter des livres dans votre
-            bibliothèque.
-          </a>
-        </Link>
+        <button
+          onClick={handleAddBookToAlreadyRead}
+          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Non lu
+        </button>
       )}
     </div>
   );
