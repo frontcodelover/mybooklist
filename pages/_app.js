@@ -6,6 +6,7 @@ import { store } from "../context/Store";
 import { Provider } from "react-redux";
 import { QueryClient, QueryClientProvider, useQuery} from '@tanstack/react-query'
 
+
 function MyApp({ Component, pageProps }) {
   const queryClient = new QueryClient()
   return (
@@ -14,11 +15,13 @@ function MyApp({ Component, pageProps }) {
     <React.StrictMode>
     <Provider store={store}>
       <AuthContexProvider>
+
         <Layout>
        
           <Component {...pageProps} />
  
         </Layout>
+
       </AuthContexProvider>
     </Provider>
     </React.StrictMode>

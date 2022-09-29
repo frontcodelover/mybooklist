@@ -18,6 +18,7 @@ import { getBook } from "../../feature/book/bookSlice";
 import parse from "html-react-parser";
 import GetAllBookListsForUser from "./GetAllBookListsForUser";
 import BookmarkBooksList from "./BookmarkBooksList";
+import Modal from "../Layout/modal";
 
 export default function GetSingleBook({ data, id, coucou }) {
   const { user } = useAuth();
@@ -94,36 +95,36 @@ export default function GetSingleBook({ data, id, coucou }) {
         <div className="sm:flex-none sm:w-56">
           <div className="border-r">
             <div className="flex w-fit p-2">
-              <BookmarkBooksList bookid={id} userid={user?.uid} />
-              {/* <BsListCheck className="mt-1 mr-1" /> Ajouter dans ma liste de
-            lecture */}
+              {user ? (
+                <BookmarkBooksList bookid={id} userid={user?.uid} />
+              ) : (
+               <Modal />
+              )}
             </div>
-            
-            
 
-            {bookInfos?.isbn13 ? (
-              <div className="flex hover:bg-gray-100 p-2 w-fit rounded-xl">
-                <Link
-                  href={`https://www.amazon.fr/s?k=${bookInfos?.isbn13}&tag=avantjetaisriche-21`}
-                  target="_blank"
-                  rel="noreferrer"
+          {bookInfos?.isbn13 ? (
+            <div className="flex hover:bg-gray-100 p-2 w-fit rounded-xl">
+              <Link
+                href={`https://www.amazon.fr/s?k=${bookInfos?.isbn13}&tag=avantjetaisriche-21`}
+                target="_blank"
+                rel="noreferrer"
                 >
-                  <a
-                    target="_blank"
-                    className="text-sm font-semibold text-red-500 flex"
+                <a
+                  target="_blank"
+                  className="text-sm font-semibold text-red-500 flex"
                   >
-                    <div className="mt-1 pr-1">
-                      <AiOutlineShoppingCart />
-                    </div>
-                    Acheter ce livre sur Amazon
-                  </a>
-                </Link>
-              </div>
-            ) : (
-              <></>
+                  <div className="mt-1 pr-1">
+                    <AiOutlineShoppingCart />
+                  </div>
+                  Acheter ce livre sur Amazon
+                </a>
+              </Link>
+            </div>
+          ) : (
+            <></>
             )}
-          </div>
         </div>
+            </div>
 
         <div className="sm:grow h-auto  p-5">
           {bookInfos.description && (
