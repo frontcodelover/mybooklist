@@ -5,6 +5,8 @@ import Teams from "../components/Home/Teams";
 import SectionCta from "../components/Home/SectionCta";
 import { BOOKS_SEARCH } from "../services/api/googleBooks";
 import BooksCarousselStatic from "../components/Home/BooksCarousselStatic";
+import { BooksSelectedDatas } from "../components/Home/BooksSeletedDatas";
+import BookSelection from "../components/Home/BookSelection";
 
 export default function Home({booksStatic}) {
   return (
@@ -28,6 +30,7 @@ export default function Home({booksStatic}) {
         <div className="p-5 container mx-auto">
           <BooksCarousselStatic booksStatic={booksStatic}/>
         </div>
+        <BookSelection BooksSelectedDatas={BooksSelectedDatas} />
         <Teams />
       </main>
     </div>
