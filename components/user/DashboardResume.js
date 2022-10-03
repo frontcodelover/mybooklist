@@ -4,10 +4,9 @@ import { getFirestore } from "firebase/firestore";
 import { useAuth } from "../../context/AuthContext";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import Link from "next/link";
-import GetUserBook from "./GetUserBook";
 import GetUserImage from "./GetUserImage";
 import DashboardBanner from "./DashboardBanner";
-import GetSubCollection from "./TestSub";
+
 import CreateListOfBooks from "./CreateListOfBooks";
 import DisplayLists from "./DisplayLists";
 
@@ -17,20 +16,23 @@ export default function DashboardResume() {
   const [currentUser, setUser] = useState({});
 
   useEffect(() => {
-    const getUser = async () => {
-      const usersCollection = collection(db, "users");
-      const queriedCurrentUser = query(
-        usersCollection,
-        where("uid", "==", user.uid)
-      );
+    if (user) {
+      const getUser = async () => {
+        const usersCollection = collection(db, "users");
+        const queriedCurrentUser = query(
+          usersCollection,
+          where("uid", "==", user?.uid)
+        );
 
-      const queriedCurrentUserResult = await getDocs(queriedCurrentUser);
+        const queriedCurrentUserResult = await getDocs(queriedCurrentUser);
 
-      queriedCurrentUserResult.forEach((doc) => {
-        setUser(doc.data());
-      });
-    };
-    getUser();
+        queriedCurrentUserResult.forEach((doc) => {
+          setUser(doc.data());
+        });
+      };
+
+      getUser();
+    }
   }, [user && user.uid]);
 
   const today = new Date();
@@ -39,8 +41,7 @@ export default function DashboardResume() {
 
   return (
     <div className="relative">
-      <GetSubCollection />
-      <div className="container mx-auto mt-8 lg:max-w-screen-xl w-screen">
+      <div className="container mx-auto mt-8 lg:max-w-screen-xl p-4">
         {currentUser.pseudo ? (
           <>
             <div className="shadow rounded-xl">
@@ -52,7 +53,7 @@ export default function DashboardResume() {
               </div>
               <div className="p-5">
                 <div className="flex flex-col mt-10">
-                  <h1 className="text-5xl font-bold mb-3 text-main-color">
+                  <h1 className="text-4xl md:text-5xl font-bold my-3 text-main-color">
                     {currentUser.pseudo}
                   </h1>
                   <p>
@@ -69,19 +70,13 @@ export default function DashboardResume() {
                 <p>{currentUser.phrase}</p>
               </div>
             </div>
-            <div className="flex mt-10">
-              <div className="w-1/2">
-                <CreateListOfBooks
-                  userid={user?.uid}
-                  pseudo={currentUser.pseudo}
-                />
-              </div>
-              <div className="w-1/2 pl-2">
-                <DisplayLists userid={user?.uid} />
-              </div>
-            </div>
-            <div className="p-5">
-              <GetUserBook user={user?.uid} />
+            <div className="flex flex-col md:flex-row my-10">
+              <CreateListOfBooks
+                userid={user?.uid}
+                pseudo={currentUser.pseudo}
+              />
+
+              <DisplayLists userid={user?.uid} />
             </div>
           </>
         ) : (

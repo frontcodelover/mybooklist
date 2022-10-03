@@ -45,29 +45,29 @@ export default function GetSingleBook({ data, id, coucou }) {
       </Head>
 
       <div className="mx-auto bg-[#2b3055] flex py-20 my-5 border-b-4 border-[#7c61a3]/50">
-        <div className="container lg:max-w-screen-xl mx-auto flex">
+        <div className="container lg:max-w-screen-xl mx-auto flex px-2">
           {bookInfos?.thumbnail ? (
             <img
               src={bookInfos?.thumbnail}
               alt={bookInfos?.title}
-              className="h-48 w-auto sm:h-64 sm:w-48 object-cover shadow-lg"
+              className="h-48 w-auto md:h-64 md:w-48 object-cover shadow-lg pl-4"
             />
           ) : (
             <div className="">
-              <Image src={genBook} alt={bookInfos?.title} className="h-auto" />
+              <Image src={genBook} alt={bookInfos?.title} className="h-48 w-auto md:h-64 md:w-48 object-cover shadow-lg pl-4" />
             </div>
           )}
 
-          <div className="mx-16">
-            <h1 className="text-5xl font-bold mb-2 text-white">
+          <div className="mx-12">
+            <h1 className="text-2xl md:text-5xl font-bold mb-2 text-white">
               {bookInfos?.title}
             </h1>
             {bookInfos?.subtitle && (
-              <h2 className="text-2xl text-white/90 mb-3">
+              <h2 className="text-xl text-white/90 mb-3">
                 {bookInfos?.subtitle}
               </h2>
             )}
-            <div className="text-xl text-white/80">
+            <div className="md:text-2xl text-md text-white/80">
               {bookInfos?.authors ? (
                 bookInfos?.authors.map((author) => (
                   <>
@@ -92,7 +92,7 @@ export default function GetSingleBook({ data, id, coucou }) {
       <div className="my-9 flex flex-col sm:flex-row lg:max-w-screen-xl mx-auto">
         <div className="sm:flex-none sm:w-56">
           <div className="border-r border-main-color/20">
-            <div className="flex flex-col w-fit p-2">
+            <div className="flex flex-col w-fit p-4">
               {user ? (
                 <>
                   <div className="pb-5">
@@ -108,7 +108,7 @@ export default function GetSingleBook({ data, id, coucou }) {
             </div>
 
             {bookInfos?.isbn13 ? (
-              <div className="flex hover:bg-gray-100 p-2 w-fit rounded-xl">
+              <div className="flex hover:bg-gray-100 p-4 w-fit rounded-xl">
                 <Link
                   href={`https://www.amazon.fr/s?k=${bookInfos?.isbn13}&tag=avantjetaisriche-21`}
                   target="_blank"

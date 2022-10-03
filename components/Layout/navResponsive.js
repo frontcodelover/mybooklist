@@ -18,6 +18,7 @@ const navigation = [{ name: "Rechercher un livre", href: "/books" }];
 const navigationUserConnected = [
   { name: "Mon espace", href: "/user/dashboard" },
   { name: "Paramètres", href: "/user/logout" },
+  { name: "Rechercher un livre", href: "/books" },
 ];
 
 const navigationUserNotConnected = [
@@ -58,7 +59,8 @@ export default function NavResponsive() {
             </div>
           </div>
           <div className="hidden md:ml-10 md:flex md:space-x-8 justify-center items-center">
-            {navigation.map((item) => (
+
+            {/* {navigation.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
@@ -66,7 +68,7 @@ export default function NavResponsive() {
               >
                 {item.name}
               </a>
-            ))}
+            ))} */}
             {user ? (
               <>
                 <div className="cursor-pointer flex justify-between">
@@ -187,7 +189,8 @@ export default function NavResponsive() {
               </div>
             </div>
             <div className="space-y-1 px-2 pt-2 pb-3">
-              {navigation.map((item) => (
+              {!user ? (
+              navigationUserNotConnected.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
@@ -195,15 +198,36 @@ export default function NavResponsive() {
                 >
                   {item.name}
                 </a>
-            //! REfaire le menu mobile avec user logique login / logout
-              ))}
+              ))  
+              ) : (
+              navigationUserConnected.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900"
+                >
+                  {item.name}
+                </a>
+              ))
+              
+              )}
+
+             
             </div>
-            <a
-              href="#"
-              className="block w-full bg-gray-50 px-5 py-3 text-center font-medium text-indigo-600 hover:bg-gray-100"
-            >
-              Log in
-            </a>
+            {!user ? (
+              <>
+              </>
+            ) : (
+              <a
+                className="block w-full bg-gray-50 px-5 py-3 font-medium text-red-600 hover:bg-gray-100 cursor-pointer"
+                onClick={() => {
+                  logout();
+                  router.push("/");
+                }}
+              >
+                Se déconnecter
+              </a>
+            )}
           </div>
         </Popover.Panel>
       </Transition>

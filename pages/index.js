@@ -22,7 +22,7 @@ export default function Home({booksStatic}) {
           <TitleHomePage />
           <About />
         </div>
-        <div className="max-w-screen mx-auto pt-16">
+        <div className="pt-16">
           <SectionCta />
         </div>
         <div className="p-5 container mx-auto">

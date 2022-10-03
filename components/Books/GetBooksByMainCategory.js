@@ -14,7 +14,7 @@ export default function GetBooksByMainCategory({ category }) {
   useEffect(() => {
     axios
       .get(
-        `${BOOKS_SEARCH}subject:${category}&maxResults=14&langRestrict=fr&printType=books`
+        `${BOOKS_SEARCH}subject:${category}&maxResults=12&langRestrict=fr&printType=books`
       )
       .then((res) => {
         setBooks(res.data.items);
@@ -33,7 +33,7 @@ export default function GetBooksByMainCategory({ category }) {
           <h3 className="text-3xl font-bold mb-10 border-b pb-2 border-main-color/20 text-main-color">
             Vous aimerez aussi
           </h3>
-          <div className="grid grid-cols-7 gap-5">
+          <div className="grid grid-cols-3 lg:grid-cols-6 gap-5">
             {booksInfos.map((book) => (
               <div className="flex-cols w-36" key={book.id + "_3"}>
                 {book.thumbnail ? (

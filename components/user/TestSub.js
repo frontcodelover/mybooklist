@@ -21,7 +21,7 @@ export default function GetSubCollection() {
 
   useEffect(() => {
     const GetSubCollection = async () => {
-      const docRef = collection(db, "users", user.uid, "test");
+      const docRef = collection(db, "users", user?.uid, "test");
       const q = query(docRef);
       const querySnapshot = await getDocs(q);
 
@@ -36,7 +36,7 @@ export default function GetSubCollection() {
 
   const handleAddDataToTest = async (e) => {
     e.preventDefault();
-    const docRef = setDoc(doc(db, "users", user.uid, "test", postId), {
+    const docRef = setDoc(doc(db, "users", user?.uid, "test", postId), {
       name: "test",
       age: 55,
     });
@@ -44,13 +44,13 @@ export default function GetSubCollection() {
 
   const handleDeleteDataToTest = async (e) => {
     e.preventDefault();
-    const docRef = doc(db, "users", user.uid, "test", postId);
+    const docRef = doc(db, "users", user?.uid, "test", postId);
     await deleteDoc(docRef);
   };
 
   const handleAddSubCategory = async (e) => {
     e.preventDefault();
-    const docRef = setDoc(doc(db, "users", user.uid, "prout", postId), {
+    const docRef = setDoc(doc(db, "users", user?.uid, "prout", postId), {
       name: "test",
       age: 55,
     });
