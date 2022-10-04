@@ -8,7 +8,7 @@ import BooksCarousselStatic from "../components/Home/BooksCarousselStatic";
 import { BooksSelectedDatas } from "../components/Home/BooksSeletedDatas";
 import BookSelection from "../components/Home/BookSelection";
 
-export default function Home({booksStatic}) {
+export default function Home({ booksStatic }) {
   return (
     <div>
       <Head>
@@ -20,18 +20,23 @@ export default function Home({booksStatic}) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
+        <div className="bg-white">
         <div className="container mx-auto">
           <TitleHomePage />
-          <About />
         </div>
-        <div className="pt-16">
-          <SectionCta />
         </div>
+        <div className="bg-white">
+        <About />
+        </div>
+        <div className="py-10 px-5 bg-main-color">
+          <BookSelection BooksSelectedDatas={BooksSelectedDatas} />
+        </div>
+
         <div className="p-5 container mx-auto">
-          <BooksCarousselStatic booksStatic={booksStatic}/>
+          <BooksCarousselStatic booksStatic={booksStatic} />
         </div>
-        <BookSelection BooksSelectedDatas={BooksSelectedDatas} />
         <Teams />
+          <SectionCta />
       </main>
     </div>
   );
@@ -39,7 +44,7 @@ export default function Home({booksStatic}) {
 
 export async function getStaticProps() {
   const res = await fetch(
-    `${BOOKS_SEARCH}2021&langRestrict=fr&printType=books&maxResults=18&startIndex=0`
+    `${BOOKS_SEARCH}2021&langRestrict=fr&printType=books&maxResults=12&startIndex=0`
   );
   const booksStatic = await res.json();
   return {

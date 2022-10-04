@@ -12,7 +12,7 @@ const Slideshow = () => {
   const images = [
     {
       image: marion,
-      avis: `"Grâce à ListeDeLecture j'ai réussi à me constitué une vraie
+      avis: `"Grâce à ListeDeLecture j'ai réussi à me constituer une vraie
       liste de livres à lire. D'ailleurs, dès que j'en vois un, je
       l'ajoute automatiquement dans ma liste."`,
       name: "Marion T.",
@@ -27,7 +27,7 @@ const Slideshow = () => {
     {
       image: remy,
       avis: `"J'aime beaucoup le fait de pouvoir partager ma liste de lecture
-      avec mes amies et mes collègues, d'ailleurs elles sont devenues
+      avec mes ami.e.s et mes collègues, d'ailleurs elles/ils sont devenu.e.s
       accro !"`,
       name: "Rémy G.",
     },
@@ -35,9 +35,9 @@ const Slideshow = () => {
 
   //These are custom properties for zoom effect while slide-show
   const zoomInProperties = {
-    scale: 1.2,
-    duration: 5000,
-    transitionDuration: 500,
+    scale: 1.1,
+    duration: 8000,
+    transitionDuration: 300,
     infinite: true,
   };
   return (

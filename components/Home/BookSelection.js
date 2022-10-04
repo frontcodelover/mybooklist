@@ -1,37 +1,26 @@
-//! Need to fix array values (double)
-
-import React, {useState} from "react";
-import { useEffect } from "react";
-import axios from "axios";
-import { hydrateBooks } from "../../services/mapper/mapper";
-import Link from "next/link";
-import Image from "next/image";
-import genBook from "../../public/livre-generique.jpg";
-import { useQuery } from "@tanstack/react-query";
+import React from "react";
+import BookSelectionDetail from "./BookSelectionDetail";
 
 export default function BookSelection({ BooksSelectedDatas }) {
-  const [books, setBooks] = useState([]);
-
-  
-
-  useEffect(() => {
-    BooksSelectedDatas.map((book) => {
-      axios
-        .get(`https://www.googleapis.com/books/v1/volumes/${book}`)
-        .then((res) => {
-          setBooks((book) => [...book, res.data]);
-        });
-    });
-  }, [BooksSelectedDatas]);
-
-
-
-  console.log(books);
-
-
   return (
     <>
-      
+      <div className="mx-auto container p-5">
+        <div className="grid lg:grid-cols-6 items-center">
+          <div className="lg:col-span-2 col-span-6 py-6 lg:py-0">
+            <h3 className="text-white font-extrabold lg:text-5xl text-4xl">
+              Le coup de coeur
+            </h3>
+            <p className="text-white lg:text-2xl text-xl">
+              Découvrez le livre coup de coeur du mois.
+            </p>
+          </div>
+          <div className="col-span-4">
+            {BooksSelectedDatas.map((book) => (
+              <BookSelectionDetail key={book} bookid={book} />
+            ))}
+          </div>
+        </div>
+      </div>
     </>
   );
 }
