@@ -4,7 +4,7 @@ import React from "react";
 export default function footer() {
   return (
     <>
-      <footer className="relative bg-gray-50 pt-8 pb-6 text-main-color">
+      <footer className="relative bg-main-color pt-8 pb-6 text-gray-50 border-t-8 border-t-purple-500">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap text-left lg:text-left">
             <div className="w-full lg:w-6/12 px-4">

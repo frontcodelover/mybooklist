@@ -7,6 +7,7 @@ import { BOOKS_SEARCH } from "../services/api/googleBooks";
 import BooksCarousselStatic from "../components/Home/BooksCarousselStatic";
 import { BooksSelectedDatas } from "../components/Home/BooksSeletedDatas";
 import BookSelection from "../components/Home/BookSelection";
+import BanniereHome from "../components/Home/BanniereHome";
 
 export default function Home({ booksStatic }) {
   return (
@@ -21,14 +22,15 @@ export default function Home({ booksStatic }) {
       </Head>
       <main>
         <div className="bg-white">
-        <div className="container mx-auto">
-          <TitleHomePage />
-        </div>
+          <BanniereHome />
+          {/* <div className="container mx-auto">
+            <TitleHomePage />
+          </div> */}
         </div>
         <div className="bg-white">
-        <About />
+          <About />
         </div>
-        <div className="py-10 px-5 bg-main-color">
+        <div className="py-10 px-5 bg-main-color border-t-8 border-t-purple-500">
           <BookSelection BooksSelectedDatas={BooksSelectedDatas} />
         </div>
 
@@ -36,7 +38,7 @@ export default function Home({ booksStatic }) {
           <BooksCarousselStatic booksStatic={booksStatic} />
         </div>
         <Teams />
-          <SectionCta />
+        <SectionCta />
       </main>
     </div>
   );

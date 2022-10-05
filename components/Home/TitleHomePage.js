@@ -4,12 +4,14 @@ import Link from "next/link";
 import Image from "next/image";
 import bibliotheBoy from "../../public/bibliotheque-boy.jpg";
 import { useAuth } from "../../context/AuthContext";
+import banniere from "../../public/banniere.jpg"
 
 export default function TitleHomePage() {
   const { user } = useAuth();
 
   return (
     <div className="grid md:grid-cols-2 gap-5 h-auto min-h-screen md:px-0 px-5 mt-20 md:mt-0">
+
       <div className="flex justify-center items-center ">
         <div className="md:grow-0">
           <h1 className="text-5xl font-extrabold lg:text-5xl py-4 text-main-color">
