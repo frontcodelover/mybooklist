@@ -11,7 +11,7 @@ function BooksCarousselStatic({ booksStatic }) {
   return (
     <div>
       <div className="py-6">
-        <h3 className="text-5xl py-9 mb-3 font-extrabold text-main-color ">
+        <h3 className="text-5xl py-9 mb-3 font-extrabold text-main-color tracking-tight">
           Les derniers livres ajoutés
         </h3>
         <div className="grid lg:grid-cols-6 md:grid-cols-3 grid-cols-2 gap-6">

@@ -27,22 +27,22 @@ export default function BookSelectionDetail({ bookid }) {
       <div>
         <div
           key={bookInfos.id}
-          className="grid lg:grid-rows-1 lg:grid-flow-col bg-white shadow-xl border-b-2 border-main-color/80 p-10 rounded-xl place-items-center"
+          className="grid lg:grid-rows-1 lg:grid-flow-col bg-white shadow-xl border-b-2 border-t border-r-2 border-l-2 border-l-slate-100 border-r-slate-100 border-t-slate-50 border-slate-200/90 p-10 rounded-xl place-items-center"
         >
           {bookInfos.thumbnail ? (
             <>
               <div className="lg:row-span-1">
                 <Link href={`/books/details/${bookInfos.id}`}>
                   <a>
-                    <p className="lg:text-4xl text-2xl font-extrabold pb-2 text-main-color">{bookInfos.title}</p>
+                    <p className="lg:text-4xl text-2xl font-bold pb-2 text-rose-500 tracking-tight">{bookInfos.title}</p>
                   </a>
                 </Link>
-                <div key={bookInfos.authors} className="pb-2">Un livre de {bookInfos.authors}</div>
-                <p className="text-left pb-5">Année de publication :
+                <div key={bookInfos.authors} className="pb-2 font-bold tracking-tight">Un livre de {bookInfos.authors}</div>
+                <p className="text-left pb-5 tracking-tight">Année de publication :
               {bookInfos?.publishedDate
                 ? " " + bookInfos?.publishedDate.substring(0, 4)
                 : " inconnue"}</p>
-                <p className="text- text-left">{parse(bookInfos.description.substring(0, 690))}...</p>
+                <p className="text- text-left font-light ">{parse(bookInfos.description.substring(0, 690))}...</p>
               </div>
               <div className="col-span-2">
               <Link href={`/books/details/${bookInfos.id}`}>

@@ -17,14 +17,14 @@ export default function About() {
             />
           </div>
           <div className="md:7/12 lg:w-6/12">
-            <h2 className="text-2xl text-main-color font-bold md:text-4xl">
+            <h2 className="text-2xl text-main-color font-extrabold md:text-4xl tracking-tight">
               Votre bibliothéque virtuelle et bien plus !
             </h2>
             <p className="mt-6 text-main-color text-xl">
               Constituez vous une liste à votre image en ajoutant tous les
               livres que vous souhaitez lire.
             </p>
-            <p className="mt-4 text-main-color  text-xl">
+            <p className="mt-4 text-main-color font-light text-xl">
               Vous souhaitez passer plus de temps à lire ? Grâce à
               ListeDeLecture vous pourrez mesurer efficacement le nombre de
               livres et de pages lues.

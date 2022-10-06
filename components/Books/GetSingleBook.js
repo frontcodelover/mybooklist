@@ -59,7 +59,7 @@ export default function GetSingleBook({ data, id, coucou }) {
           )}
 
           <div className="mx-12">
-            <h1 className="text-2xl md:text-5xl font-bold mb-2 text-white">
+            <h1 className="text-2xl md:text-5xl font-bold mb-2 text-white tracking-tight">
               {bookInfos?.title}
             </h1>
             {bookInfos?.subtitle && (
@@ -67,7 +67,7 @@ export default function GetSingleBook({ data, id, coucou }) {
                 {bookInfos?.subtitle}
               </h2>
             )}
-            <div className="md:text-2xl text-md text-white/80">
+            <div className="md:text-2xl text-md text-white/80 tracking-tight">
               {bookInfos?.authors ? (
                 bookInfos?.authors.map((author) => (
                   <>
@@ -78,8 +78,8 @@ export default function GetSingleBook({ data, id, coucou }) {
                 <p className="text-white/50">Auteur inconnu</p>
               )}
             </div>
-            <p className="text-white/50">Edition : {bookInfos?.publisher}</p>
-            <p className="text-white/50">
+            <p className="text-white/50 font-light">Edition : {bookInfos?.publisher}</p>
+            <p className="text-white/50 font-light">
               Année de publication :
               {bookInfos?.publishedDate
                 ? " " + bookInfos?.publishedDate.substring(0, 4)
@@ -137,7 +137,7 @@ export default function GetSingleBook({ data, id, coucou }) {
               <h3 className="text-3xl font-bold mb-10 border-b pb-2 border-main-color/20 text-main-color">
                 Résumer
               </h3>
-              <div className="lettrine text-justify text-lg">
+              <div className="lettrine text-justify text-lg tracking-tight">
                 {parse(bookInfos.description)}
               </div>
             </div>

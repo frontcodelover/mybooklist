@@ -11,11 +11,11 @@ export default function BanniereHome() {
   return (
     <>
       <div className="relative mt-4">
-        <div className="absolute z-10 top-1/3 w-1/2 left-48">
-          <div className="text-5xl font-extrabold text-white pb-5">
+        <div className="absolute z-10 lg:top-1/3 top-8 w-1/2 lg:left-48 left-10">
+          <div className="lg:text-4xl text-2xl font-extrabold text-white lg:pb-5">
             Lisez plus, apprenez plus !
           </div>
-          <div className="text-3xl text-white">
+          <div className="lg:text-3xl text-white hidden lg:block">
             Constituez-vous une liste à votre image en ajoutant tous les livres
             que vous souhaitez lire.
           </div>
@@ -31,7 +31,7 @@ export default function BanniereHome() {
             )}
           </button>
         </div>
-        <Image src={banniere} layout="responsive" alt="bannierehome" />
+        <Image src={banniere} layout="responsive" alt="bannierehome" height={800}/>
       </div>
     </>
   );

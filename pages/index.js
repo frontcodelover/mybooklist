@@ -8,6 +8,7 @@ import BooksCarousselStatic from "../components/Home/BooksCarousselStatic";
 import { BooksSelectedDatas } from "../components/Home/BooksSeletedDatas";
 import BookSelection from "../components/Home/BookSelection";
 import BanniereHome from "../components/Home/BanniereHome";
+import HeroBan from "../components/Home/HeroBan";
 
 export default function Home({ booksStatic }) {
   return (
@@ -21,18 +22,21 @@ export default function Home({ booksStatic }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <div className="bg-white">
-          <BanniereHome />
+        <div className="bg-white my-10">
+
+          <HeroBan />
+
+          {/* <BanniereHome /> */}
           {/* <div className="container mx-auto">
             <TitleHomePage />
           </div> */}
         </div>
-        <div className="bg-white">
-          <About />
-        </div>
-        <div className="py-10 px-5 bg-main-color border-t-8 border-t-purple-500">
+
+
+        <div className="py-10 px-5">
           <BookSelection BooksSelectedDatas={BooksSelectedDatas} />
         </div>
+          <About />
 
         <div className="p-5 container mx-auto">
           <BooksCarousselStatic booksStatic={booksStatic} />

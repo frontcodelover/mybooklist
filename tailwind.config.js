@@ -10,6 +10,15 @@ module.exports = {
       colors: {
         'main-color': '#263059',
       },
+      backgroundImage: {
+        'hero-bg' : "url('../public/banniere.jpg')",
+      },
+      backgroundSize: {
+        '75' : '75%',
+      },
+      height: {
+        '50percent': '50%',
+      }
     },
   },
   plugins: [
