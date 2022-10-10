@@ -17,8 +17,9 @@ import { getBook } from "../../feature/book/bookSlice";
 import parse from "html-react-parser";
 import BookmarkBooksList from "./BookmarkBooksList";
 import Modal from "../Layout/modal";
+import DisplayReview from "./Reviews/DisplayReview";
 
-export default function GetSingleBook({ data, id, coucou }) {
+export default function GetSingleBook({ data, id }) {
   const { user } = useAuth();
 
   const dispatch = useDispatch();
@@ -163,6 +164,7 @@ export default function GetSingleBook({ data, id, coucou }) {
               <h3 className="text-3xl font-bold mb-10 border-b pb-2 border-main-color/20 text-main-color">
                 Les dernières critiques
               </h3>
+              <DisplayReview bookid={id} />
               <div className="p-6 bg-gray-200/50 border-t-4 border-main-color">
                 <div className="flex mb-3">
                   <Image

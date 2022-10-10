@@ -44,7 +44,7 @@ export default function AlreadyRead({ bookid, userid }) {
   }
     isLoaded ? fetchBookReaded() : null;
     getListOfBooksReadead();
-  }, [db, userid, bookid, userBooksReaded, isLoaded]);
+  }, [db, userid, bookid]);
   
 
   const date = new Date();

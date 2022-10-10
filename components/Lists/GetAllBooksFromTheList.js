@@ -22,6 +22,8 @@ export default function GetAllBooksFromTheList({ slug }) {
     (bookListQuery.data?.docs || []).map((doc) => doc.data()) || null;
   const isLoading = bookListQuery.isLoading;
 
+
+
   useEffect(() => {
     bookListQuery.data?.docs.map((doc) => {
       setDataFormQuery(doc.data());

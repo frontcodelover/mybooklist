@@ -10,6 +10,8 @@ export default function CreateListOfBooks({ userid, pseudo }) {
   const uuid = nanoid();
   const router = useRouter();
 
+  const uuidRandom = self.crypto.randomUUID()
+
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -24,7 +26,7 @@ export default function CreateListOfBooks({ userid, pseudo }) {
       date: new Date(),
       private: inputs.private === "true" ? true : false,
       userid: userid,
-      slug : inputs.name.toLowerCase().replace(/[^a-z0-9]+/g, '-') + "-" + uuid,
+      slug : inputs.name.toLowerCase().replace(/[^a-z0-9]+/g, '-') + "-" + uuidRandom,
       pseudo: pseudo,
       id: uuid,
     });
