@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import {
   collection,
@@ -8,26 +8,21 @@ import {
   where,
 } from "firebase/firestore";
 
-export default function ProfileInfos({userid}) {
-  
+export default function ProfileInfos({ userid }) {
   const db = getFirestore();
-  const bookReviewQuery = useQuery(["users", userid], () => {
-    const q = query(
-      collection(db, "users"),
-      where("uid", "==", userid)
-    );
+  const userReview = useQuery(["users", userid], () => {
+    const q = query(collection(db, "users"), where("uid", "==", userid));
     return getDocs(q);
   });
 
-  console.log("USERSS", bookReviewQuery)
-
-  const resultBookReviewQuery =
-    (bookReviewQuery.data?.docs || []).map((doc) => doc.data()) || [];
-  const isLoadingQuery = bookReviewQuery.isLoading;
-
-  console.log("PROFILE",resultBookReviewQuery)
+  const resultUserReviewQuery =
+    (userReview.data?.docs || []).map((doc) => doc.data()) || [];
+  const isLoadingQuery = userReview.isLoading;
 
   return (
-    <div>ProfileInfos</div>
-  )
+    <>
+      {resultUserReviewQuery &&
+        resultUserReviewQuery.map((infos) => <>{infos.prenom}</>)}
+    </>
+  );
 }

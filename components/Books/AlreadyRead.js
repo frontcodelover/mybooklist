@@ -23,27 +23,32 @@ export default function AlreadyRead({ bookid, userid }) {
 
   useEffect(() => {
     const getListOfBooksReadead = async () => {
-      const bookListRef = collection(db, "booksreaded");
-      const q = query(bookListRef, where("userid", "==", userid));
+      try {
 
-      const querySnapshot = await getDocs(q);
-
-      querySnapshot.forEach((doc) => {
-        setUserBooksReaded(doc.data());
-        setDocId(doc.id);
-        setIsLoaded(true);
-      });
-    };
-    function fetchBookReaded() {
-        userBooksReaded?.books?.map((book) => {
-          if (book.bookid == bookid) {
-            setAlreadyRead(true);
-          }
+        const bookListRef = collection(db, "booksreaded");
+        const q = query(bookListRef, where("userid", "==", userid));
+        
+        const querySnapshot = await getDocs(q);
+        
+        querySnapshot.forEach((doc) => {
+          setUserBooksReaded(doc.data());
+          setDocId(doc.id);
+          setIsLoaded(true);
         });
+      } catch {
   
-  }
-    isLoaded ? fetchBookReaded() : null;
-    getListOfBooksReadead();
+      }
+      };
+        function fetchBookReaded() {
+          userBooksReaded?.books?.map((book) => {
+            if (book.bookid == bookid) {
+              setAlreadyRead(true);
+            }
+          });
+          
+        }
+        isLoaded ? fetchBookReaded() : null;
+        getListOfBooksReadead();
   }, [db, userid, bookid]);
   
 
@@ -55,7 +60,6 @@ export default function AlreadyRead({ bookid, userid }) {
     updateDoc(docRef, {
       books: arrayUnion({
         bookid: bookid,
-        date: date,
       }),
     });
     setAlreadyRead(true);
@@ -64,7 +68,7 @@ export default function AlreadyRead({ bookid, userid }) {
   const handleRemoveBookToAlreadyRead = async (e) => {
     e.preventDefault();
     const docRef = doc(db, "booksreaded", docId);
-    console.log(docRef);
+    console.log("DOC", docRef);
     updateDoc(docRef, {
       books: arrayRemove({
         bookid: bookid,

@@ -19,7 +19,7 @@ function BooksCarousselStatic({ booksStatic }) {
             return (
               <div
                 key={book.id}
-                className="border bg-white border-slate-200 text-center p-5 rounded-xl shadow-lg"
+                className=" border-b border-t border-r border-l border-l-slate-100 border-r-slate-100 border-t-slate-100 border-slate-200/90 my-6 shadow-md hover:shadow-xl transition duration-300 rounded-xl text-center p-5 "
               >
                 {book.thumbnail ? (
                   <>
@@ -34,7 +34,9 @@ function BooksCarousselStatic({ booksStatic }) {
                     </Link>
                     <Link href={`/books/details/${book.id}`}>
                       <a>
-                        <p className="text-xs font-bold text-left my-4">{book.title}</p>
+                        <p className="text-xs font-bold text-left my-4">
+                          {book.title}
+                        </p>
                       </a>
                     </Link>
                     <p className="text-xs text-left">{book.authors}</p>
@@ -54,7 +56,9 @@ function BooksCarousselStatic({ booksStatic }) {
                       </a>
                     </Link>
                     <Link href={`/books/details/${book.id}`}>
-                      <p className="text-xs font-bold text-left my-4">{book.title}</p>
+                      <p className="text-xs font-bold text-left my-4">
+                        {book.title}
+                      </p>
                     </Link>
                     <p className="text-xs text-left">{book.authors}</p>
                   </>

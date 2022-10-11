@@ -55,7 +55,11 @@ export default function GetSingleBook({ data, id }) {
             />
           ) : (
             <div className="">
-              <Image src={genBook} alt={bookInfos?.title} className="h-48 w-auto md:h-64 md:w-48 object-cover shadow-lg pl-4" />
+              <Image
+                src={genBook}
+                alt={bookInfos?.title}
+                className="h-48 w-auto md:h-64 md:w-48 object-cover shadow-lg pl-4"
+              />
             </div>
           )}
 
@@ -79,7 +83,9 @@ export default function GetSingleBook({ data, id }) {
                 <p className="text-white/50">Auteur inconnu</p>
               )}
             </div>
-            <p className="text-white/50 font-light">Edition : {bookInfos?.publisher}</p>
+            <p className="text-white/50 font-light">
+              Edition : {bookInfos?.publisher}
+            </p>
             <p className="text-white/50 font-light">
               Année de publication :
               {bookInfos?.publishedDate
@@ -97,7 +103,7 @@ export default function GetSingleBook({ data, id }) {
               {user ? (
                 <>
                   <div className="pb-5">
-                  <BookmarkBooksList bookid={id} userid={user?.uid} />
+                    <BookmarkBooksList bookid={id} userid={user?.uid} />
                   </div>
                   <div>
                     <AlreadyRead bookid={id} userid={user?.uid} />
@@ -144,10 +150,8 @@ export default function GetSingleBook({ data, id }) {
             </div>
           )}
           <div>
-            {bookInfos?.categories ? (
+            {bookInfos?.categories && (
               <GetBooksByMainCategory category={bookInfos.categories[0]} />
-            ) : (
-              <p>Aucune suggestion de lecture</p>
             )}
           </div>
           <div className="my-9">
@@ -161,7 +165,7 @@ export default function GetSingleBook({ data, id }) {
               <p>Auteur inconnu</p>
             )}
             <div className="mt-4">
-              <h3 className="text-3xl font-bold mb-10 border-b pb-2 border-main-color/20 text-main-color">
+              <h3 className="text-3xl font-bold mb-10 border-b pb-2 border-main-color/20 text-main-color tracking-tight">
                 Les dernières critiques
               </h3>
               <DisplayReview bookid={id} />

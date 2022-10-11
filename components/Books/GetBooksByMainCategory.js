@@ -30,7 +30,7 @@ export default function GetBooksByMainCategory({ category }) {
     <>
       {booksInfos && booksInfos.length > 0 ? (
         <>
-          <h3 className="text-3xl font-bold mb-10 border-b pb-2 border-main-color/20 text-main-color">
+          <h3 className="text-3xl font-bold mb-10 border-b pb-2 border-main-color/20 text-main-color tracking-tight">
             Vous aimerez aussi
           </h3>
           <div className="grid grid-cols-3 lg:grid-cols-6 gap-5">

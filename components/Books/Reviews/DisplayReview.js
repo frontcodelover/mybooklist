@@ -1,5 +1,5 @@
 //! A REFAIRE avec les datas
-import React from 'react'
+import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import {
   collection,
@@ -8,11 +8,11 @@ import {
   query,
   where,
 } from "firebase/firestore";
-import StarsReview from './StarsReview';
-import ProfileInfos from './ProfileInfos';
+import StarsReview from "./StarsReview";
+import ProfileInfos from "./ProfileInfos";
+import GetImage from "./GetImage";
 
-export default function DisplayReview({bookid}) {
-
+export default function DisplayReview({ bookid }) {
   const db = getFirestore();
   const bookReviewQuery = useQuery(["bookreview", bookid], () => {
     const q = query(
@@ -25,7 +25,7 @@ export default function DisplayReview({bookid}) {
     (bookReviewQuery.data?.docs || []).map((doc) => doc.data()) || [];
   const isLoadingQuery = bookReviewQuery.isLoading;
 
-  console.log(resultBookReviewQuery)
+  console.log(resultBookReviewQuery);
 
   return (
     <>
@@ -33,39 +33,37 @@ export default function DisplayReview({bookid}) {
         <div>Loading...</div>
       ) : (
         <div>
-          <h2 className="text-3xl font-bold mb-3 text-main-color">
-            Mes listes de lecture
-          </h2>
           {resultBookReviewQuery.length ? (
             resultBookReviewQuery?.map((review) => {
               return (
-               <>
-               <div className="p-6 bg-gray-200/50 border-t-4 border-main-color">
-                <div className="flex mb-3">
-
-               <div className="p-3">
-                    <span className="font-semibold"> Marion T.</span> a écrit le <span className='mr-2'>
-
-
-
-                    <ProfileInfos userid={review.userid} />
-                    {review.readed.toDate().toLocaleDateString("fr-FR")}
-                    </span>
+                <>
+                  <div className="p-10 border-b-2 border-t border-r-2 border-l-2 border-l-slate-100 border-r-slate-100 border-t-slate-100 border-slate-200/90 my-14 shadow-xl rounded-xl">
+                    <div className="flex mb-3">
+                    <GetImage userid={review.userid} />
+                      <div className="p-3">
+                        <span className="font-semibold">
+                          {" "}
+                          <ProfileInfos userid={review.userid} />
+                        </span>{" "}
+                        a écrit le{" "}
+                        <span className="mr-2">
+                          {review.readed.toDate().toLocaleDateString("fr-FR")}
+                        </span>
+                      </div>
+                    </div>
+                    <StarsReview note={review.note} />
+                    <p className="font-bold text-lg mb-3">{review.title}</p>
+                    <p className="text-justify">{review.content}</p>
                   </div>
-                </div>
-                <StarsReview note={review.note} />
-                <p className="font-semibold text-lg mb-3">
-                  {review.title}
-                </p>
-                <p className="text-justify">
-                {review.content}
-                </p>
-               </div>
-               </>
+                </>
               );
             })
           ) : (
-            <p>Aucune crique pour le moment. Vous avez lu ce livre ? Ajouter votre critique !</p>
+            <p>
+              Aucune crique pour le moment. Vous avez lu ce livre ? 
+              Ajoutez
+              votre critique !
+            </p>
           )}
         </div>
       )}

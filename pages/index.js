@@ -23,7 +23,6 @@ export default function Home({ booksStatic }) {
       </Head>
       <main>
         <div className="bg-white my-10">
-
           <HeroBan />
 
           {/* <BanniereHome /> */}
@@ -32,11 +31,10 @@ export default function Home({ booksStatic }) {
           </div> */}
         </div>
 
-
         <div className="py-10 px-5">
           <BookSelection BooksSelectedDatas={BooksSelectedDatas} />
         </div>
-          <About />
+        <About />
 
         <div className="p-5 container mx-auto">
           <BooksCarousselStatic booksStatic={booksStatic} />
