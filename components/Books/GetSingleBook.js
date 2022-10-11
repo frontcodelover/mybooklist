@@ -169,45 +169,6 @@ export default function GetSingleBook({ data, id }) {
                 Les dernières critiques
               </h3>
               <DisplayReview bookid={id} />
-              <div className="p-6 bg-gray-200/50 border-t-4 border-main-color">
-                <div className="flex mb-3">
-                  <Image
-                    src={Marion}
-                    width={50}
-                    height={50}
-                    className="rounded-full"
-                    alt="Marion"
-                  />
-                  <div className="p-3">
-                    <span className="font-semibold"> Marion T.</span> a écrit le
-                    4 septembre 2022
-                  </div>
-                </div>
-                <p className="font-semibold text-lg mb-3">
-                  Titre de la critique
-                </p>
-                <p className="text-justify">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Quisque rutrum ipsum nec dolor aliquet semper. Vestibulum
-                  facilisis mi eu urna malesuada, eget sollicitudin nunc
-                  consequat. Orci varius natoque penatibus et magnis dis
-                  parturient montes, nascetur ridiculus mus. Nulla condimentum
-                  lorem vel neque accumsan dictum. Duis a neque elementum,
-                  feugiat justo vitae, volutpat est. Class aptent taciti
-                  sociosqu ad litora torquent per conubia nostra, per inceptos
-                  himenaeos. Nunc a leo nec lacus dapibus ultricies eget in
-                  ipsum. Etiam ac euismod nisi, a aliquam justo. Quisque vitae
-                  leo sed sapien gravida rutrum a sed massa. Etiam libero magna,
-                  viverra a porta a, volutpat vel odio. Mauris condimentum
-                  consectetur turpis, eget accumsan elit elementum at. Aliquam
-                  erat volutpat. Sed varius odio ac ligula ullamcorper consequat
-                  ac at elit. Fusce fringilla lectus vel turpis consequat
-                  posuere. Mauris et nunc et sem scelerisque consectetur id ac
-                  erat. Mauris at consectetur ex. Sed porta dapibus libero, in
-                  fringilla ex blandit in. Praesent ultricies euismod neque, sed
-                  malesuada sem dignissim quis.
-                </p>
-              </div>
             </div>
           </div>
         </div>
