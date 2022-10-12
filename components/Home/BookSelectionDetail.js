@@ -8,7 +8,6 @@ import genBook from "../../public/livre-generique.jpg";
 import parse from "html-react-parser";
 
 export default function BookSelectionDetail({ bookid }) {
-  console.log("BOOKID", bookid);
   const [bookData, setBookData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -21,7 +20,7 @@ export default function BookSelectionDetail({ bookid }) {
 
   const bookInfos = getBookFromGoogleBookApi(bookData);
 
-  console.log("bookInfos", bookInfos);
+
   return (
     <>
       <div>

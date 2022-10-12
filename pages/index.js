@@ -13,9 +13,12 @@ import { bookOfTheMonth } from "../components/Books/Data/BookSelectionMonth";
 import { useEffect } from "react";
 import { useState } from "react";
 import SelectedBooks from "../components/Home/SelectedBooks";
+import { bestSellers } from "../components/Books/Data/BestSellers";
+import GetIsbnBook from "../components/Home/GetIsbnBooks";
 
 export default function Home({ booksStatic }) {
   const [selectedBooks, setSelectedBooks] = useState([]);
+  const [bookWithIsbn, setBookWithIsbn] = useState([]);
   useEffect(() => {
     async function getBooks(bookId) {
       try {
@@ -29,7 +32,6 @@ export default function Home({ booksStatic }) {
               ? [...oldBooks, ...newBook]
               : [...oldBooks, newBook]
           );
-          console.log("MA REP", newBook);
         }
       } catch (e) {
         console.log(e);
@@ -38,9 +40,27 @@ export default function Home({ booksStatic }) {
     bookOfTheMonth.map((book) => {
       getBooks(book);
     });
+
+    async function getBooksIsbn(bookIsbn) {
+      try {
+        const resp = await fetch(
+          `https://www.googleapis.com/books/v1/volumes?q=isbn:${bookIsbn}`
+        );
+        if (resp.ok) {
+          const isbnBook = await resp.json();
+          setBookWithIsbn((old) => [...old, ...isbnBook.items]);
+          // setBookWithIsbn((oldBooks) => Array.isArray(isbnBook) ? [...oldBooks, ...isbnBook.items] : [...oldBooks, isbnBook.items])
+        }
+      } catch {}
+    }
+
+    bestSellers.map((book) => {
+      getBooksIsbn(book);
+    });
   }, []);
 
-  console.log("BOUQUIIN", selectedBooks);
+  console.log("BOOKSELECCCCCCCCCCCCCCC", selectedBooks);
+  console.log("COCU", bookWithIsbn);
 
   return (
     <div>
@@ -67,7 +87,10 @@ export default function Home({ booksStatic }) {
         </div>
         <About />
         <div className="p-5 container mx-auto">
-        <SelectedBooks bookId={selectedBooks} />
+          <SelectedBooks bookId={selectedBooks} />
+        </div>
+        <div className="p-5 container mx-auto">
+          <GetIsbnBook bookId={bookWithIsbn} />
         </div>
         <div className="p-5 container mx-auto">
           <BooksCarousselStatic booksStatic={booksStatic} />
@@ -81,7 +104,7 @@ export default function Home({ booksStatic }) {
 
 export async function getStaticProps() {
   const res = await fetch(
-    `${BOOKS_SEARCH}2022&langRestrict=fr&printType=books&maxResults=9&startIndex=0`
+    `${BOOKS_SEARCH}2022&langRestrict=fr&printType=books&maxResults=11&startIndex=0`
   );
   const booksStatic = await res.json();
   return {

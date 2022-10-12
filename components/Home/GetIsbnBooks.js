@@ -4,7 +4,8 @@ import Image from "next/image";
 import genBook from "../../public/livre-generique.jpg";
 import { hydrateBooks } from "../../services/mapper/mapper";
 
-function SelectedBooks({ bookId }) {
+function GetIsbnBook({ bookId }) {
+
 
   const bookInfos = hydrateBooks(bookId);
 
@@ -12,13 +13,13 @@ function SelectedBooks({ bookId }) {
     <div>
       <div className="py-6">
         <h3 className="text-5xl py-9 mb-3 font-extrabold text-main-color tracking-tight">
-          La sélection du moment
+          Les meilleures ventes de livres
         </h3>
         <div className="grid lg:grid-cols-9 md:grid-cols-3 grid-cols-2 gap-2">
           {bookInfos.map((book) => {
             return (
               <div
-                key={book.id + 2}
+                key={book.id +3}
                 className=""
               >
                 {book.thumbnail ? (
@@ -62,4 +63,4 @@ function SelectedBooks({ bookId }) {
   );
 }
 
-export default SelectedBooks;
+export default GetIsbnBook;

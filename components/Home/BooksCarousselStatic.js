@@ -8,6 +8,10 @@ function BooksCarousselStatic({ booksStatic }) {
   const books = booksStatic.items;
   const bookInfos = hydrateBooks(books);
 
+  const withoutIMG = bookInfos.filter((book) => {
+    return book.thumbnail !== undefined
+  })
+
   return (
     <div>
       <div className="py-6">
@@ -15,7 +19,7 @@ function BooksCarousselStatic({ booksStatic }) {
           Les derniers livres ajoutés
         </h3>
         <div className="grid lg:grid-cols-9 md:grid-cols-3 grid-cols-2 gap-2">
-          {bookInfos.map((book) => {
+          {withoutIMG.map((book) => {
             return (
               <div
                 key={book.id}
