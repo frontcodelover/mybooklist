@@ -151,7 +151,7 @@ export default function GetSingleBook({ data, id }) {
           )}
           <div>
             {bookInfos?.categories && (
-              <GetBooksByMainCategory category={bookInfos.categories[0]} />
+              <GetBooksByMainCategory booktitle={bookInfos?.title} />
             )}
           </div>
           <div className="my-9">

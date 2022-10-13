@@ -6,15 +6,16 @@ import Image from "next/image";
 import genBook from "../../public/livre-generique.jpg";
 import { BOOKS_SEARCH } from "../../services/api/googleBooks";
 
-export default function GetBooksByMainCategory({ category }) {
-
+export default function GetBooksByMainCategory({ category, booktitle }) {
+console.log("CAT",category)
+console.log("booktitle",booktitle)
 
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
     axios
       .get(
-        `${BOOKS_SEARCH}subject:${category}&maxResults=12&langRestrict=fr&printType=books`
+        `${BOOKS_SEARCH}${booktitle}&maxResults=12&langRestrict=fr&printType=books&orderBy=relevance`
       )
       .then((res) => {
         setBooks(res.data.items);

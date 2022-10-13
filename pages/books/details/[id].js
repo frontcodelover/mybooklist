@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState } from "react";
-import { useRouter } from "next/router";
+import { useRouter, Router } from "next/router";
 import GetSingleBook from "../../../components/Books/GetSingleBook";
 import { BOOKS_BY_ID } from "../../../services/api/googleBooks";
 
@@ -9,46 +9,29 @@ export default function details({ data }) {
   const { id } = router.query;
 
   return (
-    
     <div className="mt-4">
-      {/* <GetSingleBook id='11' /> */}
       <div className="mx-auto">
-      <GetSingleBook data={data} id={id} />
+        {!data.id ? router.push("/404") : <GetSingleBook data={data} id={id} />}
       </div>
     </div>
   );
 }
 
-export async function getStaticPaths() {
-  const paths = [];
-  return {
-    paths,
-    fallback: "blocking", // true or false or 'blocking'
-  };
-}
-
-export async function getStaticProps({ params }) {
-  const { id } = params;
-  if (!id) {
-    return {
-      notFound: true,
-    };
-  }
-  const response = await fetch(`${BOOKS_BY_ID}${params.id}`);
-  const data = await new Promise((resolve) =>
-    setTimeout(() => {
-      resolve(response.json());
-    }, 0)
+export const getServerSideProps = async ({ params, res }) => {
+  res.setHeader(
+    "Cache-Control",
+    "public, s-maxage=10, stale-while-revalidate=59"
   );
-  if (!data) {
-    return {
-      notFound: true,
-    };
-  }
+  const { id } = params;
+  const result = await fetch(
+    `https://www.googleapis.com/books/v1/volumes/${id}`
+  );
+
+  const data = await result.json();
+
+  console.log(data)
 
   return {
-    props: {
-      data,
-    },
+    props: { data },
   };
-}
+};
