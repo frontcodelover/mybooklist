@@ -1,14 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { hydrateBooks } from "../../services/mapper/mapper";
+import { hydrateBooks } from "../../../services/mapper/mapper";
 import Link from "next/link";
 import Image from "next/image";
-import genBook from "../../public/livre-generique.jpg";
-import { BOOKS_SEARCH } from "../../services/api/googleBooks";
+import genBook from "../../../public/livre-generique.jpg";
+import { BOOKS_SEARCH } from "../../../services/api/googleBooks";
 
 export default function GetBooksByMainCategory({ category, booktitle }) {
-console.log("CAT",category)
-console.log("booktitle",booktitle)
+  console.log("CAT", category);
+  console.log("booktitle", booktitle);
 
   const [books, setBooks] = useState([]);
 

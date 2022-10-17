@@ -1,11 +1,11 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { hydrateBooks } from "../../services/mapper/mapper";
-import genBook from "../../public/livre-generique.jpg";
+import { hydrateBooks } from "../../../services/mapper/mapper";
+import genBook from "../../../public/livre-generique.jpg";
 import Image from "next/image";
 import Link from "next/link";
-import { BOOKS_SEARCH } from "../../services/api/googleBooks";
+import { BOOKS_SEARCH } from "../../../services/api/googleBooks";
 
 export default function GetBooksRelatedByAuthors({ author }) {
   const [books, setBooks] = useState([]);
@@ -36,17 +36,17 @@ export default function GetBooksRelatedByAuthors({ author }) {
             {booksInfos.map((book) => (
               <div className="flex-cols w-36" key={book.id + "_33"}>
                 {book.thumbnail ? (
-                    <>
-                  <Link href={`/books/details/${book.id}`}>
-                    <a>
-                      <img
-                        src={book.thumbnail}
-                        alt={book.title}
-                        className="mx-auto mb-5 h-48"
+                  <>
+                    <Link href={`/books/details/${book.id}`}>
+                      <a>
+                        <img
+                          src={book.thumbnail}
+                          alt={book.title}
+                          className="mx-auto mb-5 h-48"
                         />
-                    </a>
-                  </Link>
-                        </>
+                      </a>
+                    </Link>
+                  </>
                 ) : (
                   <div className="mx-auto mb-5 h-48 " key={book.id + "3"}>
                     <Link href={`/books/details/${book.id}`}>

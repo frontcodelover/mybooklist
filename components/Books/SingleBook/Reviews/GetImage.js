@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getStorage, ref, listAll, getDownloadURL } from "firebase/storage";
-import { storage } from "../../firebase";
-import avatar from "../../../public/avatar.png";
+import { storage } from "../../../firebase";
+import avatar from "../../../../public/avatar.png";
 import Image from "next/image";
 
 export default function GetImage({ userid }) {

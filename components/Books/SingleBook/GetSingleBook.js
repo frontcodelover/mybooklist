@@ -1,22 +1,20 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import Marion from "../../public/marion.jpg";
-import genBook from "../../public/livre-generique.jpg";
-import { getBookFromGoogleBookApi } from "../../services/mapper/mapper";
+import genBook from "../../../public/livre-generique.jpg";
+import { getBookFromGoogleBookApi } from "../../../services/mapper/mapper";
 import GetBooksRelatedByAuthors from "./GetBooksRelatedByAuthors";
 import GetBooksByMainCategory from "./GetBooksByMainCategory";
-import { useAuth } from "../../context/AuthContext";
-import AlreadyRead from "./AlreadyRead";
-import ReadingBook from "./ReadingBook";
+import { useAuth } from "../../../context/AuthContext";
+import AlreadyRead from "./BookToList/AlreadyRead";
 import Link from "next/link";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import Head from "next/head";
 import { useDispatch, useSelector } from "react-redux";
-import { getBook } from "../../feature/book/bookSlice";
+import { getBook } from "../../../feature/book/bookSlice";
 import parse from "html-react-parser";
-import BookmarkBooksList from "./BookmarkBooksList";
-import Modal from "../Layout/modal";
+import BookmarkBooksList from "./BookToList/BookmarkBooksList";
+import Modal from "../../Layout/modal";
 import DisplayReview from "./Reviews/DisplayReview";
 
 export default function GetSingleBook({ data, id }) {

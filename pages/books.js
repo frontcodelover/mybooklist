@@ -1,5 +1,5 @@
 import React from "react";
-import BookList from "../components/Books/BookList";
+import BookList from "../components/Books/Search/BookList";
 
 export default function books() {
   return (

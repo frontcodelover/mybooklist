@@ -1,13 +1,11 @@
 import Head from "next/head";
-import TitleHomePage from "../components/Home/TitleHomePage";
 import About from "../components/Home/About";
 import Teams from "../components/Home/Teams";
 import SectionCta from "../components/Home/SectionCta";
-import { BOOKS_BY_ID, BOOKS_SEARCH } from "../services/api/googleBooks";
+import { BOOKS_SEARCH } from "../services/api/googleBooks";
 import BooksCarousselStatic from "../components/Home/BooksCarousselStatic";
 import { BooksSelectedDatas } from "../components/Home/BooksSeletedDatas";
 import BookSelection from "../components/Home/BookSelection";
-import BanniereHome from "../components/Home/BanniereHome";
 import HeroBan from "../components/Home/HeroBan";
 import { bookOfTheMonth } from "../components/Books/Data/BookSelectionMonth";
 import { useEffect } from "react";
@@ -75,11 +73,6 @@ export default function Home({ booksStatic }) {
       <main>
         <div className="bg-white my-10">
           <HeroBan />
-
-          {/* <BanniereHome /> */}
-          {/* <div className="container mx-auto">
-            <TitleHomePage />
-          </div> */}
         </div>
 
         <div className="py-10 px-5">

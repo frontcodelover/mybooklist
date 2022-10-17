@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Router, { useRouter } from "next/router";
-import BookLayout from "./BookLayout";
-import { BOOKS_SEARCH } from "../../services/api/googleBooks";
+import BookLayout from "../BookLayout";
+import { BOOKS_SEARCH } from "../../../services/api/googleBooks";
 
 export default function BookByAuthors() {
   const [books, setBooks] = useState([]);

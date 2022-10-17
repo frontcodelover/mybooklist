@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState } from "react";
 import { useRouter, Router } from "next/router";
-import GetSingleBook from "../../../components/Books/GetSingleBook";
+import GetSingleBook from "../../../components/Books/SingleBook/GetSingleBook";
 import { BOOKS_BY_ID } from "../../../services/api/googleBooks";
 
 export default function details({ data }) {

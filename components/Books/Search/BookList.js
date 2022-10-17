@@ -2,9 +2,9 @@ import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import BookFromSearch from "./BookFromSearch";
-import BookLayout from "./BookLayout";
-import { BOOKS_SEARCH } from "../../services/api/googleBooks";
-import { BOOKS_GENERIQUE } from "../../services/api/googleBooks";
+import BookLayout from "../BookLayout";
+import { BOOKS_SEARCH } from "../../../services/api/googleBooks";
+import { BOOKS_GENERIQUE } from "../../../services/api/googleBooks";
 
 export default function BookList() {
   const [books, setBooks] = useState([]);

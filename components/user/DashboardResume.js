@@ -70,13 +70,12 @@ export default function DashboardResume() {
                 <p>{currentUser.phrase}</p>
               </div>
             </div>
-            <div className="flex flex-col md:flex-row my-10">
+            <div className="flex flex-col  my-10">
+              <DisplayLists userid={user?.uid} />
               <CreateListOfBooks
                 userid={user?.uid}
                 pseudo={currentUser.pseudo}
               />
-
-              <DisplayLists userid={user?.uid} />
             </div>
           </>
         ) : (
