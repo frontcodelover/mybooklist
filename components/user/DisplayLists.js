@@ -8,6 +8,7 @@ import {
 } from "firebase/firestore";
 import Link from "next/link";
 import { IoBookSharp } from "react-icons/io5";
+import DisplayCover from "./DisplayCover";
 
 export default function DisplayLists({ userid }) {
   const db = getFirestore();
@@ -27,6 +28,21 @@ export default function DisplayLists({ userid }) {
     (bookListQuery.data?.docs || []).map((doc) => doc.data()) || [];
   const isLoadingQuery = bookListQuery.isLoading;
 
+  let tab = [];
+
+  //fonction qui créé un tableau qui sera parser ensuite pour afficher les coovertures des livres dans la liste sur le dashboard
+  function getBookInfo() {
+    if (!isLoadingQuery) {
+      resultbookListQuery.map(
+        (r) => r?.bookid?.length > 0 && tab.push({ id: r.id, bookid: r.bookid })
+      );
+      
+    }
+  }
+  getBookInfo();
+
+  console.log(tab);
+
   return (
     <>
       {isLoadingQuery ? (
@@ -43,7 +59,10 @@ export default function DisplayLists({ userid }) {
                   <div className="flex flex-row gap-2">
                     <Link href={`/list/${docData?.slug}`}>
                       <a>
-                        <h2 className="text-2xl font-semibold" style={{ color: docData?.color }}>
+                        <h2
+                          className="text-2xl font-semibold"
+                          style={{ color: docData?.color }}
+                        >
                           {docData.name}
                         </h2>
                       </a>
@@ -54,12 +73,13 @@ export default function DisplayLists({ userid }) {
                       </span>
                       <p className="font-bold">
                         {docData?.bookid?.length != undefined
-                          ? "("+ docData?.bookid?.length + ")"
+                          ? "(" + docData?.bookid?.length + ")"
                           : "(0)"}
                       </p>
                     </div>
                   </div>
                   <p className="text-sm">{docData?.description}</p>
+                  <DisplayCover tab={tab} listId={docData.id} />
                 </div>
               );
             })
