@@ -32,10 +32,10 @@ export default function GetUser() {
     await setDoc(doc(db, "publiclist", uuid), {
       name: "ma liste de lecture",
       description: "ma liste de lecture",
-      userid : user.uid,
+      userid : user?.uid,
       pseudo : inputs.pseudo,
       private : false,
-      slug : `ma-liste-de-lecture-${user.uid}`,
+      slug : `ma-liste-de-lecture-${user?.uid}`,
       date : new Date(),
       id: uuid,
     });
@@ -43,15 +43,15 @@ export default function GetUser() {
     await setDoc(doc(db, "booksreaded", uuid), {
       name: "mes livres lus",
       description: "mes livres lus",
-      userid : user.uid,
+      userid : user?.uid,
       pseudo : inputs.pseudo,
       private : false,
-      slug : `mes-livres-lus-${user.uid}`,
+      slug : `mes-livres-lus-${user?.uid}`,
       date : new Date(),
       id: uuid,
     });
 
-    await setDoc(doc(db, "users", user.uid), {
+    await setDoc(doc(db, "users", user?.uid), {
       pseudo: inputs.pseudo,
       prenom: inputs.prenom,
       age: inputs.age,
@@ -59,7 +59,7 @@ export default function GetUser() {
       genre: inputs.genre || "Non renseigné",
       litterature: inputs.litterature,
       phrase: inputs.phrase,
-      uid: user.uid,
+      uid: user?.uid,
     });
     router.push("/user/dashboard");
   };
@@ -90,7 +90,7 @@ export default function GetUser() {
                 </p>
               </div>
               <div className="px-8 pt-6 mx-auto text-center">
-                <ImageStorage uid={user.uid} />
+                <ImageStorage uid={user?.uid} />
               </div>
               <form
                 className="px-8 pt-6 pb-8 mb-4 bg-white rounded"

@@ -11,7 +11,7 @@ export default function BookByAuthors() {
 
   const author = router.query.id;
   const lower = author?.toLowerCase();
-  const authorFormat = lower.replace(/ /g, "+");
+  const authorFormat = lower?.replace(/ /g, "+");
   console.log(authorFormat);
 
   useEffect(() => {
