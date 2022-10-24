@@ -45,6 +45,8 @@ export default function GetAllBookListsForUser({ userid, bookid }) {
     return <div>Loading...</div>;
   }
 
+
+
   return bookList.map((docData) => {
     const isChecked = bookAddedDocList
       .map((bookDoc) => bookDoc.id)
@@ -56,7 +58,7 @@ export default function GetAllBookListsForUser({ userid, bookid }) {
           type="checkbox"
           onChange={async (e) => {
             const bookListRef = doc(db, "publiclist", docData.id);
-
+            
             await updateDoc(bookListRef, {
               bookid: isChecked ? arrayRemove(bookid) : arrayUnion(bookid),
             });
@@ -65,14 +67,15 @@ export default function GetAllBookListsForUser({ userid, bookid }) {
           }}
           checked={isChecked}
           className="w-4 h-4  text-purple-600 bg-gray-100 rounded border-gray-300 focus:ring-purple-500 dark:focus:ring-purple-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-        />
+          />
         {isChecked ? (
           <Tooltip content="Retirer de la liste" style="light">
             <label
               htmlFor="purple-checkbox"
               className="ml-2 text-sm text-gray-900 dark:text-gray-300"
-            >
+              >
               {docData.name}
+              
             </label>
           </Tooltip>
         ) : (
