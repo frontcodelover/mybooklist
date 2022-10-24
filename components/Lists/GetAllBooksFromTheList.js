@@ -17,8 +17,8 @@ export default function GetAllBooksFromTheList({ slug }) {
   const db = getFirestore();
 
 
-  const bookListQuery = useQuery(["publiclist"], () => {
-    const q = query(collection(db, "publiclist"), where("slug", "==", dataSlug));
+  const bookListQuery = useQuery(["publiclist", slug], () => {
+    const q = query(collection(db, "publiclist"), where("slug", "==", slug));
     
     return getDocs(q)
     });
