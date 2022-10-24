@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { BOOKS_SEARCH } from "../../../services/api/googleBooks";
 
-export default function GetBooksRelatedByAuthors({ author }) {
+export default function GetBooksRelatedByAuthors({ author, bookid }) {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
@@ -25,6 +25,14 @@ export default function GetBooksRelatedByAuthors({ author }) {
     booksInfos = hydrateBooks(books);
   }
 
+  const withoutIMG = booksInfos.filter((book) => {
+    return book.thumbnail !== undefined
+  })
+
+  const excludeCurrentId = withoutIMG.filter((book) => {
+    return book.id !== bookid
+  })
+
   return (
     <>
       {booksInfos && booksInfos.length > 0 ? (
@@ -33,7 +41,7 @@ export default function GetBooksRelatedByAuthors({ author }) {
             Les autres ouvrages de {author}
           </h3>
           <div className="grid grid-cols-3 lg:grid-cols-6 gap-5">
-            {booksInfos.map((book) => (
+            {excludeCurrentId.map((book) => (
               <div className="flex-cols w-36" key={book.id + "_33"}>
                 {book.thumbnail ? (
                   <>

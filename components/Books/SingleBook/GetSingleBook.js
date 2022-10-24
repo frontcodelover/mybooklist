@@ -142,21 +142,24 @@ export default function GetSingleBook({ data, id }) {
               <h3 className="text-3xl font-bold mb-10 border-b pb-2 border-main-color/20 text-main-color">
                 Résumer
               </h3>
-              <div className="lettrine text-justify text-lg tracking-tight">
+              <div className="text-justify text-lg tracking-tight">
                 {parse(bookInfos.description)}
               </div>
             </div>
           )}
           <div>
             {bookInfos?.categories && (
-              <GetBooksByMainCategory booktitle={bookInfos?.title} />
+              <GetBooksByMainCategory
+                booktitle={bookInfos?.title}
+                bookid={id}
+              />
             )}
           </div>
           <div className="my-9">
             {bookInfos?.authors ? (
               bookInfos?.authors?.map((author) => (
                 <>
-                  <GetBooksRelatedByAuthors author={author} />
+                  <GetBooksRelatedByAuthors author={author} bookid={id} />
                 </>
               ))
             ) : (

@@ -6,9 +6,8 @@ import Image from "next/image";
 import genBook from "../../../public/livre-generique.jpg";
 import { BOOKS_SEARCH } from "../../../services/api/googleBooks";
 
-export default function GetBooksByMainCategory({ category, booktitle }) {
-  console.log("CAT", category);
-  console.log("booktitle", booktitle);
+export default function GetBooksByMainCategory({ category, booktitle, bookid }) {
+
 
   const [books, setBooks] = useState([]);
 
@@ -27,6 +26,14 @@ export default function GetBooksByMainCategory({ category, booktitle }) {
     booksInfos = hydrateBooks(books);
   }
 
+  const withoutIMG = booksInfos.filter((book) => {
+    return book.thumbnail !== undefined
+  })
+
+  const excludeCurrentId = withoutIMG.filter((book) => {
+    return book.id !== bookid
+  })
+
   return (
     <>
       {booksInfos && booksInfos.length > 0 ? (
@@ -35,7 +42,7 @@ export default function GetBooksByMainCategory({ category, booktitle }) {
             Vous aimerez aussi
           </h3>
           <div className="grid grid-cols-3 lg:grid-cols-6 gap-5">
-            {booksInfos.map((book) => (
+            {excludeCurrentId.map((book) => (
               <div className="flex-cols w-36" key={book.id + "_3"}>
                 {book.thumbnail ? (
                   <Link href={`/books/details/${book.id}`}>
@@ -47,7 +54,8 @@ export default function GetBooksByMainCategory({ category, booktitle }) {
                       />
                     </a>
                   </Link>
-                ) : (
+                ) 
+                : (
                   <div className="mx-auto mb-5 h-48 " key={book.id + "_33"}>
                     <Link href={`/books/details/${book.id}`}>
                       <a>
@@ -59,7 +67,8 @@ export default function GetBooksByMainCategory({ category, booktitle }) {
                       </a>
                     </Link>
                   </div>
-                )}
+                )
+                }
                 <h1 className="text-sm font-semibold">
                   <Link href={`/books/details/${book.id}`}>
                     <a>

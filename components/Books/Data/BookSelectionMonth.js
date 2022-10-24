@@ -1,7 +1,7 @@
 export const bookOfTheMonth = [
     "ifs2EAAAQBAJ",
     "SLV0EAAAQBAJ",
-    "bEM0zgEACAAJ",
+    "sbCSEAAAQBAJ",
     "i2w3EAAAQBAJ",
     "eRp4EAAAQBAJ",
     "47w1EAAAQBAJ",
