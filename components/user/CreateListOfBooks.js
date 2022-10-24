@@ -23,7 +23,6 @@ export default function CreateListOfBooks({ userid, pseudo }) {
     await setDoc(list, {
       name: inputs.name,
       description: inputs.description,
-      color: inputs.color,
       date: new Date(),
       private: inputs.private === "true" ? true : false,
       userid: userid,
@@ -60,14 +59,6 @@ export default function CreateListOfBooks({ userid, pseudo }) {
             onChange={handleChange}
             required
           />
-          <div className="my-2">
-            <label htmlFor="color" className="font-semibold">
-              Choisir une couleur pour votre liste
-            </label>
-            <br />
-            <input type="color" name="color" onChange={handleChange}></input>
-            <br />
-          </div>
           <div className="my-2">
             <label htmlFor="private" className="font-semibold">
               Je souhaite rendre ma liste privée

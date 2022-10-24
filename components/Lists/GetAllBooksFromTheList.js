@@ -1,3 +1,4 @@
+//! REFAIRE LE TOUT AVEC UNE FONCTION ASYNC POUR FETCH LES LISTES
 import { useQuery } from "@tanstack/react-query";
 import {
   collection,
@@ -12,25 +13,29 @@ import Link from "next/link";
 
 export default function GetAllBooksFromTheList({ slug }) {
   const [dataFormQuery, setDataFormQuery] = useState(false);
+  const [dataSlug, setDataSlug] = useState('')
   const db = getFirestore();
 
+
   const bookListQuery = useQuery(["publiclist"], () => {
-    const q = query(collection(db, "publiclist"), where("slug", "==", slug));
-    return getDocs(q);
-  });
-  const bookFromList =
-    (bookListQuery.data?.docs || []).map((doc) => doc.data()) || null;
-  const isLoading = bookListQuery.isLoading;
-
-
+    const q = query(collection(db, "publiclist"), where("slug", "==", dataSlug));
+    
+    return getDocs(q)
+    });
+  
+    const bookFromList =
+    (bookListQuery?.data?.docs || []).map((doc) => doc.data()) || null;
+    const isLoading = bookListQuery.isSuccess;
 
   useEffect(() => {
-    bookListQuery.data?.docs.map((doc) => {
+    if (slug) {
+      setDataSlug(slug)
+    }
+
+    bookListQuery.data?.docs?.map((doc) => {
       setDataFormQuery(doc.data());
     });
-  }, [bookListQuery.data]);
-
-  console.log("DATASSSS", dataFormQuery.bookid?.length);
+  }, [bookListQuery?.data, slug]);
 
   return (
     <>
@@ -41,10 +46,11 @@ export default function GetAllBooksFromTheList({ slug }) {
         </h3>
 
         <div>
-          {dataFormQuery.bookid?.length >= 1 ? (
-            bookFromList.map((book) => {
+          {dataFormQuery?.bookid?.length >= 1 ? (
+            bookFromList?.map((book) => {
               return (
                 <div key={book}>
+                  <>{book.description}</>
                   {book?.bookid?.map((id) => {
                     // eslint-disable-next-line react/jsx-key
                     return <GetDetailsOfBookFromList book={id} />;

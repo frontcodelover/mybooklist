@@ -53,7 +53,7 @@ export default function DashboardResume() {
               </div>
               <div className="p-5">
                 <div className="flex flex-col mt-10">
-                  <h1 className="text-4xl md:text-5xl font-bold my-3 text-main-color">
+                  <h1 className="text-4xl md:text-5xl font-bold my-3 text-main-color tracking-tight">
                     {currentUser.pseudo}
                   </h1>
                   <p>

@@ -36,7 +36,6 @@ export default function DisplayLists({ userid }) {
       resultbookListQuery.map(
         (r) => r?.bookid?.length > 0 && tab.push({ id: r.id, bookid: r.bookid })
       );
-      
     }
   }
   getBookInfo();
@@ -49,7 +48,7 @@ export default function DisplayLists({ userid }) {
         <div>Loading...</div>
       ) : (
         <div className="p-5">
-          <h2 className="text-3xl font-bold mb-3 text-main-color">
+          <h2 className="text-3xl font-bold mb-3 text-main-color tracking-tight">
             Mes listes de lecture
           </h2>
           {resultbookListQuery.length ? (
@@ -60,7 +59,7 @@ export default function DisplayLists({ userid }) {
                     <Link href={`/list/${docData?.slug}`}>
                       <a>
                         <h2
-                          className="text-2xl font-semibold"
+                          className="text-2xl font-semibold tracking-tight my-2"
                           style={{ color: docData?.color }}
                         >
                           {docData.name}
@@ -77,6 +76,17 @@ export default function DisplayLists({ userid }) {
                           : "(0)"}
                       </p>
                     </div>
+                    <p>
+                      {!docData.private ? (
+                        <div className="px-4 pb-1 mt-2 rounded-md font-bold text-sm text-green-500 border border-green-500 block tracking-tight">
+                          publique
+                        </div>
+                      ) : (
+                        <div className="px-4 pb-1 mt-2 rounded-md font-bold text-sm text-red-500 border border-red-500 block tracking-tight">
+                          privée
+                        </div>
+                      )}
+                    </p>
                   </div>
                   <p className="text-sm">{docData?.description}</p>
                   <DisplayCover tab={tab} listId={docData.id} />
