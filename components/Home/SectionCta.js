@@ -1,7 +1,11 @@
 /* eslint-disable react/no-unescaped-entities */
+import Link from "next/link";
 import React from "react";
+import { useAuth } from "../../context/AuthContext";
 
 export default function SectionCta() {
+  const { user } = useAuth();
+  console.log(user)
   return (
     <div className="bg-purple-100">
       <div className="mx-auto max-w-7xl py-12 px-4 sm:px-6 lg:flex lg:items-center lg:justify-between lg:py-16 lg:px-8">
@@ -13,24 +17,36 @@ export default function SectionCta() {
             Commencez votre bibliothèque virtuelle aujourd'hui.
           </span>
         </h2>
-        <div className="mt-8 flex lg:mt-0 lg:flex-shrink-0">
-          <div className="inline-flex rounded-md shadow">
-            <a
-              href="#"
-              className="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-5 py-3 text-base font-medium text-white hover:bg-purple-700"
-            >
-              S'inscrire
-            </a>
+        {user ? (
+          <>
+            <div className="mt-8 flex lg:mt-0 lg:flex-shrink-0">
+              <div className="inline-flex rounded-md shadow">
+                <Link href="user/profil">
+                  <a className="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-5 py-3 text-base font-medium text-white hover:bg-purple-700">
+                    Mon espace personnel
+                  </a>
+                </Link>
+              </div>
+            </div>
+          </>
+        ) : (
+          <div className="mt-8 flex lg:mt-0 lg:flex-shrink-0">
+            <div className="inline-flex rounded-md shadow">
+              <Link href="user/signup">
+                <a className="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-5 py-3 text-base font-medium text-white hover:bg-purple-700">
+                  S'inscrire
+                </a>
+              </Link>
+            </div>
+            <div className="ml-3 inline-flex rounded-md shadow">
+              <Link href="user/login">
+                <a className="inline-flex items-center justify-center rounded-md border border-transparent bg-white px-5 py-3 text-base font-medium text-purple-500 hover:bg-indigo-50">
+                  Se connecter
+                </a>
+              </Link>
+            </div>
           </div>
-          <div className="ml-3 inline-flex rounded-md shadow">
-            <a
-              href="#"
-              className="inline-flex items-center justify-center rounded-md border border-transparent bg-white px-5 py-3 text-base font-medium text-purple-500 hover:bg-indigo-50"
-            >
-              Se connecter
-            </a>
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );

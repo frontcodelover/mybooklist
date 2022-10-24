@@ -57,9 +57,6 @@ export default function Home({ booksStatic }) {
     });
   }, []);
 
-  console.log("BOOKSELECCCCCCCCCCCCCCC", selectedBooks);
-  console.log("COCU", bookWithIsbn);
-
   return (
     <div>
       <Head>

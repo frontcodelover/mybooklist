@@ -39,8 +39,6 @@ export const AuthContexProvider = ({ children }) => {
     await createUserWithEmailAndPassword(auth, email, password);
   };
 
-
-
   const login = async (email, password) => {
     await signInWithEmailAndPassword(auth, email, password);
   };
