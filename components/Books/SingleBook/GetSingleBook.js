@@ -20,13 +20,9 @@ import DisplayReview from "./Reviews/DisplayReview";
 export default function GetSingleBook({ data, id }) {
   const { user } = useAuth();
 
-  const dispatch = useDispatch();
-  const { book: bookState } = useSelector((state) => state);
-  const { list: bookList, status: bookStatus } = bookState;
+console.log(data)
 
-  useEffect(() => {
-    dispatch(getBook({ bookid: id }));
-  }, [dispatch, id]);
+
 
   // Mapper
   const bookInfos = getBookFromGoogleBookApi(data);
@@ -122,9 +118,9 @@ export default function GetSingleBook({ data, id }) {
                   <p
                     className="text-sm font-semibold text-red-500 flex"
                   >
-                    <div className="mt-1 pr-1">
+                    <p className="mt-1 pr-1">
                       <AiOutlineShoppingCart />
-                    </div>
+                    </p>
                     Acheter ce livre sur Amazon
                   </p>
                 </Link>
