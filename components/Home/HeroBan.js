@@ -36,22 +36,21 @@ export default function HeroBan() {
       <div className="mt-8 flex flex-wrap gap-4 text-center">
       {!user ? (
               <Link href="/user/signup">
-        <a
-          href="#"
+        <p
           className="block w-full rounded bg-[#1B1F3B] px-12 py-3 text-sm font-medium text-white shadow hover:bg-[#2A2F5D] focus:outline-none focus:ring active:bg-purple-500 sm:w-auto"
         >
           S'incrire gratuitement
-        </a>
+        </p>
         </Link>
             ) : (
               <Link href="/user/dashboard">
 
-        <a
+        <p
           href="#"
           className="block w-full rounded bg-white px-12 py-3 text-sm font-medium text-[#1B1F3B] shadow hover:text-[#2A2F5D] focus:outline-none focus:ring active:text-rose-500 sm:w-auto"
           >
           Mon profil
-        </a>
+        </p>
           </Link>
             )}
       </div>

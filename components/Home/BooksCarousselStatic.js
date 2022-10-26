@@ -28,7 +28,7 @@ function BooksCarousselStatic({ booksStatic }) {
                 {book.thumbnail ? (
                   <>
                     <Link href={`/books/details/${book.id}`}>
-                      <a>
+
                         <Image
                           src={book.thumbnail}
                           alt={book.title}
@@ -36,14 +36,14 @@ function BooksCarousselStatic({ booksStatic }) {
                           width={152}
                           className="h-48 w-30 mx-auto hover:scale-105 duration-300"
                         />
-                      </a>
+
                     </Link>
 
                   </>
                 ) : (
                   <>
                     <Link href={`/books/details/${book.id}`}>
-                      <a className="">
+
                         <Image
                           src={genBook}
                           alt={book.title}
@@ -52,7 +52,7 @@ function BooksCarousselStatic({ booksStatic }) {
                           objectFit="cover"
                           className="hover:scale-105 duration-300"
                         />
-                      </a>
+
                     </Link>
 
                   </>

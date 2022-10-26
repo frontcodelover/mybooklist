@@ -96,9 +96,9 @@ const Login = () => {
               <div className="text-center flex flex-col">
                 Vous n'avez pas encore de compte ?
                 <Link href="/user/signup">
-                  <a className="inline-block text-purple-500 align-baseline hover:text-purple-800">
+                  <p className="inline-block text-purple-500 align-baseline hover:text-purple-800">
                     Créer votre compte lecteur dès maintenant !
-                  </a>
+                  </p>
                 </Link>
               </div>
             </form>

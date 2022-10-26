@@ -119,15 +119,14 @@ export default function GetSingleBook({ data, id }) {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <a
-                    target="_blank"
+                  <p
                     className="text-sm font-semibold text-red-500 flex"
                   >
                     <div className="mt-1 pr-1">
                       <AiOutlineShoppingCart />
                     </div>
                     Acheter ce livre sur Amazon
-                  </a>
+                  </p>
                 </Link>
               </div>
             ) : (

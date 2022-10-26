@@ -101,9 +101,9 @@ const Signup = () => {
                 <div className="text-center flex flex-col">
                   Vous avez déjà un compte utilisateur ?
                   <Link href="/user/login">
-                    <a className="inline-block text-purple-500 align-baseline hover:text-purple-800">
+                    <p className="inline-block text-purple-500 align-baseline hover:text-purple-800">
                       Connectez-vous dès maintenant !
-                    </a>
+                    </p>
                   </Link>
                 </div>
               </form>

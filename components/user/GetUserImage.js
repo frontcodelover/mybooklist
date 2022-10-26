@@ -26,7 +26,6 @@ export default function GetUserImage({ user, size }) {
           src={imageUrls}
           alt="user"
           className="rounded-full"
-          objectFit="cover"
           width={size}
           height={size}
         />

@@ -32,9 +32,9 @@ export default function BookSelectionDetail({ bookid }) {
             <>
               <div className="lg:row-span-1">
                 <Link href={`/books/details/${bookInfos.id}`}>
-                  <a>
+                
                     <p className="lg:text-4xl text-2xl font-bold pb-2 text-rose-500 tracking-tight">{bookInfos.title}</p>
-                  </a>
+                  
                 </Link>
                 <div key={bookInfos.authors} className="pb-2 font-bold tracking-tight">Un livre de {bookInfos.authors}</div>
                 <p className="text-left pb-5 tracking-tight">Année de publication :
@@ -45,27 +45,27 @@ export default function BookSelectionDetail({ bookid }) {
               </div>
               <div className="col-span-2">
               <Link href={`/books/details/${bookInfos.id}`}>
-                <a>
+              
                   <img
                     src={bookInfos.thumbnail}
                     alt={bookInfos.title}
                     className="h-64 w-auto object-cover pl-4 hidden lg:block"
                   />
-                </a>
+                
               </Link>
               </div>
             </>
           ) : (
             <>
               <Link href={`/books/details/${bookInfos.id}`}>
-                <a className="hover:scale-125">
+                <p className="hover:scale-125">
                   <Image
                     src={genBook}
                     alt={bookInfos.title}
                     height={200}
                     width={150}
                   />
-                </a>
+                </p>
               </Link>
               <Link href={`/books/details/${bookInfos.id}`}>
                 <p className="text-xs font-bold">{bookInfos.title}</p>

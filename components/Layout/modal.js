@@ -59,7 +59,7 @@ export default function Modal() {
                       type="button"
                       onClick={() => setVisible(false)}
                     >
-                      <a>se connecter</a>
+                      se connecter
                     </button>
                   </Link>
                   <Link href="/user/signup">
@@ -68,7 +68,7 @@ export default function Modal() {
                       type="button"
                       onClick={() => setVisible(false)}
                     >
-                      <a>s'inscrire</a>
+                s'inscrire
                     </button>
                   </Link>
                 </div>

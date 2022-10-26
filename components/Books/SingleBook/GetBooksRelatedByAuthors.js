@@ -46,36 +46,36 @@ export default function GetBooksRelatedByAuthors({ author, bookid }) {
                 {book.thumbnail ? (
                   <>
                     <Link href={`/books/details/${book.id}`}>
-                      <a>
+
                         <img
                           src={book.thumbnail}
                           alt={book.title}
                           className="mx-auto mb-5 h-48"
                         />
-                      </a>
+
                     </Link>
                   </>
                 ) : (
                   <div className="mx-auto mb-5 h-48 " key={book.id + "3"}>
                     <Link href={`/books/details/${book.id}`}>
-                      <a>
+
                         <Image
                           src={genBook}
                           alt={book.title}
                           className="h-48 "
                         />
-                      </a>
+
                     </Link>
                   </div>
                 )}
 
                 <h1 className="text-sm font-semibold">
                   <Link href={`/books/details/${book.id}`}>
-                    <a>
+
                       {book?.title?.length > 30
                         ? book.title.substring(0, 30) + "..."
                         : book.title}
-                    </a>
+
                   </Link>
                 </h1>
               </div>

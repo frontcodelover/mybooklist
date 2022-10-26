@@ -43,9 +43,9 @@ export default function NavResponsive() {
               <span className="font-bold text-xl">
                 <div className="h-auto w-32">
                   <Link href="/">
-                    <a>
+ 
                       <Image src={logoLectureNew} alt="logo lecture" />
-                    </a>
+    
                   </Link>
                 </div>
               </span>

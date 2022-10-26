@@ -69,7 +69,7 @@ export default function GetAllBooksFromTheList({ slug }) {
               </p>
               <button className="bg-purple-500 text-white p-2 rounded-md shadow font-semibold mt-4">
                 <Link href="/books">
-                  <a>Voir tous les livres</a>
+                  Voir tous les livres
                 </Link>
               </button>
             </div>

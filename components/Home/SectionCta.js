@@ -22,9 +22,9 @@ export default function SectionCta() {
             <div className="mt-8 flex lg:mt-0 lg:flex-shrink-0">
               <div className="inline-flex rounded-md shadow">
                 <Link href="user/profil">
-                  <a className="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-5 py-3 text-base font-medium text-white hover:bg-purple-700">
+                  <p className="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-5 py-3 text-base font-medium text-white hover:bg-purple-700">
                     Mon espace personnel
-                  </a>
+                  </p>
                 </Link>
               </div>
             </div>
@@ -33,16 +33,16 @@ export default function SectionCta() {
           <div className="mt-8 flex lg:mt-0 lg:flex-shrink-0">
             <div className="inline-flex rounded-md shadow">
               <Link href="user/signup">
-                <a className="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-5 py-3 text-base font-medium text-white hover:bg-purple-700">
+                <p className="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-5 py-3 text-base font-medium text-white hover:bg-purple-700">
                   S'inscrire
-                </a>
+                </p>
               </Link>
             </div>
             <div className="ml-3 inline-flex rounded-md shadow">
               <Link href="user/login">
-                <a className="inline-flex items-center justify-center rounded-md border border-transparent bg-white px-5 py-3 text-base font-medium text-purple-500 hover:bg-indigo-50">
+                <p className="inline-flex items-center justify-center rounded-md border border-transparent bg-white px-5 py-3 text-base font-medium text-purple-500 hover:bg-indigo-50">
                   Se connecter
-                </a>
+                </p>
               </Link>
             </div>
           </div>
