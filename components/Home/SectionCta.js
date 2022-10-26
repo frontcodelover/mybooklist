@@ -5,7 +5,7 @@ import { useAuth } from "../../context/AuthContext";
 
 export default function SectionCta() {
   const { user } = useAuth();
-  console.log(user)
+
   return (
     <div className="bg-purple-100">
       <div className="mx-auto max-w-7xl py-12 px-4 sm:px-6 lg:flex lg:items-center lg:justify-between lg:py-16 lg:px-8">

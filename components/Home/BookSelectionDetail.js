@@ -23,7 +23,7 @@ export default function BookSelectionDetail({ bookid }) {
 
   return (
     <>
-      <div>
+
         <div
           key={bookInfos.id}
           className="grid lg:grid-rows-1 lg:grid-flow-col bg-white shadow-lg hover:shadow-xl transition duration-300 border-b-2 border-t border-r-2 border-l-2 border-l-slate-100 border-r-slate-100 border-t-slate-100 border-slate-200/90 p-10 rounded-xl place-items-center"
@@ -73,7 +73,6 @@ export default function BookSelectionDetail({ bookid }) {
             </>
           )}
         </div>
-      </div>
     </>
   );
 }

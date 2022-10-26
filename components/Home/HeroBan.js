@@ -9,7 +9,7 @@ export default function HeroBan() {
   return (
 
     <section
-  className="relative bg-hero-bg bg-center bg-no-repeat bg-cover"
+  className="relative bg-hero-bg bg-center bg-no-repeat bg-cover z-1"
 >
 
   <div

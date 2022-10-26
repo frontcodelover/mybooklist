@@ -110,7 +110,18 @@ console.log(data)
 
             {bookInfos?.isbn13 ? (
               <div className="flex hover:bg-gray-100 p-4 w-fit rounded-xl">
-                <Link
+                <a target="_blank"
+                  rel="noreferrer" href={`https://www.amazon.fr/s?k=${bookInfos?.isbn13}&tag=avantjetaisriche-21`}>
+                <p
+                    className="text-sm font-semibold text-red-500 flex"
+                  >
+                    <span className="mt-1 pr-1">
+                      <AiOutlineShoppingCart />
+                    </span>
+                    Acheter ce livre sur Amazon
+                  </p>
+                </a>
+                {/* <Link 
                   href={`https://www.amazon.fr/s?k=${bookInfos?.isbn13}&tag=avantjetaisriche-21`}
                   target="_blank"
                   rel="noreferrer"
@@ -123,7 +134,7 @@ console.log(data)
                     </p>
                     Acheter ce livre sur Amazon
                   </p>
-                </Link>
+                </Link> */}
               </div>
             ) : (
               <></>
@@ -134,10 +145,10 @@ console.log(data)
         <div className="sm:grow h-auto  p-5">
           {bookInfos.description && (
             <div className="mb-9">
-              <h3 className="text-3xl font-bold mb-10 border-b pb-2 border-main-color/20 text-main-color">
-                Résumer
+              <h3 className="text-2xl font-bold mb-10 border-b pb-2 border-main-color/20 text-main-color tracking-tight">
+                Résumé du livre
               </h3>
-              <div className="text-justify text-lg tracking-tight">
+              <div className="text-justify text-md tracking-tight">
                 {parse(bookInfos.description)}
               </div>
             </div>
@@ -161,7 +172,7 @@ console.log(data)
               <p>Auteur inconnu</p>
             )}
             <div className="mt-4">
-              <h3 className="text-3xl font-bold mb-10 border-b pb-2 border-main-color/20 text-main-color tracking-tight">
+              <h3 className="text-2xl font-bold mb-10 border-b pb-2 border-main-color/20 text-main-color tracking-tight">
                 Les dernières critiques
               </h3>
               <DisplayReview bookid={id} />

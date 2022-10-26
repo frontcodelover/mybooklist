@@ -13,16 +13,15 @@ const Login = () => {
     email: "",
     password: "",
   });
+  const [error, setError] = useState(false)
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
-    console.log(user);
     try {
       await login(data.email, data.password);
       router.push("/user/dashboard");
     } catch (err) {
-      console.log(err);
+      setError(true)
     }
   };
 
@@ -79,9 +78,12 @@ const Login = () => {
                     setData({ ...data, password: e.target.value })
                   }
                 />
+                {error && (
+
                 <p className="text-xs italic text-red-500">
-                  Merci de choisir un mot de passe d'au moins 6 caractères.
+                  Oups, il y a un problème avec votre mot de passe ou votre email, veuillez ressayer.
                 </p>
+                )}
               </div>
 
               <div className="mb-6 text-center">

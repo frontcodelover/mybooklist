@@ -41,7 +41,7 @@ export default function DashboardResume() {
 
   return (
     <div className="relative">
-      <div className="container mx-auto mt-8 lg:max-w-screen-xl p-4">
+      <div className="container mx-auto lg:max-w-screen-xl p-4">
         {currentUser.pseudo ? (
           <>
             <div className="shadow rounded-xl">

@@ -14,14 +14,15 @@ const Signup = () => {
     email: "",
     password: "",
   });
+  const [error, setError] = useState(false);
 
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
       await signUp(data.email, data.password);
       router.push("/user/firststep");
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      setError(true);
     }
   };
 
@@ -84,9 +85,11 @@ const Signup = () => {
                       setData({ ...data, password: e.target.value })
                     }
                   />
-                  <p className="text-xs italic text-red-500">
-                    Merci de choisir un mot de passe d'au moins 6 caractères.
-                  </p>
+                  {error && (
+                    <p className="text-xs italic text-red-500">
+                      Merci de choisir un mot de passe d'au moins 6 caractères.
+                    </p>
+                  )}
                 </div>
 
                 <div className="mb-6 text-center">

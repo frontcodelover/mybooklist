@@ -7,8 +7,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../components/firebase";
 
-//* Ce composant permet de gérer l'authentification de l'utilisateur
-//? Feature Github authentication ?
+//* Authentication component
 
 const AuthContext = createContext({});
 
