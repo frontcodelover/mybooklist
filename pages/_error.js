@@ -29,11 +29,11 @@ export default function _error() {
               La page que vous souhaitez consulter n'existe pas !{" "}
             </p>
             <Link href="/">
-              <a>
+    
                 <button className="mx-4 h-10 w-44 border rounded-md text-white text-base bg-indigo-700 hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-opacity-50 focus:ring-indigo-800">
                   Retourner à l'accueil
                 </button>
-              </a>
+        
             </Link>
           </div>
         </div>

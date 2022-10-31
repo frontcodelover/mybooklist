@@ -28,7 +28,7 @@ export default function FetchCover({ bookid }) {
         {bookInfos.thumbnail ? (
           <>
             <Link href={`/books/details/${bookInfos.id}`}>
-              <a>
+ 
                 <Image
                   src={bookInfos.thumbnail}
                   alt={bookInfos.title}
@@ -36,13 +36,13 @@ export default function FetchCover({ bookid }) {
                   width={152}
                   className="h-48 w-30 mx-auto hover:scale-105 duration-300"
                 />
-              </a>
+    
             </Link>
           </>
         ) : (
           <>
             <Link href={`/books/details/${bookInfos.id}`}>
-              <a className="">
+        
                 <Image
                   src={genBook}
                   alt={bookInfos.title}
@@ -51,7 +51,7 @@ export default function FetchCover({ bookid }) {
                   objectFit="cover"
                   className="hover:scale-105 duration-300"
                 />
-              </a>
+        
             </Link>
           </>
         )}

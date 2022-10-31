@@ -47,7 +47,6 @@ export default function Home({ booksStatic }) {
         if (resp.ok) {
           const isbnBook = await resp.json();
           setBookWithIsbn((old) => [...old, ...isbnBook.items]);
-          // setBookWithIsbn((oldBooks) => Array.isArray(isbnBook) ? [...oldBooks, ...isbnBook.items] : [...oldBooks, isbnBook.items])
         }
       } catch {}
     }
@@ -68,7 +67,7 @@ export default function Home({ booksStatic }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <div className="bg-white my-10">
+        <div className="bg-white z-1">
           <HeroBan />
         </div>
 

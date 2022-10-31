@@ -57,14 +57,14 @@ export default function DisplayLists({ userid }) {
                 <div key={docData.id} className="pl-2 py-2">
                   <div className="flex flex-row gap-2">
                     <Link href={`/list/${docData?.slug}`}>
-                      <a>
+
                         <h2
                           className="text-2xl font-semibold tracking-tight my-2"
                           style={{ color: docData?.color }}
                         >
                           {docData.name}
                         </h2>
-                      </a>
+              
                     </Link>
                     <div className="flex flex-row gap-2 mt-2">
                       <span className="mt-1">

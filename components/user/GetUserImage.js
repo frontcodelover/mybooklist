@@ -22,14 +22,19 @@ export default function GetUserImage({ user, size }) {
   return (
     <>
       {imageUrls ? (
+
+          
         <Image
-          src={imageUrls}
-          alt="user"
-          className="rounded-full"
-          objectFit="cover"
-          width={size}
-          height={size}
-        />
+          style={{objectFit:'cover', height:size}}
+            src={imageUrls}
+            alt="user"
+            className="rounded-full"
+            width={size}
+            height={size}
+            layout="fill"
+            />
+
+        
       ) : (
         <div className="w-16">
           <Image src={avatar} alt="avatar" width={size} height={size} />

@@ -14,15 +14,15 @@ export default function BookLayout({ book }) {
       <div className="max-h-48 lg:h-auto lg:w-30 bg-cover text-center overflow-hidden">
         {bookInfo.thumbnail ? (
           <Link href="/books/details/[id]" as={`/books/details/${book?.id}`}>
-            <a>
+
               <img src={bookInfo.thumbnail} alt={bookInfo.title} />
-            </a>
+
           </Link>
         ) : (
           <Link href="/books/details/[id]" as={`/books/details/${book?.id}`}>
-            <a>
+
               <Image src={genBook} alt={bookInfo.title} />
-            </a>
+
           </Link>
         )}
       </div>
@@ -30,7 +30,7 @@ export default function BookLayout({ book }) {
         <div className="mb-4">
           <div className="text-gray-900 font-bold text-xl">
             <Link href="/books/details/[id]" as={`/books/details/${book?.id}`}>
-              <a>{bookInfo.title}</a>
+              {bookInfo.title}
             </Link>
           </div>
           {bookInfo.subtitle ? (
@@ -49,9 +49,9 @@ export default function BookLayout({ book }) {
                     as={`/books/author/${author}`}
                     key={author}
                   >
-                    <a className="underline text-purple-500 hover:text-purple-700" key={bookInfo.authors + randomBook}>
+                    <div className="underline text-purple-500 hover:text-purple-700" key={bookInfo.authors + randomBook}>
                       {author + ". "}
-                    </a>
+                    </div>
                   </Link>
                 ))
               : "Auteur inconnu"}
