@@ -16,13 +16,12 @@ import parse from "html-react-parser";
 import BookmarkBooksList from "./BookToList/BookmarkBooksList";
 import Modal from "../../Layout/modal";
 import DisplayReview from "./Reviews/DisplayReview";
+import AddReview from "./Reviews/AddReview";
 
 export default function GetSingleBook({ data, id }) {
   const { user } = useAuth();
 
-console.log(data)
-
-
+  console.log(data);
 
   // Mapper
   const bookInfos = getBookFromGoogleBookApi(data);
@@ -42,10 +41,12 @@ console.log(data)
       <div className="mx-auto bg-[#2b3055] flex py-20 my-5 border-b-4 border-[#7c61a3]/50">
         <div className="container lg:max-w-screen-xl mx-auto flex px-2">
           {bookInfos?.thumbnail ? (
-            <img
+            <Image
               src={bookInfos?.thumbnail}
               alt={bookInfos?.title}
-              className="h-48 w-auto md:h-64 md:w-48 object-cover shadow-lg pl-4"
+              width={200}
+              height={200}
+              className="w-auto object-cover h-60 shadow-lg rounded-md ml-4"
             />
           ) : (
             <div className="">
@@ -67,15 +68,12 @@ console.log(data)
               </h2>
             )}
             <div className="md:text-2xl text-md text-white/80 tracking-tight">
-              {bookInfos?.authors ? (
+              {bookInfos?.authors &&
                 bookInfos?.authors.map((author) => (
                   <>
                     <div key={author}>Un livre de {author}</div>
                   </>
-                ))
-              ) : (
-                <p className="text-white/50">Auteur inconnu</p>
-              )}
+                ))}
             </div>
             <p className="text-white/50 font-light">
               Edition : {bookInfos?.publisher}
@@ -86,6 +84,21 @@ console.log(data)
                 ? " " + bookInfos?.publishedDate.substring(0, 4)
                 : " inconnue"}
             </p>
+            {bookInfos?.isbn13 && (
+              <div className="flex hover:bg-purple-600 p-4 mt-6 w-fit rounded-xl bg-purple-500 shadow-xl">
+                <a target="_blank"
+                  rel="noreferrer" href={`https://www.amazon.fr/s?k=${bookInfos?.isbn13}&tag=avantjetaisriche-21`}>
+                <p
+                    className="text-sm font-semibold text-white flex"
+                  >
+                    <span className="mt-1 pr-1">
+                      <AiOutlineShoppingCart />
+                    </span>
+                    Acheter ce livre
+                  </p>
+                </a>
+              </div>
+            ) }
           </div>
         </div>
       </div>
@@ -108,36 +121,21 @@ console.log(data)
               )}
             </div>
 
-            {bookInfos?.isbn13 ? (
-              <div className="flex hover:bg-gray-100 p-4 w-fit rounded-xl">
-                <a target="_blank"
-                  rel="noreferrer" href={`https://www.amazon.fr/s?k=${bookInfos?.isbn13}&tag=avantjetaisriche-21`}>
-                <p
-                    className="text-sm font-semibold text-red-500 flex"
-                  >
+            {bookInfos?.isbn13 && (
+              <div className="flex hover:bg-purple-600 p-4 w-fit rounded-xl bg-purple-500 shadow-xl">
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href={`https://www.amazon.fr/s?k=${bookInfos?.isbn13}&tag=avantjetaisriche-21`}
+                >
+                  <p className="text-sm font-semibold text-white flex">
                     <span className="mt-1 pr-1">
                       <AiOutlineShoppingCart />
                     </span>
-                    Acheter ce livre sur Amazon
+                    Acheter ce livre
                   </p>
                 </a>
-                {/* <Link 
-                  href={`https://www.amazon.fr/s?k=${bookInfos?.isbn13}&tag=avantjetaisriche-21`}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <p
-                    className="text-sm font-semibold text-red-500 flex"
-                  >
-                    <p className="mt-1 pr-1">
-                      <AiOutlineShoppingCart />
-                    </p>
-                    Acheter ce livre sur Amazon
-                  </p>
-                </Link> */}
               </div>
-            ) : (
-              <></>
             )}
           </div>
         </div>
@@ -176,6 +174,7 @@ console.log(data)
                 Les dernières critiques
               </h3>
               <DisplayReview bookid={id} />
+              <AddReview bookid={id} />
             </div>
           </div>
         </div>

@@ -46,10 +46,12 @@ export default function BookSelectionDetail({ bookid }) {
               <div className="col-span-2">
               <Link href={`/books/details/${bookInfos.id}`}>
               
-                  <img
+                  <Image
                     src={bookInfos.thumbnail}
                     alt={bookInfos.title}
-                    className="h-64 w-auto object-cover pl-4 hidden lg:block"
+                    height={200}
+                    width={150}
+                    className="h-64 w-auto object-cover ml-4 hidden lg:block shadow-lg rounded-md"
                   />
                 
               </Link>

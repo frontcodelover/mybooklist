@@ -29,8 +29,8 @@ function SelectedBooks({ bookId }) {
                           src={book.thumbnail}
                           alt={book.title}
                           height={224}
-                          width={152}
-                          className="h-48 w-30 mx-auto hover:scale-105 duration-300"
+                          width={130}
+                          className="h-48 w-30 mx-auto hover:scale-105 duration-300 shadow-lg rounded-md"
                         />
 
                     </Link>

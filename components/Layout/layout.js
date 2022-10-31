@@ -8,7 +8,7 @@ export default function Layout({ children }) {
   return (
     <>
       <div className="flex flex-col min-h-screen">
-        <div className="container mx-auto my-4 z-10">
+        <div className="container mx-auto mt-4 z-10">
           <Nav />
         </div>
         {children}

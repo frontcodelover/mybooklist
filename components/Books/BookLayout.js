@@ -14,15 +14,17 @@ export default function BookLayout({ book }) {
       <div className="max-h-48 lg:h-auto lg:w-30 bg-cover text-center overflow-hidden">
         {bookInfo.thumbnail ? (
           <Link href="/books/details/[id]" as={`/books/details/${book?.id}`}>
-
-              <img src={bookInfo.thumbnail} alt={bookInfo.title} />
-
+            <Image
+              src={bookInfo.thumbnail}
+              alt={bookInfo.title}
+              height={220}
+              width={160}
+              className="mx-auto mb-5 h-48 shadow-lg rounded-md"
+            />
           </Link>
         ) : (
           <Link href="/books/details/[id]" as={`/books/details/${book?.id}`}>
-
-              <Image src={genBook} alt={bookInfo.title} />
-
+            <Image src={genBook} alt={bookInfo.title} />
           </Link>
         )}
       </div>
@@ -41,7 +43,7 @@ export default function BookLayout({ book }) {
             ""
           )}
           <p className="text-gray-700 text-base">
-            Auteur(s) : {" "}
+            Auteur(s) :{" "}
             {bookInfo.authors
               ? bookInfo.authors.map((author) => (
                   <Link
@@ -49,7 +51,10 @@ export default function BookLayout({ book }) {
                     as={`/books/author/${author}`}
                     key={author}
                   >
-                    <div className="underline text-purple-500 hover:text-purple-700" key={bookInfo.authors + randomBook}>
+                    <div
+                      className="underline text-purple-500 hover:text-purple-700"
+                      key={bookInfo.authors + randomBook}
+                    >
                       {author + ". "}
                     </div>
                   </Link>

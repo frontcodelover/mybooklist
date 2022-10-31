@@ -25,7 +25,7 @@ export function getBookFromGoogleBookApi(theGoogleBook) {
 }
 
 export function hydrateBooks(anArrayOfGoogleBooks) {
-  return anArrayOfGoogleBooks.map((theGoogleBook) => {
+  return anArrayOfGoogleBooks?.map((theGoogleBook) => {
     return getBookFromGoogleBookApi(theGoogleBook);
   });
 }

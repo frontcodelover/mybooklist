@@ -8,7 +8,7 @@ export default function details({ data }) {
   const { id } = router.query;
 
   return (
-    <div className="mt-4">
+    <div className="mt-0">
       <div className="mx-auto">
         {!data.id ? router.push("/404") : <GetSingleBook data={data} id={id} />}
       </div>

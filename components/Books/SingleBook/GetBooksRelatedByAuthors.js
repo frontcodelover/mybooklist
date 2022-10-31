@@ -26,12 +26,12 @@ export default function GetBooksRelatedByAuthors({ author, bookid }) {
   }
 
   const withoutIMG = booksInfos.filter((book) => {
-    return book.thumbnail !== undefined
-  })
+    return book.thumbnail !== undefined;
+  });
 
   const excludeCurrentId = withoutIMG.filter((book) => {
-    return book.id !== bookid
-  })
+    return book.id !== bookid;
+  });
 
   return (
     <>
@@ -46,36 +46,28 @@ export default function GetBooksRelatedByAuthors({ author, bookid }) {
                 {book.thumbnail ? (
                   <>
                     <Link href={`/books/details/${book.id}`}>
-
-                        <img
-                          src={book.thumbnail}
-                          alt={book.title}
-                          className="mx-auto mb-5 h-48"
-                        />
-
+                      <Image
+                        src={book.thumbnail}
+                        alt={book.title}
+                        height={224}
+                        width={130}
+                        className="mx-auto mb-5 h-48 shadow-lg rounded-md"
+                      />
                     </Link>
                   </>
                 ) : (
                   <div className="mx-auto mb-5 h-48 " key={book.id + "3"}>
                     <Link href={`/books/details/${book.id}`}>
-
-                        <Image
-                          src={genBook}
-                          alt={book.title}
-                          className="h-48 "
-                        />
-
+                      <Image src={genBook} alt={book.title} className="h-48 " />
                     </Link>
                   </div>
                 )}
 
                 <h1 className="text-sm font-semibold">
                   <Link href={`/books/details/${book.id}`}>
-
-                      {book?.title?.length > 30
-                        ? book.title.substring(0, 30) + "..."
-                        : book.title}
-
+                    {book?.title?.length > 30
+                      ? book.title.substring(0, 30) + "..."
+                      : book.title}
                   </Link>
                 </h1>
               </div>
