@@ -4,7 +4,7 @@ import { storage } from "../../../firebase";
 import avatar from "../../../../public/avatar.png";
 import Image from "next/image";
 
-export default function GetImage({ userid }) {
+export default function GetImage({ userid, size }) {
   const [imageUrls, setImageUrls] = useState("");
 
   const storageRef = ref(storage, userid + ".jpg");
@@ -26,11 +26,12 @@ export default function GetImage({ userid }) {
     <>
       {imageUrls ? (
         <Image
+          style={{objectFit:'cover', height:size}}
           src={imageUrls}
           alt="user"
           objectFit="cover"
-          width={50}
-          height={50}
+          width={size}
+          height={size}
           className="rounded-full"
         />
       ) : (

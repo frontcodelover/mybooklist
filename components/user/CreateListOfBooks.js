@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { nanoid } from "nanoid";
-import { doc, setDoc } from "firebase/firestore";
-import { getFirestore } from "firebase/firestore";
+import { doc, setDoc, getFirestore } from "firebase/firestore";
 
 export default function CreateListOfBooks({ userid, pseudo }) {
   const [inputs, setInputs] = useState({});

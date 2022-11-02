@@ -21,7 +21,6 @@ import AddReview from "./Reviews/AddReview";
 export default function GetSingleBook({ data, id }) {
   const { user } = useAuth();
 
-  console.log(data);
 
   // Mapper
   const bookInfos = getBookFromGoogleBookApi(data);
@@ -85,12 +84,13 @@ export default function GetSingleBook({ data, id }) {
                 : " inconnue"}
             </p>
             {bookInfos?.isbn13 && (
-              <div className="flex hover:bg-purple-600 p-4 mt-6 w-fit rounded-xl bg-purple-500 shadow-xl">
-                <a target="_blank"
-                  rel="noreferrer" href={`https://www.amazon.fr/s?k=${bookInfos?.isbn13}&tag=avantjetaisriche-21`}>
-                <p
-                    className="text-sm font-semibold text-white flex"
-                  >
+              <div className="flex hover:bg-purple-600 p-4 mt-6 w-fit rounded-xl bg-purple-500 shadow-md">
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href={`https://www.amazon.fr/s?k=${bookInfos?.isbn13}&tag=avantjetaisriche-21`}
+                >
+                  <p className="text-sm font-semibold text-white flex">
                     <span className="mt-1 pr-1">
                       <AiOutlineShoppingCart />
                     </span>
@@ -98,7 +98,7 @@ export default function GetSingleBook({ data, id }) {
                   </p>
                 </a>
               </div>
-            ) }
+            )}
           </div>
         </div>
       </div>
@@ -112,9 +112,9 @@ export default function GetSingleBook({ data, id }) {
                   <div className="pb-5">
                     <BookmarkBooksList bookid={id} userid={user?.uid} />
                   </div>
-                  <div>
+                  {/* <div>
                     <AlreadyRead bookid={id} userid={user?.uid} />
-                  </div>
+                  </div> */}
                 </>
               ) : (
                 <Modal />
@@ -122,7 +122,7 @@ export default function GetSingleBook({ data, id }) {
             </div>
 
             {bookInfos?.isbn13 && (
-              <div className="flex hover:bg-purple-600 p-4 w-fit rounded-xl bg-purple-500 shadow-xl">
+              <div className="flex hover:bg-purple-600 p-4 w-fit rounded-xl bg-purple-500 shadow-md ml-6">
                 <a
                   target="_blank"
                   rel="noreferrer"
@@ -170,11 +170,16 @@ export default function GetSingleBook({ data, id }) {
               <p>Auteur inconnu</p>
             )}
             <div className="mt-4">
-              <h3 className="text-2xl font-bold mb-10 border-b pb-2 border-main-color/20 text-main-color tracking-tight">
-                Les dernières critiques
-              </h3>
+             
               <DisplayReview bookid={id} />
-              <AddReview bookid={id} />
+              {user && (
+                <>
+                  <h3 className="text-2xl font-bold mb-10 border-b pb-2 border-main-color/20 text-main-color tracking-tight">
+                    Ajoutez votre critique
+                  </h3>
+                  <AddReview bookid={id} user={user.uid} />
+                </>
+              )}
             </div>
           </div>
         </div>
