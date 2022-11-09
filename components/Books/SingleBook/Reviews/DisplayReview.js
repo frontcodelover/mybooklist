@@ -22,10 +22,8 @@ export default function DisplayReview({ bookid }) {
     return getDocs(q);
   });
   const resultBookReviewQuery =
-    (bookReviewQuery.data?.docs || []).map((doc) => doc.data()) || [];
-  const isLoadingQuery = bookReviewQuery.isLoading;
-
-  console.log(resultBookReviewQuery);
+    (bookReviewQuery.data?.docs || []).map((doc) => doc?.data()) || [];
+  const isLoadingQuery = bookReviewQuery?.isLoading;
 
   return (
     <>
@@ -36,25 +34,25 @@ export default function DisplayReview({ bookid }) {
              <h3 className="text-2xl font-bold mb-10 border-b pb-2 border-main-color/20 text-main-color tracking-tight">
                 Les dernières critiques
               </h3>
-          {resultBookReviewQuery.length ? (
+          {resultBookReviewQuery?.length ? (
             resultBookReviewQuery?.map((review) => {
               return (
                 <>
                   
                   <div className="p-10 border-b-2 border-t border-r-2 border-l-2 border-l-slate-100 border-r-slate-100 border-t-slate-100 border-slate-200/90 my-14 shadow-xl rounded-xl">
                     <div className="flex mb-3">
-                      <GetImage userid={review.userid} size={50} />
+                      <GetImage userid={review?.userid} size={50} />
                       <div className="p-3">
                         <span className="font-semibold">
                           {" "}
-                          <ProfileInfos userid={review.userid} />
+                          <ProfileInfos userid={review?.userid} />
                         </span>{" "}
-                        a écrit le <span className="mr-2">{review.readed}</span>
+                        a écrit le <span className="mr-2">{review?.readed}</span>
                       </div>
                     </div>
-                    <StarsReview note={review.note} />
-                    <p className="font-bold text-lg mb-3">{review.title}</p>
-                    <p className="text-justify">{review.content}</p>
+                    <StarsReview note={review?.note} />
+                    <p className="font-bold text-lg mb-3">{review?.title}</p>
+                    <p className="text-justify">{review?.content}</p>
                   </div>
                 </>
               );

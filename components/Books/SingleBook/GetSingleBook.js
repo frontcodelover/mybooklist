@@ -1,17 +1,12 @@
 import React from "react";
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import genBook from "../../../public/livre-generique.jpg";
 import { getBookFromGoogleBookApi } from "../../../services/mapper/mapper";
 import GetBooksRelatedByAuthors from "./GetBooksRelatedByAuthors";
 import GetBooksByMainCategory from "./GetBooksByMainCategory";
 import { useAuth } from "../../../context/AuthContext";
-import AlreadyRead from "./BookToList/AlreadyRead";
-import Link from "next/link";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import Head from "next/head";
-import { useDispatch, useSelector } from "react-redux";
-import { getBook } from "../../../feature/book/bookSlice";
 import parse from "html-react-parser";
 import BookmarkBooksList from "./BookToList/BookmarkBooksList";
 import Modal from "../../Layout/modal";
@@ -171,7 +166,7 @@ export default function GetSingleBook({ data, id }) {
             )}
             <div className="mt-4">
              
-              <DisplayReview bookid={id} />
+                <DisplayReview bookid={id} />
               {user && (
                 <>
                   <h3 className="text-2xl font-bold mb-10 border-b pb-2 border-main-color/20 text-main-color tracking-tight">
