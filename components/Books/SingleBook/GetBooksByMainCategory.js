@@ -10,18 +10,21 @@ export default function GetBooksByMainCategory({
   category,
   booktitle,
   bookid,
+  bookcat
 }) {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
     axios
       .get(
-        `${BOOKS_SEARCH}${booktitle}&maxResults=12&langRestrict=fr&printType=books&orderBy=relevance`
+        `${BOOKS_SEARCH}${booktitle}&maxResults=12&printType=books&orderBy=relevance&subject:${bookcat}`
       )
       .then((res) => {
         setBooks(res.data.items);
       });
   }, [category]);
+
+  console.log("MES LIVRES", books)
 
   let booksInfos;
   if (books !== undefined) {

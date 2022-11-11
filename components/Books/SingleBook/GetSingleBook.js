@@ -20,6 +20,8 @@ export default function GetSingleBook({ data, id }) {
   // Mapper
   const bookInfos = getBookFromGoogleBookApi(data);
 
+  console.log(bookInfos?.categories)
+
   return (
     <>
       <Head>
@@ -142,6 +144,8 @@ export default function GetSingleBook({ data, id }) {
                 Résumé du livre
               </h3>
               <div className="text-justify text-md tracking-tight">
+                {bookInfos.categories}
+
                 {parse(bookInfos.description)}
               </div>
             </div>
@@ -150,6 +154,7 @@ export default function GetSingleBook({ data, id }) {
             {bookInfos?.categories && (
               <GetBooksByMainCategory
                 booktitle={bookInfos?.title}
+                bookcat={bookInfos?.categories}
                 bookid={id}
               />
             )}
