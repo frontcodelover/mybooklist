@@ -7,7 +7,7 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useAuth } from "../../context/AuthContext";
 import { useRouter } from "next/router";
-import GetUserImage from "../User/GetUserImage";
+import GetUserImage from "../User/GetUserImage"
 import logoLectureNew from "../../public/logo-listedelecture.png";
 
 const navigation = [
@@ -82,7 +82,7 @@ export default function Nav() {
                     <Menu.Button className="flex rounded-full bg-gray-800 text-md focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="sr-only">Open user menu</span>
                       {user ? (
-                        <GetUserImage user={user.uid} size={40} />
+                        <GetUserImage user={user.uid} size={40}/>
                       ) : (
                         <Image
                           src={avatar}

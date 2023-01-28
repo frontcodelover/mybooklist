@@ -1,4 +1,3 @@
-import NavResponsive from "./navResponsive";
 import Footer from "./footer";
 import Nav from "./nav";
 

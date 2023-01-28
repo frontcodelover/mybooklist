@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../firebase';
 import avatar from '../../public/avatar.png';
-
 import Image from 'next/image';
 
 export default function GetUserImage({ user, size }) {
