@@ -31,7 +31,7 @@ function BooksCarousselStatic({ booksStatic }) {
 
                         <Image
                           src={book.thumbnail}
-                          alt={book.title}
+                          alt={book.title + "livre"}
                           height={224}
                           width={130}
                           className="h-48 w-30 mx-auto hover:scale-105 duration-300 shadow-lg rounded-md"
@@ -46,7 +46,7 @@ function BooksCarousselStatic({ booksStatic }) {
 
                         <Image
                           src={genBook}
-                          alt={book.title}
+                          alt={book.title + "livre"}
                           height={224}
                           width={152}
                           objectFit="cover"

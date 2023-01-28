@@ -1,56 +1,31 @@
-import React from "react";
-import Link from "next/link";
-import Image from "next/image";
-import genBook from "../../public/livre-generique.jpg";
-import { hydrateBooks } from "../../services/mapper/mapper";
+import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import genBook from '../../public/livre-generique.jpg';
+import { hydrateBooks } from '../../services/mapper/mapper';
 
 function SelectedBooks({ bookId }) {
-
   const bookInfos = hydrateBooks(bookId);
 
   return (
     <div>
-      <div className="py-6">
-        <h3 className="text-5xl py-9 mb-3 font-extrabold text-main-color tracking-tight">
-          La sélection du moment
-        </h3>
-        <div className="grid lg:grid-cols-9 md:grid-cols-3 grid-cols-2 gap-2">
+      <div className='py-6'>
+        <h3 className='text-5xl py-9 mb-3 font-extrabold text-main-color tracking-tight'>La sélection du moment</h3>
+        <div className='grid lg:grid-cols-9 md:grid-cols-3 grid-cols-2 gap-2'>
           {bookInfos.map((book) => {
             return (
-              <div
-                key={book.id + 2}
-                className=""
-              >
+              <div key={book.id + 2} className=''>
                 {book.thumbnail ? (
                   <>
                     <Link href={`/books/details/${book.id}`}>
-
-                        <Image
-                          src={book.thumbnail}
-                          alt={book.title}
-                          height={224}
-                          width={130}
-                          className="h-48 w-30 mx-auto hover:scale-105 duration-300 shadow-lg rounded-md"
-                        />
-
+                      <Image src={book.thumbnail} alt={book.title} height={224} width={130} className='h-48 w-30 mx-auto hover:scale-105 duration-300 shadow-lg rounded-md' />
                     </Link>
-
                   </>
                 ) : (
                   <>
                     <Link href={`/books/details/${book.id}`}>
-
-                        <Image
-                          src={genBook}
-                          alt={book.title}
-                          height={224}
-                          width={152}
-                          objectFit="cover"
-                          className="hover:scale-105 duration-300"
-                        />
-     
+                      <Image src={genBook} alt={book.title} height={224} width={152} objectFit='cover' className='hover:scale-105 duration-300' />
                     </Link>
-
                   </>
                 )}
               </div>
