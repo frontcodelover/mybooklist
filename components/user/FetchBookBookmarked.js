@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import BookLayout from "../Books/BookLayout";
-import { useAuth } from "../../context/AuthContext";
-import { BOOKS_BY_ID } from "../../services/api/googleBooks";
-import { useDispatch, useSelector } from "react-redux";
-import { getBook } from "../../feature/book/bookSlice";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import BookLayout from '../Books/BookLayout';
+import { useAuth } from '../../context/AuthContext';
+import { BOOKS_BY_ID } from '../../services/api/googleBooks';
+import { useDispatch, useSelector } from 'react-redux';
+import { getBook } from '../../feature/book/bookSlice';
 
 export default function FetchBookBookmarked({ bookInfos }) {
   const [bookDetail, setBookDetail] = useState([]);

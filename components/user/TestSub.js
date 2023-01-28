@@ -1,18 +1,7 @@
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import {
-  collection,
-  query,
-  where,
-  getDocs,
-  addDoc,
-  updateDoc,
-  doc,
-  setDoc,
-  deleteDoc,
-} from "firebase/firestore";
-import { getFirestore } from "firebase/firestore";
-import { useAuth } from "../../context/AuthContext";
+import React, { useState, useEffect } from 'react';
+import { collection, query, getDocs, doc, setDoc, deleteDoc } from 'firebase/firestore';
+import { getFirestore } from 'firebase/firestore';
+import { useAuth } from '../../context/AuthContext';
 
 export default function GetSubCollection() {
   const { user } = useAuth();
@@ -21,7 +10,7 @@ export default function GetSubCollection() {
 
   useEffect(() => {
     const GetSubCollection = async () => {
-      const docRef = collection(db, "users", user?.uid, "test");
+      const docRef = collection(db, 'users', user?.uid, 'test');
       const q = query(docRef);
       const querySnapshot = await getDocs(q);
 
@@ -32,26 +21,26 @@ export default function GetSubCollection() {
     GetSubCollection();
   }, [db, user]);
 
-  const postId = "25";
+  const postId = '25';
 
   const handleAddDataToTest = async (e) => {
     e.preventDefault();
-    const docRef = setDoc(doc(db, "users", user?.uid, "test", postId), {
-      name: "test",
+    const docRef = setDoc(doc(db, 'users', user?.uid, 'test', postId), {
+      name: 'test',
       age: 55,
     });
   };
 
   const handleDeleteDataToTest = async (e) => {
     e.preventDefault();
-    const docRef = doc(db, "users", user?.uid, "test", postId);
+    const docRef = doc(db, 'users', user?.uid, 'test', postId);
     await deleteDoc(docRef);
   };
 
   const handleAddSubCategory = async (e) => {
     e.preventDefault();
-    const docRef = setDoc(doc(db, "users", user?.uid, "prout", postId), {
-      name: "test",
+    const docRef = setDoc(doc(db, 'users', user?.uid, 'prout', postId), {
+      name: 'test',
       age: 55,
     });
   };
