@@ -56,7 +56,7 @@ export default function footer() {
           <div className='flex flex-wrap items-center md:justify-between justify-center'>
             <div className='w-full md:w-4/12 px-4 mx-auto text-center'>
               <div className='text-sm text-blueGray-500 font-semibold py-1'>
-                Fabriqué avec passion depuis <span id='get-current-year'>2022 - </span>
+                Fabriqué avec passion depuis <span id='get-current-year'>2023 - </span>
                 <a href='https://github.com/frontcodelover/mybooklist' className='text-blueGray-500 hover:text-blueGray-800'>
                   FrontCodeLover
                 </a>
