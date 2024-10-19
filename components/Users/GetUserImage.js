@@ -4,7 +4,7 @@ import { storage } from '../firebase';
 import avatar from '../../public/avatar.png';
 import Image from 'next/image';
 
-export default function GetUserImage({ user, size }) {
+export default function GetUserImage({ user }) {
   const [imageUrls, setImageUrls] = useState('');
 
   useEffect(() => {
@@ -21,10 +21,10 @@ export default function GetUserImage({ user, size }) {
   return (
     <>
       {imageUrls ? (
-        <Image style={{ objectFit: 'cover', height: size }} src={imageUrls} alt='user' className='rounded-full' width={size} height={size} layout='fill' />
+        <Image src={imageUrls} alt='user' className='rounded-full object-contain' width={40} height={0} />
       ) : (
         <div className='w-16'>
-          <Image src={avatar} alt='avatar' width={size} height={size} />
+          <Image src={avatar} alt='avatar' width={120} height={120} />
         </div>
       )}
     </>

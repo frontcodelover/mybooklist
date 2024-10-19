@@ -1,9 +1,7 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore/lite";
-import { getStorage } from "firebase/storage";
-import { getAuth } from "firebase/auth";
-import "firebase/auth";
+import { initializeApp, getApps, getApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore/lite';
+import { getStorage } from 'firebase/storage';
+import { getAuth } from 'firebase/auth';
 
 //* Initialisation de Firebase
 
@@ -14,11 +12,12 @@ const firebaseConfig = {
   storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MESUREMENT,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID, // Optionnel si tu ne l'utilises pas
 };
 
-const app = initializeApp(firebaseConfig);
+// Vérifier si l'app est déjà initialisée
+const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+
 export const db = getFirestore(app);
 export const auth = getAuth(app);
-
 export const storage = getStorage(app);

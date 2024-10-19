@@ -48,7 +48,7 @@ export default function DashboardResume() {
               <div className="flex col-span-0 left-1/5 relative">
                 <DashboardBanner />
                 <div className="flex flex-col p-3 bg-white shadow-md rounded-full absolute bottom-0 -mb-16 mx-2">
-                  <GetUserImage user={currentUser.uid} size={120} />
+                  <GetUserImage user={currentUser.uid} />
                 </div>
               </div>
               <div className="p-5">

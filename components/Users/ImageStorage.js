@@ -30,7 +30,7 @@ export default function ImageStorage({ uid }) {
               <img src={imageUrls} className='w-16 h-16 object-cover rounded-full' />
             ) : (
               <div className='w-16'>
-                <Image src={avatar} alt='avatar' />
+                <Image src={avatar} alt='avatar' width={40} height={40}/>
               </div>
             )}
           </div>

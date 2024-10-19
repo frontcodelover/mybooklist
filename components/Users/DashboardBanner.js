@@ -5,7 +5,7 @@ import Image from 'next/image';
 export default function DashboardBanner() {
   return (
     <div className='w-screen max-h-screen object-cover'>
-      <Image style={{ objectFit: 'cover', height: '400px', width: '100%' }} src={library} alt='banniere-profil' height='400' />
+			<Image className='w-screen h-72 object-cover' src={library} alt='banniere-profil' height={1000} width={1000} />
     </div>
   );
 }

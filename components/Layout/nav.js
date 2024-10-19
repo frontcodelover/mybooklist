@@ -70,7 +70,7 @@ export default function Nav() {
                   <div>
                     <Menu.Button className='flex rounded-full bg-gray-800 text-md focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'>
                       <span className='sr-only'>Open user menu</span>
-                      {user ? <GetUserImage user={user.uid} size={40} /> : <Image src={avatar} width={40} height={40} className='rounded-full' alt='avatar' />}
+                      {user ? <GetUserImage user={user.uid} width={40} height={40} /> : <Image src={avatar} width={40} height={40} className='rounded-full' alt='avatar' />}
                     </Menu.Button>
                   </div>
                   <Transition

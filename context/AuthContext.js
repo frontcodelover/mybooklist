@@ -1,11 +1,6 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
-import {
-  onAuthStateChanged,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-} from "firebase/auth";
-import { auth } from "../components/firebase";
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import { onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { auth } from '../components/firebase';
 
 //* Authentication component
 
@@ -35,7 +30,12 @@ export const AuthContexProvider = ({ children }) => {
   }, []);
 
   const signUp = async (email, password) => {
-    await createUserWithEmailAndPassword(auth, email, password);
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      console.log('User created successfully:', userCredential);
+    } catch (error) {
+      console.error('Error during sign up:', error);
+    }
   };
 
   const login = async (email, password) => {
@@ -47,9 +47,5 @@ export const AuthContexProvider = ({ children }) => {
     await signOut(auth);
   };
 
-  return (
-    <AuthContext.Provider value={{ user, login, signUp, logout }}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={{ user, login, signUp, logout }}>{children}</AuthContext.Provider>;
 };
