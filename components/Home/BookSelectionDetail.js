@@ -40,7 +40,7 @@ export default function BookSelectionDetail({ bookid }) {
             </div>
             <div className='col-span-2'>
               <Link href={`/books/details/${bookInfos.id}`}>
-                <Image src={bookInfos.thumbnail} alt={bookInfos.title + "coucou"} height={200} width={150} className='h-64 w-auto object-cover ml-4 hidden lg:block shadow-lg rounded-md' />
+                <Image src={bookInfos.thumbnail} alt={bookInfos.title} height={200} width={150} className='h-64 w-auto object-cover ml-4 hidden lg:block shadow-lg rounded-md' />
               </Link>
             </div>
           </>

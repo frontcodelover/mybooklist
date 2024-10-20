@@ -1,4 +1,5 @@
 export function getBookFromGoogleBookApi(theGoogleBook) {
+		console.log("BooksAPI",theGoogleBook)
   return {
     id: theGoogleBook?.id,
     title: theGoogleBook?.volumeInfo?.title,
